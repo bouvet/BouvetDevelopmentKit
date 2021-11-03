@@ -1,0 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HandMesh : MonoBehaviour
+{
+    private void Start()
+    {
+        var c = gameObject.GetComponentsInChildren<Transform>();
+
+        foreach(var x in c)
+        {
+            Debug.Log("Name: " + x.gameObject.name);
+        }
+    }
+}

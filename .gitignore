@@ -1,0 +1,29 @@
+﻿# UNITY
+/.vs
+/[Ll]ibrary
+/[Tt]emp
+/[Oo]bj
+/[Ll]ogs
+/UnityPackageManager
+/[Aa]ssets
+/[Pp]rojectSettings
+
+# Build artifacts
+/bin
+/build
+/UWP*
+
+*.pdb
+*.pdb.meta
+*.csproj
+*.sln
+*.user
+*.userprefs
+*.zip
+*.zip.meta
+*.7z
+*.7z.meta
+*.zip.meta
+*.pidb.meta
+*.DotSettings
+*.DotSettings.user

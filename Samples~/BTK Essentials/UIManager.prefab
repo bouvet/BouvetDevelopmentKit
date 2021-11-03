@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3498782091348829791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3498782091348829789}
+  - component: {fileID: 3498782091348829790}
+  - component: {fileID: 6619939667533212023}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3498782091348829789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3498782091348829791}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.35206005, y: 0.019555598, z: 0.18456602}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3498782091348829790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3498782091348829791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21201bb9868721e49878975c56b16e0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoundingBoxFrameMaterial: {fileID: 2100000, guid: 6764d97ea7660dd44886e8214cf1325e,
+    type: 2}
+  BoundingBoxMaterial: {fileID: 2100000, guid: 73e910239f338914481ed047c266e659, type: 2}
+  ButtonBackgroundMaterial: {fileID: 2100000, guid: 94c9ffbee3bd33c43afe51dd8f9a762a,
+    type: 2}
+  PanelBackgroundMaterial: {fileID: 2100000, guid: 52400da5522cf8542818032f1e141a57,
+    type: 2}
+  StartManipulation: {fileID: 8300000, guid: 6b3c8289709066940a7cdf639926dd2d, type: 3}
+  EndManipulation: {fileID: 8300000, guid: 4f2b02d93005e394789261de7467e9a8, type: 3}
+  StartProximity: {fileID: 8300000, guid: 35056638bb588da439e3b436f67d4050, type: 3}
+  EndProximity: {fileID: 8300000, guid: 53bb96fc4f9152441b9f20f5486d00ac, type: 3}
+  ButtonPressed: {fileID: 8300000, guid: 7a814f85b2bc4c147b597ee484af44ae, type: 3}
+--- !u!114 &6619939667533212023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3498782091348829791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7cce196a150f54e8d150bf0b1c33ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

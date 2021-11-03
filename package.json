@@ -1,0 +1,40 @@
+{
+  "name": "com.bouvet.developmentkit",
+  "version": "1.1.30",
+  "displayName": "Bouvet Development Kit",
+  "description": "Bouvet Development Kit is a full interaction system for Mixed Reality applications on HoloLens.",
+  "unity": "2020.3",
+  "tag": "",
+  "dependencies": {
+    "com.unity.vectorgraphics": "2.0.0-preview.16"
+  },
+  "keywords": [
+    "bouvet",
+    "mixed reality",
+    "mixed-reality",
+    "hololens"
+  ],
+  "author": {
+    "name": "Bouvet Norge AS",
+    "email": "hololens@bouvet.no",
+    "url": "https://www.bouvet.no"
+  },
+  "type": "library",
+  "samples": [
+    {
+      "displayName": "UI Prefabs",
+      "description": "",
+      "path": "Samples~/UI"
+    },
+    {
+      "displayName": "Hologram Prefabs",
+      "description": "",
+      "path": "Samples~/Holograms"
+    },
+    {
+      "displayName": "BTK Essentials",
+      "description": "",
+      "path": "Samples~/BTK Essentials"
+    }
+  ]
+}
