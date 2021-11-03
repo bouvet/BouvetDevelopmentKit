@@ -10,7 +10,8 @@
     "url": "https://github.dev/bouvet/com.bouvet.developmentkit.git"
   },
   "dependencies": {
-    "com.unity.vectorgraphics": "2.0.0-preview.16"
+    "com.unity.vectorgraphics": "2.0.0-preview.16",
+    "com.unity.inputsystem": "1.0.2"
   },
   "keywords": [
     "bouvet",
