@@ -6,7 +6,8 @@
   "unity": "2020.3",
   "tag": "",
   "dependencies": {
-    "com.unity.vectorgraphics": "2.0.0-preview.16"
+    "com.unity.vectorgraphics": "2.0.0-preview.16",
+    "com.coffee.upm-git-extension": "https://github.com/mob-sakai/UpmGitExtension.git"
   },
   "keywords": [
     "bouvet",
