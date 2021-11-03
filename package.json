@@ -1,10 +1,14 @@
 {
   "name": "com.bouvet.developmentkit",
-  "version": "1.1.30",
+  "version": "1.0.0",
   "displayName": "Bouvet Development Kit",
   "description": "Bouvet Development Kit is a full interaction system for Mixed Reality applications on HoloLens.",
   "unity": "2020.3",
-  "tag": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.dev/bouvet/com.bouvet.developmentkit.git"
+  },
   "dependencies": {
     "com.unity.vectorgraphics": "2.0.0-preview.16",
     "com.coffee.upm-git-extension": "https://github.com/mob-sakai/UpmGitExtension.git"
