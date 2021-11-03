@@ -10,8 +10,7 @@
     "url": "https://github.dev/bouvet/com.bouvet.developmentkit.git"
   },
   "dependencies": {
-    "com.unity.vectorgraphics": "2.0.0-preview.16",
-    "com.coffee.upm-git-extension": "https://github.com/mob-sakai/UpmGitExtension.git"
+    "com.unity.vectorgraphics": "2.0.0-preview.16"
   },
   "keywords": [
     "bouvet",
