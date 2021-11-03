@@ -25,6 +25,7 @@
     "url": "https://www.bouvet.no"
   },
   "type": "library",
+  "documentationUrl": "https://github.com/bouvet/com.bouvet.developmentkit/wiki",
   "samples": [
     {
       "displayName": "UI Prefabs",
