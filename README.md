@@ -17,7 +17,7 @@ Open the Unity package manager and navigate to *"Add package from git URL..."*
 
  <!-- Add image for add from git thing -->
 
-![Package Manager > + > add from Git URL](wiki/images/upm-git-add.PNG)
+![Package Manager > + > add from Git URL](../../wiki/images/upm-git-add.PNG)
 
 Supply the following URL:
 
@@ -35,9 +35,9 @@ Finally, you need to go to the `XR Plug-in Management` tab in the Player Setting
 
 ## Create your scene
 
-To start creating with BTK, you need to add the `BDK Hololens 2 Prefab` ([read more](wiki/BTK-Hololens-2-Prefab)) to your scene. You can find it by searching in the packages folder. Next find the `InputManager` game object in the hirarchy of the prefab and enable the input options you wnt to use. We usually use at least `Use Hand Tracking`, `Allow Manipulation`, and `Use Interaction Beams`.
+To start creating with BTK, you need to add the `BDK Hololens 2 Prefab` ([read more](../../wiki/BTK-Hololens-2-Prefab)) to your scene. You can find it by searching in the packages folder. Next find the `InputManager` game object in the hirarchy of the prefab and enable the input options you wnt to use. We usually use at least `Use Hand Tracking`, `Allow Manipulation`, and `Use Interaction Beams`.
 
-Now you can add some object to your scene and add the `Grabbable`, `Two-Hand-Grabbable`, or `Interactable` scripts to them to start adding in functionality to your project. You can also go to [Samples](wiki/samples) and add BTK Essentials to find a few nifty menus and buttons.
+Now you can add some object to your scene and add the `Grabbable`, `Two-Hand-Grabbable`, or `Interactable` scripts to them to start adding in functionality to your project. You can also go to [Samples](../../wiki/samples) and add BTK Essentials to find a few nifty menus and buttons.
 
 ## Building for the HoloLens 2
 
