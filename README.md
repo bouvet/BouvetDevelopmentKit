@@ -41,7 +41,7 @@ Now you can add some object to your scene and add the `Grabbable`, `Two-Hand-Gra
 
 ## Building for the HoloLens 2
 
-To bould your app, click the `build` button in build settings and create a new folder for build output. This will generate a visual Studio solution that you can use to deploy your project. for more info on this see Microsoft's own [guide](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/using-visual-studio?tabs=hl2).
+To build your app, click the `build` button in build settings and create a new folder for build output. This will generate a visual Studio solution that you can use to deploy your project. for more info on this see Microsoft's own [guide](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/using-visual-studio?tabs=hl2).
 
 <!-- 
 Set configuration to release, platform to ARM 64 and run on Device
