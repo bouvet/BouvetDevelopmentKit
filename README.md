@@ -19,9 +19,7 @@ Open the Unity package manager and navigate to *"Add package from git URL..."*
 
 Supply the following URL:
 
-```none
-https://github.com/bouvet/com.bouvet.developmentkit.git
-```
+`https://github.com/bouvet/com.bouvet.developmentkit.git`
 
 ## Setup project settings
 
