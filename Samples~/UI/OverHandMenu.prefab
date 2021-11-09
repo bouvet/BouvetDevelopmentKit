@@ -5505,12 +5505,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 3906834635577679344}
   handAnchor: {fileID: 3906834636070734303}
+  handAnchorVisuals: {fileID: 3906834635786343174}
   handLineRendererAnchor: {fileID: 3906834635786343173}
   menuLineRendererAnchor: {fileID: 3906834634532359682}
   lineRenderer: {fileID: 3906834635603910802}
   height: 0.2
-  beingMoved: 0
+  tryingToActivate: 0
   grabbable: {fileID: 3906834635823029574}
+  radialProgressBar: {fileID: 0}
+  timeUntilActivation: 0
 --- !u!114 &3906834635823029574
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3498782091348829789}
   - component: {fileID: 3498782091348829790}
-  - component: {fileID: 6619939667533212023}
+  - component: {fileID: -4122193503511579587}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -56,7 +56,7 @@ MonoBehaviour:
   StartProximity: {fileID: 8300000, guid: 35056638bb588da439e3b436f67d4050, type: 3}
   EndProximity: {fileID: 8300000, guid: 53bb96fc4f9152441b9f20f5486d00ac, type: 3}
   ButtonPressed: {fileID: 8300000, guid: 7a814f85b2bc4c147b597ee484af44ae, type: 3}
---- !u!114 &6619939667533212023
+--- !u!114 &-4122193503511579587
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

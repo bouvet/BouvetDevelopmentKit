@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9145602073290071924}
   - component: {fileID: -5094273022284642525}
   m_Layer: 0
-  m_Name: BTK Hololens 2 Prefab
+  m_Name: BDK Hololens 2 Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,11 +117,10 @@ MonoBehaviour:
   UseHands: 0
   ShowIndexIndicator: 1
   ShowHandJoints: 0
-  UseAirTap: 0
-  AirTapSpeed: 0.2
   UseManipulation: 0
   UseInteractionBeams: 0
-  OnlyTargetInteractibles: 0
+  InteractionBeamsDistance: 10
+  InteractionBeamDepthMultiplier: 5
   UseHeadGaze: 0
   ShowHeadGazeCursor: 0
   AlwaysShowHeadGazeCursor: 1
@@ -306,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputManager: {fileID: 5293548126614825177}
-  m_LookSensitivity: 3
+  m_LookSensitivity: 0.2
 --- !u!82 &4775689568393540881
 AudioSource:
   m_ObjectHideFlags: 0
