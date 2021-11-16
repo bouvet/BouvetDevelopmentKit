@@ -12,15 +12,10 @@
   "dependencies": {
     "com.unity.vectorgraphics": "2.0.0-preview.16",
     "com.unity.inputsystem": "1.0.2",
-    "com.unity.xr.windowsmr": "4.6.0",
+    "com.unity.xr.windowsmr": "4.5.0",
     "com.unity.xr.management": "4.0.1"
   },
-  "keywords": [
-    "bouvet",
-    "mixed reality",
-    "mixed-reality",
-    "hololens"
-  ],
+  "keywords": ["bouvet", "mixed reality", "mixed-reality", "hololens"],
   "author": {
     "name": "Bouvet Norge AS",
     "email": "hololens@bouvet.no",
