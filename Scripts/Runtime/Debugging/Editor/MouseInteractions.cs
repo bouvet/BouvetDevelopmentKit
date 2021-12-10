@@ -1,9 +1,7 @@
 ﻿using Bouvet.DevelopmentKit;
 using Bouvet.DevelopmentKit.Input;
 using UnityEngine;
-#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
-#endif
 
 /// <summary>
 /// Editor script for rotation and using object in the Unity Editor play mode for debugging purposes.
@@ -37,13 +35,8 @@ public class MouseInteractions : MonoBehaviour
 
     private void Rotate()
     {
-#if ENABLE_INPUT_SYSTEM
         m_MouseX += Mouse.current.delta.ReadValue().x * m_LookSensitivity;
         m_MouseY += Mouse.current.delta.ReadValue().y * m_LookSensitivity;
-#else
-        m_MouseX += Input.GetAxisRaw("Mouse X") * m_LookSensitivity;
-        m_MouseY += Input.GetAxisRaw("Mouse Y") * m_LookSensitivity;
-#endif
         transform.localEulerAngles = Vector3.left * m_MouseY + Vector3.up * m_MouseX;
     }
 
@@ -54,29 +47,20 @@ public class MouseInteractions : MonoBehaviour
         if (!Application.isFocused)
             return;
 
-#if ENABLE_INPUT_SYSTEM
         if (Mouse.current.rightButton.isPressed)
-#else
-        if (Input.GetMouseButton(1))
-#endif
         {
             Cursor.lockState = CursorLockMode.Locked;
             Rotate();
         }
         else
-        {
             Cursor.lockState = CursorLockMode.None;
-        }
 
         if (!inputManager.inputSettings.UseHands)
         {
             return;
         }
-#if ENABLE_INPUT_SYSTEM
+
         if (Mouse.current.leftButton.wasPressedThisFrame)
-#else
-        if (Input.GetMouseButtonDown(0))
-#endif
         {
             timeSinceClick = Time.time;
             Ray ray = Cursor.lockState == CursorLockMode.Locked ? new Ray(transform.position, transform.forward) : Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -90,28 +74,18 @@ public class MouseInteractions : MonoBehaviour
                 }
             }
             else
-            {
                 inputSource.collidedObjectIdentifier = 0;
-            }
         }
 
-#if ENABLE_INPUT_SYSTEM
         if (Mouse.current.leftButton.isPressed)
-#else
-        if (Input.GetMouseButton(0))
-#endif
         {
             if (!holdingSomething && inputSource.collidedObjectIdentifier != 0)
-            {
                 StartHolding();
-            }
 
             if (holdingSomething)
             {
                 if (Mouse.current.rightButton.isPressed)
-                {
                     inputManager.GetHandGestureListenerInternal().ManipulationUpdated(inputSource);
-                }
                 else
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -121,12 +95,8 @@ public class MouseInteractions : MonoBehaviour
             }
         }
 
-#if ENABLE_INPUT_SYSTEM
         if (Mouse.current.leftButton.wasReleasedThisFrame)
-#else
-        if (Input.GetMouseButtonUp(0))
-#endif
-        {            
+        {
             Ray ray = Cursor.lockState == CursorLockMode.Locked ? new Ray(transform.position, transform.forward) : Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out hit, inputManager.inputSettings.InteractionBeamsDistance))
             {
@@ -138,9 +108,7 @@ public class MouseInteractions : MonoBehaviour
                 }
             }
             else
-            {
                 inputSource.collidedObjectIdentifier = 0;
-            }
 
             StopHolding();
         }
