@@ -26,10 +26,9 @@ namespace Bouvet.DevelopmentKit.Input
             secondaryInputSource = new InputSource();
         }
 
-        public void SetupGrabbable(bool canRotate, bool rotateYOnly, bool scale, float minScale, float maxScale)
+        public void SetupGrabbable(bool canRotate, bool scale, float minScale, float maxScale)
         {
             rotate = canRotate;
-            rotateOnlyYAxis = rotateYOnly;
             allowScaling = scale;
             minimumScaleInXAxis = minScale;
             maximumScaleInXAxis = maxScale;

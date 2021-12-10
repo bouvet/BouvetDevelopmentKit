@@ -1,5 +1,5 @@
-﻿using Bouvet.DevelopmentKit.Internal.Utils;
-using System;
+﻿using System;
+using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 
 namespace Bouvet.DevelopmentKit.Input
@@ -21,7 +21,6 @@ namespace Bouvet.DevelopmentKit.Input
 
         [Header("Rotation behaviour:")]
         public bool rotate = true;
-        public bool rotateOnlyYAxis;
 
         protected AudioSource audioSource;
         protected Vector3 gripOffsetL;
