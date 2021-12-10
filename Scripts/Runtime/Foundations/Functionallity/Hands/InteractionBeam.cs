@@ -2,17 +2,12 @@
 using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 using static Bouvet.DevelopmentKit.Internal.Utils.TypeHelpers;
-
 #if WINDOWS_UWP || DOTNETWINRT_PRESENT
 using Windows.Perception.People;
 #endif
 
-/// <summary>
-/// This class deals with interaction beams. 
-/// </summary>
 namespace Bouvet.DevelopmentKit.Input.Hands
 {
-#pragma warning disable CS0649
     [RequireComponent(typeof(LineRenderer))]
     public class InteractionBeam : MonoBehaviour
     {
@@ -41,7 +36,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         internal float handRotation; // Current rotation of the hand compared to the user
 
         private RaycastHit hit;
-        private RaycastHit hitUI;
+        private RaycastHit hitUi;
 
         internal bool holdingSomething;
         private Transform hololensTransform; // Transform of the Hololens
@@ -167,13 +162,14 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                 if (source.inputSourceKind == InputSourceKind.HandRight && isRightHand
                     || source.inputSourceKind == InputSourceKind.HandLeft && !isRightHand)
                 {
-                    if (inputManager.GetCursorState(isRightHand) == CursorState.InteractionBeamCursor && UpdateInteractionBeamRotation())
+                    if (inputManager.GetCursorState(isRightHand) == CursorState.InteractionBeamCursor && !RayStartTooCloseToBody())
                     {
                         if (!currentlyVisible)
                         {
                             SetInteractionBeamVisibillity(true);
                         }
 
+                        UpdateInteractionBeamRotation();
                         rayStart.rotation = Quaternion.Slerp(rayStart.rotation, origin.rotation, 0.5f);
                         DrawQuadraticBezierCurve(rayStart.position + rayStart.forward / 5f, rayStart.TransformPoint(Vector3.forward), rayTarget.position);
 
@@ -184,9 +180,9 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                             // If the raycast hits something
                             if (Physics.Raycast(rayStart.position, rayStart.forward, out hit, inputManager.inputSettings.InteractionBeamsDistance))
                             {
-                                if (hit.collider.gameObject.layer != 5 && Physics.Raycast(rayStart.position, rayStart.forward, out hitUI, inputManager.inputSettings.InteractionBeamsDistance, 1 << 5))
+                                if (hit.collider.gameObject.layer != 5 && Physics.Raycast(rayStart.position, rayStart.forward, out hitUi, inputManager.inputSettings.InteractionBeamsDistance, 1 << 5))
                                 {
-                                    hit = hitUI;
+                                    hit = hitUi;
                                 }
 
                                 rayStart.transform.localScale = new Vector3(1f, 1f, Vector3.Distance(rayStart.position, hit.point));
@@ -251,31 +247,25 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         /// Sets the rotation/path of the interaction beam
         /// This is a bit overengineered and could probably be done another way
         /// </summary>
-        private bool UpdateInteractionBeamRotation()
+        private void UpdateInteractionBeamRotation()
         {
-            //TODO: There is an error when the hand is moved to the edge of the FOV.
+            // Why is originOffset.x used as a angle? what?
+            float degrees = Mathf.Acos(originOffset.x) * Mathf.Rad2Deg + 15f; // aprox equal to 95 degrees
 
-            // Calculate angle to place origin
-            float distance = Vector3.Distance(hololensTransform.position.XZ(), rayStart.position.XZ());
-            if (distance <= originOffset.x) // Override if hands are too close to the body
-            {
-                return false;
-            }
+            Matrix4x4 transformMatrix = Matrix4x4.LookAt(new Vector3(hololensTransform.position.x, rayStart.position.y, hololensTransform.position.z), rayStart.position, Vector3.up);
+            transformMatrix *= Matrix4x4.Rotate(Quaternion.AngleAxis(isRightHand ? degrees : -degrees, Vector3.up));
 
-            double degrees = Math.Acos(originOffset.x) * (180f / Math.PI) + 15f;
+            Vector3 forward = transformMatrix.MultiplyVector(Vector3.forward).normalized;
+            Vector3 right = (isRightHand ? 1 : -1) * Vector3.Cross(forward, Vector3.up);
+            origin.position = hololensTransform.position + forward * originOffset.x + Vector3.up * originOffset.y + right * originOffset.z;
 
-            // Position origin correct
-            origin.position = new Vector3(hololensTransform.position.x, rayStart.position.y, hololensTransform.position.z);
             origin.LookAt(rayStart);
-            origin.Rotate(Vector3.up, isRightHand ? (float) degrees : (float) -degrees);
-            origin.position = hololensTransform.position + origin.forward * originOffset.x + Vector3.up * originOffset.y + rayStart.forward * originOffset.z;
-            origin.LookAt(rayStart);
+        }
 
-            // Fix rotation to "ignore" head rotation
-            (origin.rotation * Quaternion.Inverse(hololensTransform.rotation)).ToAngleAxis(out float angle, out Vector3 axis);
-            origin.Rotate(axis, -angle / 10f);
-
-            return true;
+        private bool RayStartTooCloseToBody()
+        {
+            float distance = Vector3.ProjectOnPlane(hololensTransform.position - rayStart.position, Vector3.up).magnitude;
+            return distance < originOffset.x;
         }
 
         private void CheckRayTarget()
@@ -394,14 +384,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             rayStart.parent = transform;
             rayStart.gameObject.name = "RayStart";
             cursor = Instantiate(cursorPrefab, visualComponents.transform).GetComponent<InteractionBeamCursor>();
-            if (isRightHand)
-            {
-                rayStart.gameObject.AddComponent<AttachedToJoint>().SetupAttachedJoint(inputManager, InputSourceKind.HandRight, JointName.IndexProximal, null, true, false);
-            }
-            else
-            {
-                rayStart.gameObject.AddComponent<AttachedToJoint>().SetupAttachedJoint(inputManager, InputSourceKind.HandLeft, JointName.IndexProximal, null, true, false);
-            }
+            rayStart.gameObject.AddComponent<AttachedToJoint>().SetupAttachedJoint(inputManager, isRightHand ? InputSourceKind.HandRight : InputSourceKind.HandLeft, JointName.IndexProximal, matchRotation: false);
 
             rayTarget = new GameObject().transform;
             rayTarget.parent = rayStart;
@@ -424,5 +407,4 @@ namespace Bouvet.DevelopmentKit.Input.Hands
 
 #endregion
     }
-#pragma warning restore CS0649
 }
