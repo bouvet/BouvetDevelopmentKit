@@ -1,3 +1,4 @@
+![BDK](https://user-images.githubusercontent.com/48277920/145561840-cfdee8d7-0e8e-42c7-a04f-5aefc7d7ffb2.png)
 # Bouvet Development Kit
 
 The Bouvet Development Kit (BDK) package allows you to easily create Mixed Reality applications for the Hololens 2.
