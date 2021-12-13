@@ -1,4 +1,5 @@
 ﻿using Bouvet.DevelopmentKit.Input;
+using UnityEditor;
 using UnityEngine;
 
 public class GenerateGrabbable : MonoBehaviour
@@ -49,7 +50,7 @@ public class GenerateGrabbable : MonoBehaviour
                 if (autoSetup)
                 {
                     AddCollider(mesh, meshColliderConvex);
-                    thg.SetupGrabbable(true, true, true, 0.01f, float.MaxValue);
+                    thg.SetupGrabbable(true, true, 0.01f, float.MaxValue);
                 }
                 return thg;
             }
@@ -60,7 +61,7 @@ public class GenerateGrabbable : MonoBehaviour
 #if UNITY_EDITOR
         if (!Application.isPlaying)
         {
-            UnityEditor.EditorApplication.delayCall += () =>
+            EditorApplication.delayCall += () =>
             {
                 DestroyImmediate(this);
             };
@@ -73,9 +74,7 @@ public class GenerateGrabbable : MonoBehaviour
         Destroy(this);
 #endif
         if (autoSetup)
-        {
-            thg.SetupGrabbable(true, true, true, 0.01f, float.MaxValue);
-        }
+            thg.SetupGrabbable(true, true, 0.01f, float.MaxValue);
         return thg;
     }
 
