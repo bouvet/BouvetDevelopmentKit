@@ -28,7 +28,6 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         [Range(0.1f, 0.8f)]
         private float curveAmount = 0.5f; // Weight of the curve. Lower values results in curve being curved all the way. Higher values results in the curve being straight at first and the curve a lot towards the end
 
-        private readonly Vector3 originOffset = new Vector3(0.175f, -0.35f, -0.2f);
 
         private Interactable currentInteractable;
         internal bool currentlyVisible;
@@ -45,7 +44,6 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         private float interactionStartDistance;
         private float interactionStartObjectDistance;
         private LineRenderer lineRenderer; // Line renderer used to draw the visual representation of the interaction beam
-        private Transform origin; // Transform from which the Hololens calculates the direction of the ray
         internal bool palmFacingHololens;
         private Transform rayStart; // Start of the ray (inside the palm of the user)
         internal Transform rayTarget; // Transfrom of the point where the ray hits an object 
@@ -94,7 +92,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                         if (!currentInteractable.gameObject.GetComponent<InteractableButton>())
                         {
                             interactionStartObjectDistance = Vector3.Distance(rayStart.position, hit.point);
-                            interactionStartDistance = Vector3.Distance(rayStart.position, origin.position);
+                            interactionStartDistance = (hololensTransform.position - rayStart.position).XZ().magnitude;
                             rayTarget.position = hit.point;
                             rayTarget.parent = currentInteractable.transform;
                             holdingSomething = true;
@@ -169,8 +167,8 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                             SetInteractionBeamVisibillity(true);
                         }
 
-                        UpdateInteractionBeamRotation();
-                        rayStart.rotation = Quaternion.Slerp(rayStart.rotation, origin.rotation, 0.5f);
+
+                        rayStart.rotation = Quaternion.Slerp(rayStart.rotation, GetInteractionBeamRotation(), 0.5f);
                         DrawQuadraticBezierCurve(rayStart.position + rayStart.forward / 5f, rayStart.TransformPoint(Vector3.forward), rayTarget.position);
 
                         UpdateCursor(rayTarget.position, Quaternion.FromToRotation(Vector3.forward, hit.normal), source.pinchDistance);
@@ -215,7 +213,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                         // If holding something (ray will then always be visible)
                         else if (holdingSomething)
                         {
-                            float newDistance = Vector3.Distance(rayStart.position, origin.position);
+                            float newDistance = (hololensTransform.position - rayStart.position).XZ().magnitude;
                             rayStart.transform.localScale = new Vector3(1f, 1f, interactionStartObjectDistance + inputManager.inputSettings.InteractionBeamDepthMultiplier * (newDistance - interactionStartDistance));
                             if (currentInteractable)
                             {
@@ -244,28 +242,24 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         }
 
         /// <summary>
-        /// Sets the rotation/path of the interaction beam
-        /// This is a bit overengineered and could probably be done another way
+        /// The interaction beam rotation is given by an axis between a virtual "origin" point and the start of the interaction beam.
+        /// origin is defined with a certain offset from the hololens and the start of the interaction beam, which means the offset
+        ///rotates with the rotation of the hand relative to the head. The rotation of the hand and head makes no differance, only their relative position.
         /// </summary>
-        private void UpdateInteractionBeamRotation()
+        private Quaternion GetInteractionBeamRotation()
         {
-            // Why is originOffset.x used as a angle? what?
-            float degrees = Mathf.Acos(originOffset.x) * Mathf.Rad2Deg + 15f; // aprox equal to 95 degrees
+            // Find coordinate system looking at the hand from the head, independant of y azis
+            Vector3 forward = (rayStart.position - hololensTransform.position).XZ().normalized;
+            Quaternion look = Quaternion.LookRotation(forward, Vector3.up);
 
-            Matrix4x4 transformMatrix = Matrix4x4.LookAt(new Vector3(hololensTransform.position.x, rayStart.position.y, hololensTransform.position.z), rayStart.position, Vector3.up);
-            transformMatrix *= Matrix4x4.Rotate(Quaternion.AngleAxis(isRightHand ? degrees : -degrees, Vector3.up));
-
-            Vector3 forward = transformMatrix.MultiplyVector(Vector3.forward).normalized;
-            Vector3 right = (isRightHand ? 1 : -1) * Vector3.Cross(forward, Vector3.up);
-            origin.position = hololensTransform.position + forward * originOffset.x + Vector3.up * originOffset.y + right * originOffset.z;
-
-            origin.LookAt(rayStart);
+            Vector3 offset = new Vector3((isRightHand ? 1 : -1) * 0.23f, -0.334f, -0.21f);
+            return Matrix4x4.LookAt(hololensTransform.position + look * offset, rayStart.position, Vector3.up).rotation;
         }
 
         private bool RayStartTooCloseToBody()
         {
             float distance = Vector3.ProjectOnPlane(hololensTransform.position - rayStart.position, Vector3.up).magnitude;
-            return distance < originOffset.x;
+            return distance < 0.175f;
         }
 
         private void CheckRayTarget()
@@ -297,10 +291,9 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         private void DrawQuadraticBezierCurve(Vector3 start, Vector3 middle, Vector3 end)
         {
             float t = 0f;
-            Vector3 B = new Vector3(0, 0, 0);
             for (int i = 0; i < curveSmoothness; i++)
             {
-                B = (1 - t) * (1 - t) * start + 2 * (1 - t) * t * Vector3.Lerp(start, middle, curveAmount) + t * t * end;
+                Vector3 B = (1 - t) * (1 - t) * start + 2 * (1 - t) * t * Vector3.Lerp(start, middle, curveAmount) + t * t * end;
                 lineRenderer.SetPosition(i, B);
                 t += 1 / (float) curveSmoothness;
             }
@@ -378,8 +371,6 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             visualComponents = new GameObject();
             visualComponents.transform.parent = transform;
             visualComponents.gameObject.name = "VisualComponents";
-            origin = new GameObject().transform;
-            origin.gameObject.name = "Origin";
             rayStart = new GameObject().transform;
             rayStart.parent = transform;
             rayStart.gameObject.name = "RayStart";
