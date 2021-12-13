@@ -3,7 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
-#if ENABLE_XR_SDK
+#if ENABLE_XR_SDK && (WINDOWS_UWP || DOTNETWINRT_PRESENT)
+using UnityEngine.XR;
+using System.Collections.Generic;
 #endif
 
 namespace Bouvet.DevelopmentKit.Input.Hands
