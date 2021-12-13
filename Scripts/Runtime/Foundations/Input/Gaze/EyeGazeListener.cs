@@ -73,8 +73,8 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
                     
                     if (Physics.Raycast(eyeGazePosition, eyeGazeRotation * Vector3.forward, out raycastHit))
                     {
-                        gazeInputSource.worldPosition = new System.Numerics.Vector3(raycastHit.point.x, raycastHit.point.y, -raycastHit.point.z); // Converts to System Vector3
-                        gazeInputSource.forwardVector = new System.Numerics.Vector3(raycastHit.normal.x, raycastHit.normal.y, -raycastHit.normal.z); // Converts to System Vector3
+                        gazeInputSource.worldPosition = TypeHelpers.MakeSystemVector3(raycastHit.point);
+                        gazeInputSource.forwardVector = TypeHelpers.MakeSystemVector3(raycastHit.normal);
                         int newID = inputManager.GetId(raycastHit.transform.gameObject);
                         if (newID != gazeInputSource.collidedObjectIdentifier)
                         {
