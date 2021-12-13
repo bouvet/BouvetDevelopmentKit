@@ -1,10 +1,9 @@
-﻿using Bouvet.DevelopmentKit.Internal.Utils;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 using UnityEngine.XR;
-
 #if WINDOWS_UWP
 using Unity.XR.WindowsMR;
 using Windows.Perception;
@@ -63,15 +62,15 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
                     && centerEye.TryGetFeatureValue(WindowsMRUsages.EyeGazePosition, out Vector3 eyeGazePosition)
                     && centerEye.TryGetFeatureValue(WindowsMRUsages.EyeGazeRotation, out Quaternion eyeGazeRotation))
                 {
-                    gazeInputSource.worldPosition = ValueConverter.MakeSystemVector3(eyeGazePosition);
-                    gazeInputSource.forwardVector = ValueConverter.MakeSystemVector3(eyeGazeRotation * Vector3.forward);
+                    gazeInputSource.worldPosition = TypeHelpers.MakeSystemVector3(eyeGazePosition);
+                    gazeInputSource.forwardVector = TypeHelpers.MakeSystemVector3(eyeGazeRotation * Vector3.forward);
                     if (noEyeTrackingFoundLastFrame)
                     {
                         noEyeTrackingFoundLastFrame = false;
                         gazeInputSource.active = true;
                         eyeGazeListenerInternal.SourceFound(gazeInputSource);
                     }
-
+                    
                     if (Physics.Raycast(eyeGazePosition, eyeGazeRotation * Vector3.forward, out raycastHit))
                     {
                         gazeInputSource.worldPosition = new System.Numerics.Vector3(raycastHit.point.x, raycastHit.point.y, -raycastHit.point.z); // Converts to System Vector3

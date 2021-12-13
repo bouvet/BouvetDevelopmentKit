@@ -1,7 +1,7 @@
 ﻿using Bouvet.DevelopmentKit;
 using Bouvet.DevelopmentKit.Input;
+using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 /// <summary>
 /// Simple script for having a menu panel with buttons. The panel can be moved around or follow the player. 
@@ -41,7 +41,6 @@ public class FloatingMenu : TwoHandGrabbable
 
     protected Transform hololensTransform; // Hololens transform
     protected Vector3 targetPosition;
-    protected Vector3 flatten = new Vector3(1, 0, 1);
     protected Vector3 removeZAxisRotation = new Vector3(1, 1, 0);
     protected Vector3 relativePos;
     protected Quaternion relativeRot;
@@ -148,7 +147,7 @@ public class FloatingMenu : TwoHandGrabbable
     /// </summary>
     protected void MoveToPosition()
     {
-        Vector3 scale = Vector3.Scale(hololensTransform.forward, flatten).normalized;
+        Vector3 scale = hololensTransform.forward.XZ().normalized;
 
         hololensPosition = hololensTransform.position;
         targetPosition = hololensPosition + hololensTransform.right * offsets.x + scale * maxDistanceFromPlayer; // + (Vector3.up * -0.2f);

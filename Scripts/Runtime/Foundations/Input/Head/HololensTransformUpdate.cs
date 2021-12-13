@@ -21,9 +21,9 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
 
         private void Update()
         {
-            inputSource.worldPosition = ValueConverter.MakeSystemVector3(transform.position);
-            inputSource.forwardVector = ValueConverter.MakeSystemVector3(transform.forward);
-            if (Physics.Raycast(ValueConverter.MakeUnityVector3(inputSource.worldPosition), ValueConverter.MakeUnityVector3(inputSource.forwardVector), out hit, 20f))
+            inputSource.worldPosition = TypeHelpers.MakeSystemVector3(transform.position);
+            inputSource.forwardVector = TypeHelpers.MakeSystemVector3(transform.forward);
+            if (Physics.Raycast(TypeHelpers.MakeUnityVector3(inputSource.worldPosition), TypeHelpers.MakeUnityVector3(inputSource.forwardVector), out hit, 20f))
             {
                 inputSource.collidedObjectIdentifier = hit.transform.gameObject.GetInstanceID();
             }

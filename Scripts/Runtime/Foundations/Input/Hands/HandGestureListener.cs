@@ -1,7 +1,7 @@
-﻿using Bouvet.DevelopmentKit.Internal.Utils;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 
 namespace Bouvet.DevelopmentKit.Input.Hands
@@ -62,7 +62,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                         // Update hand position rotation and toggle InputUp, InputDown, and InputUpdated events
                         LeftHandInputSource.worldPosition = indexTransform.position;
                         LeftHandInputSource.worldRotation = indexTransform.rotation;
-                        distance = Vector3.Distance(ValueConverter.MakeUnityVector3(indexTransform.position), ValueConverter.MakeUnityVector3(thumbTransform.position));
+                        distance = Vector3.Distance(TypeHelpers.MakeUnityVector3(indexTransform.position), TypeHelpers.MakeUnityVector3(thumbTransform.position));
                         LeftHandInputSource.pinchDistance = distance;
                         if (!pinchingLeft && distance < MIN_PINCH_DISTANCE)
                         {
@@ -87,10 +87,10 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                         // Update hand rotation state
                         if (TryGetHandJointTransform(InputSourceKind.HandLeft, JointName.Palm, out palmTransform))
                         {
-                            palmTransformCheck.position = ValueConverter.MakeUnityVector3(palmTransform.position);
+                            palmTransformCheck.position = TypeHelpers.MakeUnityVector3(palmTransform.position);
                             palmTransformCheck.LookAt(inputManager.Hololens);
                             palmTransformCheck.localEulerAngles += rotOffset;
-                            angleOffset = Quaternion.Angle(palmTransformCheck.rotation, ValueConverter.MakeUnityQuaternion(palmTransform.rotation));
+                            angleOffset = Quaternion.Angle(palmTransformCheck.rotation, TypeHelpers.MakeUnityQuaternion(palmTransform.rotation));
                             OnHandRotationToggle?.Invoke(LeftHandInputSource, angleOffset);
                         }
                     }
@@ -101,7 +101,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                         // Update hand position rotation and toggle InputUp, InputDown, and InputUpdated events
                         RightHandInputSource.worldPosition = indexTransform.position;
                         RightHandInputSource.worldRotation = indexTransform.rotation;
-                        distance = Vector3.Distance(ValueConverter.MakeUnityVector3(indexTransform.position), ValueConverter.MakeUnityVector3(thumbTransform.position));
+                        distance = Vector3.Distance(TypeHelpers.MakeUnityVector3(indexTransform.position), TypeHelpers.MakeUnityVector3(thumbTransform.position));
                         RightHandInputSource.pinchDistance = distance;
                         if (!pinchingRight && distance < MIN_PINCH_DISTANCE)
                         {
@@ -126,10 +126,10 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                         // Update hand rotation state
                         if (TryGetHandJointTransform(InputSourceKind.HandRight, JointName.Palm, out palmTransform))
                         {
-                            palmTransformCheck.position = ValueConverter.MakeUnityVector3(palmTransform.position);
+                            palmTransformCheck.position = TypeHelpers.MakeUnityVector3(palmTransform.position);
                             palmTransformCheck.LookAt(inputManager.Hololens);
                             palmTransformCheck.localEulerAngles += rotOffset;
-                            angleOffset = Quaternion.Angle(palmTransformCheck.rotation, ValueConverter.MakeUnityQuaternion(palmTransform.rotation));
+                            angleOffset = Quaternion.Angle(palmTransformCheck.rotation, TypeHelpers.MakeUnityQuaternion(palmTransform.rotation));
                             OnHandRotationToggle?.Invoke(RightHandInputSource, angleOffset);
                         }
                     }

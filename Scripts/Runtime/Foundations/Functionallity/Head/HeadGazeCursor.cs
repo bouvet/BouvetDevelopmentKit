@@ -32,7 +32,7 @@ namespace Bouvet.DevelopmentKit.Input
         {
             if (inputSettings.UseHeadGaze && (inputManager.GetCursorState(true) == CursorState.HeadCursor || inputSettings.AlwaysShowHeadGazeCursor))
             {
-                if (Physics.Raycast(ValueConverter.MakeUnityVector3(obj.worldPosition), ValueConverter.MakeUnityVector3(obj.forwardVector), out hit, 20f))
+                if (Physics.Raycast(TypeHelpers.MakeUnityVector3(obj.worldPosition), TypeHelpers.MakeUnityVector3(obj.forwardVector), out hit, 20f))
                 {
                     if (!visualCursor.enabled)
                     {
