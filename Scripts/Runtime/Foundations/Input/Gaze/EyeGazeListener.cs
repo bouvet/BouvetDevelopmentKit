@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.XR;
 
 #if WINDOWS_UWP
+using Unity.XR.WindowsMR;
 using Windows.Perception;
 using Windows.UI.Input.Spatial;
 #endif
@@ -35,9 +36,6 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
         private RaycastHit raycastHit;
         private bool setupComplete;
         private InputDevice centerEye;
-        private InputFeatureUsage<bool> eyeGazeAvailableInput;
-        private InputFeatureUsage<Vector3> eyeGazePositionInput;
-        private InputFeatureUsage<Quaternion> eyeGazeRotationInput;
 
         /// <summary>
         /// Update loop that accesses the eye tracking data from Unity.
@@ -54,16 +52,16 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
                     LostTracking();
                     return;
                 }
-                if (!centerEye.TryGetFeatureValue(eyeGazeAvailableInput, out bool value) || !value)
+                if (!centerEye.TryGetFeatureValue(WindowsMRUsages.EyeGazeAvailable, out bool value) || !value)
                 {
                     LostTracking();
                     return;
                 }
 
-                if (centerEye.TryGetFeatureValue(eyeGazeAvailableInput, out bool gazeTracked)
+                if (centerEye.TryGetFeatureValue(WindowsMRUsages.EyeGazeTracked, out bool gazeTracked)
                     && gazeTracked
-                    && centerEye.TryGetFeatureValue(eyeGazePositionInput, out Vector3 eyeGazePosition)
-                    && centerEye.TryGetFeatureValue(eyeGazeRotationInput, out Quaternion eyeGazeRotation))
+                    && centerEye.TryGetFeatureValue(WindowsMRUsages.EyeGazePosition, out Vector3 eyeGazePosition)
+                    && centerEye.TryGetFeatureValue(WindowsMRUsages.EyeGazeRotation, out Quaternion eyeGazeRotation))
                 {
                     gazeInputSource.worldPosition = ValueConverter.MakeSystemVector3(eyeGazePosition);
                     gazeInputSource.forwardVector = ValueConverter.MakeSystemVector3(eyeGazeRotation * Vector3.forward);
@@ -74,10 +72,7 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
                         eyeGazeListenerInternal.SourceFound(gazeInputSource);
                     }
 
-                    BdkLogger.Log($"Eye gaze pos: {gazeInputSource.worldPosition}, Eye gaze forward: {gazeInputSource.forwardVector}");
-
-                    Ray gaze = new Ray(ValueConverter.MakeUnityVector3(gazeInputSource.worldPosition), ValueConverter.MakeUnityVector3(gazeInputSource.forwardVector));
-                    if (Physics.Raycast(gaze, out raycastHit))
+                    if (Physics.Raycast(eyeGazePosition, eyeGazeRotation * Vector3.forward, out raycastHit))
                     {
                         gazeInputSource.worldPosition = new System.Numerics.Vector3(raycastHit.point.x, raycastHit.point.y, -raycastHit.point.z); // Converts to System Vector3
                         gazeInputSource.forwardVector = new System.Numerics.Vector3(raycastHit.normal.x, raycastHit.normal.y, -raycastHit.normal.z); // Converts to System Vector3
@@ -89,8 +84,6 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
                             eyeGazeListenerInternal.GazeEnter(gazeInputSource);
                         }
                         eyeGazeListenerInternal.GazeUpdate(gazeInputSource);
-
-                        BdkLogger.Log($"Eye cursor pos: {gazeInputSource.worldPosition}, Target: {gazeInputSource.collidedObjectIdentifier}");
                     }
                     else
                     {
@@ -103,65 +96,6 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
                 {
                     LostTracking();
                 }
-                // OLD:
-                /*
-                SpatialPointerPose pointerPose = SpatialPointerPose.TryGetAtTimestamp(SpatialCoordinateSystemAccess.SpatialCoordinateSystem, PerceptionTimestampHelper.FromHistoricalTargetTime(DateTimeOffset.Now));
-                if (pointerPose != null)
-                {
-                    var eyes = pointerPose.Eyes;
-                    if (eyes != null && eyes.IsCalibrationValid)
-                    {
-                        if (eyes.Gaze.HasValue)
-                        {
-                            gazeInputSource.worldPosition = eyes.Gaze.Value.Origin;
-                            gazeInputSource.forwardVector = eyes.Gaze.Value.Direction;
-                            if (noEyeTrackingFoundLastFrame)
-                            {
-                                noEyeTrackingFoundLastFrame = false;
-                                gazeInputSource.active = true;
-                                eyeGazeListenerInternal.SourceFound(gazeInputSource);
-                            }
-
-                            Ray gaze = new Ray(ValueConverter.MakeUnityVector3(gazeInputSource.worldPosition), ValueConverter.MakeUnityVector3(gazeInputSource.forwardVector));
-                            if (Physics.Raycast(gaze, out raycastHit))
-                            {
-                                gazeInputSource.worldPosition = new System.Numerics.Vector3(raycastHit.point.x, raycastHit.point.y, -raycastHit.point.z); // Converts to System Vector3
-                                gazeInputSource.forwardVector = new System.Numerics.Vector3(raycastHit.normal.x, raycastHit.normal.y, -raycastHit.normal.z); // Converts to System Vector3
-                                int newID = inputManager.GetId(raycastHit.transform.gameObject); //raycastHit.transform.gameObject.GetInstanceID();
-                                if (newID != gazeInputSource.collidedObjectIdentifier)
-                                {
-                                    eyeGazeListenerInternal.GazeExit(gazeInputSource);
-                                    gazeInputSource.collidedObjectIdentifier = newID;
-                                    eyeGazeListenerInternal.GazeEnter(gazeInputSource);
-                                }
-                                eyeGazeListenerInternal.GazeUpdate(gazeInputSource);
-                            }
-                            else
-                            {
-                                eyeGazeListenerInternal.GazeExit(gazeInputSource);
-                                gazeInputSource.collidedObjectIdentifier = 0;
-                            }
-                        }
-                        else
-                        {
-                            LostTracking();
-                        }
-                    }
-                    else if(!eyes.IsCalibrationValid)
-                    {
-                        ToolkitLogger.Log($"Eye calibration is invalid. Please generate a calibration file. Disabling Eye Tracking!", LogSeverity.Warn);
-                        inputSettings.UseEyeGaze = false;
-                        LostTracking();                        
-                    }
-                    else
-                    {
-                        LostTracking();
-                    }
-                }
-                else
-                {
-                    LostTracking();
-                }*/
             }
             catch (Exception e)
             {
@@ -236,6 +170,7 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
             eyeGazeListenerInternal.GazeExit(gazeInputSource);
             gazeInputSource.collidedObjectIdentifier = 0;
             eyeGazeListenerInternal.SourceLost(gazeInputSource);
+            BdkLogger.Log("Lost eye tracking");
         }
     }
 #pragma warning restore CS0649
