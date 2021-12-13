@@ -37,7 +37,7 @@ public class DrapeMenu : Slider
 
     public override void BeginInteraction(InputSource inputSource)
     {
-        if(inputSource.collidedObjectIdentifier == inputManager.GetId(gameObject))
+        if(inputSource.collidedObjectIdentifier.Equals(gameObject))
         {
             base.BeginInteraction(inputSource);
             for (int i = 0; i < Buttons.Count; i++)

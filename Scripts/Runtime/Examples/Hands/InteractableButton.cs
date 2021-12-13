@@ -118,7 +118,7 @@ public class InteractableButton : Interactable
     {
         try
         {
-            if (obj.collidedObjectIdentifier == inputManager.GetId(gameObject))
+            if (obj.collidedObjectIdentifier.Equals(gameObject))
             {
                 TryPressButton();
             }
@@ -131,7 +131,7 @@ public class InteractableButton : Interactable
 
     private void OnInputDownLocked(InputSource obj)
     {
-        if (obj.collidedObjectIdentifier == inputManager.GetId(gameObject))
+        if (obj.collidedObjectIdentifier.Equals(gameObject))
         {
             primaryInputSource = obj;
         }
@@ -139,7 +139,7 @@ public class InteractableButton : Interactable
 
     private void OnInputUpLocked(InputSource obj)
     {
-        if (obj.collidedObjectIdentifier == inputManager.GetId(gameObject) && primaryInputSource != null && primaryInputSource.inputSourceKind == obj.inputSourceKind)
+        if (obj.collidedObjectIdentifier.Equals(gameObject) && primaryInputSource != null && primaryInputSource.inputSourceKind == obj.inputSourceKind)
         {
             TryPressButton();
             primaryInputSource = null;
@@ -189,7 +189,7 @@ public class InteractableButton : Interactable
 
     protected virtual void InputManager_OnProximityStarted(InputSource inputSource)
     {
-        if (!InProximity && inputSource.collidedObjectIdentifier == inputManager.GetId(gameObject) && 0 > transform.InverseTransformPoint(TypeHelpers.MakeUnityVector3(inputSource.worldPosition)).z)
+        if (!InProximity && inputSource.collidedObjectIdentifier.Equals(gameObject) && 0 > transform.InverseTransformPoint(TypeHelpers.MakeUnityVector3(inputSource.worldPosition)).z)
         {
             InProximity = true;
             proximitySource = inputSource;

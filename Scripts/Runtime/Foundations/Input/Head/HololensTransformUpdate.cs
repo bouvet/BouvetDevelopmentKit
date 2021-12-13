@@ -25,11 +25,11 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
             inputSource.forwardVector = TypeHelpers.MakeSystemVector3(transform.forward);
             if (Physics.Raycast(TypeHelpers.MakeUnityVector3(inputSource.worldPosition), TypeHelpers.MakeUnityVector3(inputSource.forwardVector), out hit, 20f))
             {
-                inputSource.collidedObjectIdentifier = hit.transform.gameObject.GetInstanceID();
+                inputSource.collidedObjectIdentifier = hit.transform.gameObject;
             }
             else
             {
-                inputSource.collidedObjectIdentifier = 0;
+                inputSource.collidedObjectIdentifier = null;
             }
 
             inputManager.InvokeHololensUpdateTransform(inputSource);

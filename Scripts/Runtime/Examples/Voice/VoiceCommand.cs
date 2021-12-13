@@ -1,5 +1,6 @@
 ﻿using Bouvet.DevelopmentKit.Input;
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,8 +15,9 @@ public class VoiceCommand : MonoBehaviour
 
     protected Action action;
 
-    protected void Start()
+    protected async void Start()
     {
+        await Task.Delay(2000);
         action = ExecuteVoiceCommand;
         InputManager.Instance.AddPhraseForVoiceRecognizion(command, action);
     }

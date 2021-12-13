@@ -69,28 +69,28 @@ public class MouseInteractions : MonoBehaviour
                 interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable)
                 {
-                    inputSource.collidedObjectIdentifier = inputManager.GetId(hit.collider.gameObject);
-                    inputManager.GetHandGestureListenerInternal().InputDown(inputSource);
+                    inputSource.collidedObjectIdentifier = hit.collider.gameObject;
+                    inputManager.GetHandGestureListener().InputDown(inputSource);
                 }
             }
             else
-                inputSource.collidedObjectIdentifier = 0;
+                inputSource.collidedObjectIdentifier = null;
         }
 
         if (Mouse.current.leftButton.isPressed)
         {
-            if (!holdingSomething && inputSource.collidedObjectIdentifier != 0)
+            if (!holdingSomething && inputSource.collidedObjectIdentifier != null)
                 StartHolding();
 
             if (holdingSomething)
             {
                 if (Mouse.current.rightButton.isPressed)
-                    inputManager.GetHandGestureListenerInternal().ManipulationUpdated(inputSource);
+                    inputManager.GetHandGestureListener().ManipulationUpdated(inputSource);
                 else
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
                     inputManager.rightGripPoint.position = ray.origin + ray.direction * m_MouseZ;
-                    inputManager.GetHandGestureListenerInternal().ManipulationUpdated(inputSource);
+                    inputManager.GetHandGestureListener().ManipulationUpdated(inputSource);
                 }
             }
         }
@@ -103,12 +103,12 @@ public class MouseInteractions : MonoBehaviour
                 interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable)
                 {
-                    inputSource.collidedObjectIdentifier = inputManager.GetId(hit.collider.gameObject);
-                    inputManager.GetHandGestureListenerInternal().InputUp(inputSource);
+                    inputSource.collidedObjectIdentifier = hit.collider.gameObject;
+                    inputManager.GetHandGestureListener().InputUp(inputSource);
                 }
             }
             else
-                inputSource.collidedObjectIdentifier = 0;
+                inputSource.collidedObjectIdentifier = null;
 
             StopHolding();
         }
@@ -124,7 +124,7 @@ public class MouseInteractions : MonoBehaviour
         inputManager.rightGripPoint.parent = transform;
         inputManager.rightGripPoint.position = hit.point;
         m_MouseZ = Vector3.Distance(transform.position, inputManager.rightGripPoint.position);
-        inputManager.GetHandGestureListenerInternal().ManipulationStarted(inputSource);
+        inputManager.GetHandGestureListener().ManipulationStarted(inputSource);
         holdingSomething = true;
     }
 
@@ -132,7 +132,7 @@ public class MouseInteractions : MonoBehaviour
     {
         if (holdingSomething)
         {
-            inputManager.GetHandGestureListenerInternal().ManipulationEnded(inputSource);
+            inputManager.GetHandGestureListener().ManipulationEnded(inputSource);
             interactable = null;
         }
 

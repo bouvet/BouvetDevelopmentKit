@@ -17,6 +17,6 @@ public class EyeGazeHighlight : MonoBehaviour
 
     protected void InputManager_OnGazeEnter(InputSource obj)
     {
-        objectToToggle.SetActive(obj.collidedObjectIdentifier == gameObject.GetInstanceID());
+        objectToToggle.SetActive(obj.collidedObjectIdentifier.Equals(gameObject));
     }
 }

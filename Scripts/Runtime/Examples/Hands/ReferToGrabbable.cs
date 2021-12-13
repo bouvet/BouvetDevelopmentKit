@@ -15,9 +15,9 @@
 
         public override void BeginInteraction(InputSource inputSource)
         {
-            if (inputSource.collidedObjectIdentifier == inputManager.GetId(gameObject))
+            if (inputSource.collidedObjectIdentifier.Equals(gameObject))
             {
-                inputSource.collidedObjectIdentifier = referableGrabbable.gameObject.GetInstanceID();
+                inputSource.collidedObjectIdentifier = referableGrabbable.gameObject;
                 referableGrabbable.BeginInteraction(inputSource);
                 if (inputSource.inputSourceKind == InputSourceKind.InteractionBeamRight)
                 {

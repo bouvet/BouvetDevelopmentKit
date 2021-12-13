@@ -13,13 +13,26 @@ namespace Bouvet.DevelopmentKit.Input.Hands
     /// </summary>
     internal class HandGestureListener : MonoBehaviour
     {
+        // Events 
+        public event Action<InputSource> OnSourceFound;
+        public event Action<InputSource> OnSourceLost;
+        public event Action<InputSource> OnInputDown;
+        public event Action<InputSource> OnInputUpdated;
+        public event Action<InputSource> OnInputUp;
+        public event Action<InputSource> OnManipulationStarted;
+        public event Action<InputSource> OnManipulationUpdated;
+        public event Action<InputSource> OnManipulationEnded;
+        public event Action<InputSource> OnProximityStarted;
+        public event Action<InputSource> OnProximityUpdated;
+        public event Action<InputSource> OnProximityEnded;
+        public event Action<InputSource, float> OnHandRotationToggle;
+
         private const float MIN_RELEASE_DISTANCE = 0.05f;
         private const float MIN_PINCH_DISTANCE = 0.03f;
         private float angleOffset;
         private float distance;
 
         private bool handGestureListenerInitialized;
-        private HandGestureListenerInternal handGestureListenerInternal;
 
         private HandJointController handJointController;
         internal bool handSetupCompleted;
@@ -28,19 +41,68 @@ namespace Bouvet.DevelopmentKit.Input.Hands
 
         // Private variables
         private InputSettings inputSettings;
-        private InputSource inputSourceInteractionBeam;
+        internal InputSource RightHandInputSource;
         internal InputSource LeftHandInputSource;
         internal JointTransform palmTransform;
         private Transform palmTransformCheck;
         internal bool pinchingLeft;
 
         internal bool pinchingRight;
-        internal InputSource RightHandInputSource;
 
         private Vector3 rotOffset = new Vector3(-90f, 0f, 0f);
         private Task<bool> setupInternalListenersTask;
 
         internal JointTransform thumbTransform;
+
+
+        #region Action invoke functions
+
+        internal void InputDown(InputSource source)
+        {
+            OnInputDown?.Invoke(source);
+        }
+
+        internal void InputUp(InputSource source)
+        {
+            OnInputUp?.Invoke(source);
+        }
+
+        internal void InputUpdated(InputSource source)
+        {
+            OnInputUpdated?.Invoke(source);
+        }
+
+        internal void ManipulationStarted(InputSource source)
+        {
+            OnManipulationStarted?.Invoke(source);
+        }
+
+        internal void ManipulationUpdated(InputSource source)
+        {
+            OnManipulationUpdated?.Invoke(source);
+        }
+
+        internal void ManipulationEnded(InputSource source)
+        {
+            OnManipulationEnded?.Invoke(source);
+        }
+
+        internal void ProximityStarted(InputSource source)
+        {
+            OnProximityStarted?.Invoke(source);
+        }
+
+        internal void ProximityUpdated(InputSource source)
+        {
+            OnProximityUpdated?.Invoke(source);
+        }
+
+        internal void ProximityEnded(InputSource source)
+        {
+            OnProximityEnded?.Invoke(source);
+        }
+
+        #endregion
 
         /// <summary>
         /// The Update function deal with gesture recognizion of hand tracking
@@ -69,7 +131,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                             try
                             {
                                 pinchingLeft = true;
-                                handGestureListenerInternal.InputDown(LeftHandInputSource);
+                                InputDown(LeftHandInputSource);
                             }
                             catch (Exception e)
                             {
@@ -79,10 +141,10 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                         else if (pinchingLeft && distance > MIN_RELEASE_DISTANCE)
                         {                           
                             pinchingLeft = false;
-                            handGestureListenerInternal.InputUp(LeftHandInputSource);
+                            InputUp(LeftHandInputSource);
                         }
 
-                        handGestureListenerInternal.InputUpdated(LeftHandInputSource);
+                        InputUpdated(LeftHandInputSource);
 
                         // Update hand rotation state
                         if (TryGetHandJointTransform(InputSourceKind.HandLeft, JointName.Palm, out palmTransform))
@@ -108,7 +170,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                             try
                             {
                                 pinchingRight = true;
-                                handGestureListenerInternal.InputDown(RightHandInputSource);
+                                InputDown(RightHandInputSource);
                             }
                             catch (Exception e)
                             {
@@ -118,10 +180,10 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                         else if (pinchingRight && distance > MIN_RELEASE_DISTANCE)
                         {
                             pinchingRight = false;
-                            handGestureListenerInternal.InputUp(RightHandInputSource);
+                            InputUp(RightHandInputSource);
                         }
 
-                        handGestureListenerInternal.InputUpdated(RightHandInputSource);
+                        InputUpdated(RightHandInputSource);
 
                         // Update hand rotation state
                         if (TryGetHandJointTransform(InputSourceKind.HandRight, JointName.Palm, out palmTransform))
@@ -141,15 +203,6 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             }
         }
 
-        // Events
-        public event Action<InputSource> OnSourceFound;
-        public event Action<InputSource> OnSourceLost;
-        public event Action<InputSource> OnProximityStarted;
-        public event Action<InputSource> OnProximityUpdated;
-        public event Action<InputSource> OnProximityEnded;
-        public event Action<InputSource, float> OnHandRotationToggle;
-
-
         internal void SourceFound(InputSource source)
         {
             OnSourceFound?.Invoke(source);
@@ -158,10 +211,10 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         internal void SourceLost(InputSource source)
         {
             OnSourceLost?.Invoke(source);
-            handGestureListenerInternal.ManipulationEnded(source);
+            ManipulationEnded(source);
         }
 
-        internal async Task InitializeAsync(InputSettings newInputSettings, HandGestureListenerInternal newHandGestureListenerInternal, CancellationToken token)
+        internal async Task InitializeAsync(InputSettings newInputSettings, CancellationToken token)
         {
             inputSettings = newInputSettings;
             inputManager = inputSettings.inputManager;
@@ -172,8 +225,6 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             RightHandInputSource = new InputSource();
             RightHandInputSource.inputSourceKind = InputSourceKind.HandRight;
             inputSettings.inputManager.AddInputSource(RightHandInputSource);
-
-            handGestureListenerInternal = newHandGestureListenerInternal;
             await SetupHandGestureListenersAsync(token);
         }
 

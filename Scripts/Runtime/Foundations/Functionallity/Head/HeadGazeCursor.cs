@@ -40,7 +40,7 @@ namespace Bouvet.DevelopmentKit.Input
                     }
 
                     transform.position = hit.point;
-                    holoCursor.collidedObjectIdentifier = inputManager.GetId(hit.transform.gameObject);
+                    holoCursor.collidedObjectIdentifier = hit.transform.gameObject;
                 }
                 else
                 {

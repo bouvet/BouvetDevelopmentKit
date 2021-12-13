@@ -20,15 +20,16 @@ namespace Bouvet.DevelopmentKit.Input.Hands
 
         private float closestDistance;
         private int closestIndex;
-        private int newObjectId;
-        private int currentObjectId;
+        private GameObject newObject;
+        private GameObject currentObject;
         private bool somethingInProximity;
         private Collider[] hits = new Collider[20];
 
         internal bool CurrentlyManipulating;
         private GameObject currentManipulationObject;
-        private HandGestureListenerInternal handGestureListener;
+        private HandGestureListener handGestureListener;
         private InputSource handInputSource;
+        private InputSource indexFingerInputSource;
         private Quaternion quaternionCache;
         private bool inProximity;
         private bool setupComplete;
@@ -64,7 +65,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         {
             if (setupComplete)
             {
-                handInputSource.collidedObjectIdentifier = 0;
+                handInputSource.collidedObjectIdentifier = null;
                 handGestureListener.ProximityEnded(handInputSource);
                 inProximity = false;
             }
@@ -77,7 +78,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                 return;
             }
             CurrentlyManipulating = false;
-            handInputSource.collidedObjectIdentifier = 0;
+            handInputSource.collidedObjectIdentifier = null;
             handGestureListener.ManipulationEnded(handInputSource);
         }
 
@@ -109,7 +110,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                             && hits[i].transform.gameObject.GetComponent<Interactable>()
                             && closestDistance > Vector3.Distance(transform.position, hits[i].ClosestPoint(transform.position)))
                         {
-                            closestDistance = Vector3.Distance(transform.position, hits[i].transform.position);
+                            closestDistance = Vector3.Distance(transform.position, hits[i].ClosestPoint(transform.position));
                             closestIndex = i;
                             somethingInProximity = true;
                         }
@@ -117,20 +118,20 @@ namespace Bouvet.DevelopmentKit.Input.Hands
 
                     if (somethingInProximity)
                     {
-                        newObjectId = inputManager.GetId(hits[closestIndex].transform.gameObject);
-                        if (currentObjectId != newObjectId)
+                        newObject = hits[closestIndex].transform.gameObject;
+                        if (!currentObject.Equals(newObject))
                         {
                             BdkLogger.Log($"Entered contact with new object: {hits[closestIndex].name}:{closestIndex}:{hits.Length}", LogSeverity.Info);
-                            if (currentObjectId != -1)
+                            if (currentObject != null)
                             {
                                 handGestureListener.ProximityEnded(handInputSource);
                             }
 
-                            handInputSource.collidedObjectIdentifier = newObjectId;
+                            handInputSource.collidedObjectIdentifier = hits[closestIndex].transform.gameObject;
                             handGestureListener.ProximityStarted(handInputSource);
                         }
 
-                        currentObjectId = newObjectId;
+                        currentObject = newObject;
                         inProximity = true;
 
                         MoveGripPoint();
@@ -149,10 +150,10 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             if (!somethingInProximity && !CurrentlyManipulating)
             {
                 inProximity = false;
-                currentObjectId = -1;
+                currentObject = null;
                 hits = new Collider[10];
                 handGestureListener.ProximityEnded(handInputSource);
-                handInputSource.collidedObjectIdentifier = 0;
+                handInputSource.collidedObjectIdentifier = null;
             }
 
             if (inProximity)
@@ -191,7 +192,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             if (currentManipulationObject)
             {
                 CurrentlyManipulating = true;
-                handInputSource.collidedObjectIdentifier = inputManager.GetId(currentManipulationObject);
+                handInputSource.collidedObjectIdentifier = currentManipulationObject;
                 MoveGripPoint();
                 BdkLogger.Log($"Manipulation started", LogSeverity.Info);
                 handGestureListener.ManipulationStarted(handInputSource);
@@ -226,7 +227,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
 
         private void Setup()
         {
-            handGestureListener = inputManager.GetHandGestureListenerInternal();
+            handGestureListener = inputManager.GetHandGestureListener();
             if (handGestureListener == null)
             {
                 BdkLogger.Log($"Couldn't find HandGestureListener. Trying again!", LogSeverity.Info);
@@ -236,6 +237,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
 
             if (handGestureListener.TryGetHandInputSource((isRightHand ? InputSourceKind.HandRight : InputSourceKind.HandLeft), out handInputSource) && handInputSource != null)
             {
+                SetupIndexFinger();
                 setupComplete = true;
                 BdkLogger.Log($"Found HandInputSource", LogSeverity.Info);
             }
@@ -244,11 +246,20 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                 BdkLogger.Log($"Couldn't find HandInputSource. Trying again!", LogSeverity.Info);
                 Invoke(nameof(Setup), 0.2f);
             }
-            //if (handGestureListener)
-            //{
-            //    handInputSource = isRightHand ? handGestureListener.RightHandInputSource : handGestureListener.LeftHandInputSource;
-            //}
+        }
 
+        private void SetupIndexFinger()
+        {
+            indexFingerInputSource = new InputSource();
+            if (isRightHand)
+            {
+                indexFingerInputSource.inputSourceKind = InputSourceKind.IndexFingerRight;
+            }
+            else
+            {
+                indexFingerInputSource.inputSourceKind = InputSourceKind.IndexFingerLeft;
+            }
+            inputManager.AddInputSource(indexFingerInputSource);
         }
 #pragma warning restore CS0649
     }

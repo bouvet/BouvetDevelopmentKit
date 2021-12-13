@@ -25,7 +25,7 @@ public class InteractableButtonWithFocusEvents : InteractableButton
 
     private void InputManager_OnGazeExit(InputSource obj)
     {
-        if (ToggleEventsOnEyeGaze && obj.collidedObjectIdentifier == inputManager.GetId(gameObject))
+        if (ToggleEventsOnEyeGaze && obj.collidedObjectIdentifier.Equals(gameObject))
         {
             OnFocusStop?.Invoke();
         }
@@ -33,7 +33,7 @@ public class InteractableButtonWithFocusEvents : InteractableButton
 
     private void InputManager_OnGazeEnter(InputSource obj)
     {
-        if (ToggleEventsOnEyeGaze && obj.collidedObjectIdentifier == inputManager.GetId(gameObject))
+        if (ToggleEventsOnEyeGaze && obj.collidedObjectIdentifier.Equals(gameObject))
         {
             OnFocusStart?.Invoke();
         }
@@ -41,12 +41,12 @@ public class InteractableButtonWithFocusEvents : InteractableButton
 
     private void InputManager_OnHololensTransformUpdated(InputSource obj)
     {
-        if (ToggleEventsOnHeadGaze && !beingTargetedByHeadGaze && obj.collidedObjectIdentifier == inputManager.GetId(gameObject))
+        if (ToggleEventsOnHeadGaze && !beingTargetedByHeadGaze && obj.collidedObjectIdentifier.Equals(gameObject))
         {
             beingTargetedByHeadGaze = true;
             OnFocusStart?.Invoke();
         }
-        else if (ToggleEventsOnHeadGaze && beingTargetedByHeadGaze && obj.collidedObjectIdentifier != inputManager.GetId(gameObject))
+        else if (ToggleEventsOnHeadGaze && beingTargetedByHeadGaze && !obj.collidedObjectIdentifier.Equals(gameObject))
         {
             beingTargetedByHeadGaze = false;
             OnFocusStop?.Invoke();
@@ -74,7 +74,7 @@ public class InteractableButtonWithFocusEvents : InteractableButton
     protected override void InputManager_OnProximityStarted(InputSource inputSource)
     {
         base.InputManager_OnProximityStarted(inputSource);
-        if (ToggleEventsOnProximity && inputSource.collidedObjectIdentifier == inputManager.GetId(gameObject))
+        if (ToggleEventsOnProximity && inputSource.collidedObjectIdentifier.Equals(gameObject))
         {
             OnFocusStart?.Invoke();
         }

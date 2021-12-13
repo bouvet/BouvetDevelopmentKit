@@ -8,7 +8,7 @@ public class VoiceClickOnInteractables : MonoBehaviour
     protected string voiceCommand;
 
     protected InputManager inputManager;
-    protected int target;
+    protected GameObject target;
 
     protected void Start()
     {
@@ -18,9 +18,8 @@ public class VoiceClickOnInteractables : MonoBehaviour
     }
 
     protected void InputManager_OnPhraseRecognized(InputSource obj)
-    {
-        target = inputManager.GetFocusedButtonID();
-        if (obj.message.Equals(voiceCommand) && target != -1)
+    {        
+        if (obj.message.Equals(voiceCommand) && inputManager.TryGetFocusedButton(out target) && target != null)
         {
             
         }

@@ -26,14 +26,14 @@ public class HeadGazeButton : InteractableButton
 
     protected virtual void InputManager_OnHololensTransformUpdated(InputSource obj)
     {
-        if (obj.collidedObjectIdentifier == gameObject.GetInstanceID() && !beingWatched && (inputManager.GetCursorState(true) == CursorState.HeadCursor || inputManager.inputSettings.AlwaysShowHeadGazeCursor))
+        if (obj.collidedObjectIdentifier.Equals(gameObject) && !beingWatched && (inputManager.GetCursorState(true) == CursorState.HeadCursor || inputManager.inputSettings.AlwaysShowHeadGazeCursor))
         {
             beingWatched = true;
             timeWatchBegan = Time.time;
             Invoke(nameof(ResetTimer), timeWatchedUntilActivation);
             StartCoroutine(Loading());
         }
-        else if (obj.collidedObjectIdentifier != gameObject.GetInstanceID() && beingWatched)
+        else if (!obj.collidedObjectIdentifier.Equals(gameObject) && beingWatched)
         {
             CancelInvoke(nameof(ResetTimer));
             StopCoroutine(Loading());
