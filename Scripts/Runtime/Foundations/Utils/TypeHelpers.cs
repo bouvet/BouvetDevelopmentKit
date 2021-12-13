@@ -2,10 +2,7 @@
 
 namespace Bouvet.DevelopmentKit.Internal.Utils
 {
-    /// <summary>
-    /// This class converts values from System variables to Unity variables.5
-    /// </summary>
-    public class ValueConverter
+    public static class TypeHelpers
     {
         /// <summary>
         /// Converts a System.Numerics.Vector3 to a UnityEngine.Vector3
@@ -46,5 +43,13 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
         {
             return new System.Numerics.Quaternion(-orientation.x, -orientation.y, orientation.z, orientation.w);
         }
+
+
+        /// <summary>
+        /// Maps a vector 3 to the XZ plane i.e. ignores the Y value.
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <returns></returns>v
+        public static Vector3 XZ(this Vector3 vector) => Vector3.Scale(vector, Vector3.forward + Vector3.right);
     }
 }

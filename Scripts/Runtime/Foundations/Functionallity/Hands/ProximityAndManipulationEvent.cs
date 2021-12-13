@@ -50,7 +50,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
 #if UNITY_EDITOR
             if (setupComplete)
             {
-                handInputSource.worldPosition = ValueConverter.MakeSystemVector3(transform.position);
+                handInputSource.worldPosition = TypeHelpers.MakeSystemVector3(transform.position);
                 InputManager_OnInputUpdated(handInputSource);
             }
             if (Keyboard.current.gKey.wasPressedThisFrame)

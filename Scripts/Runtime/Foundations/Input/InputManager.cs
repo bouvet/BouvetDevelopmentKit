@@ -1,13 +1,12 @@
-﻿using Bouvet.DevelopmentKit.Input.Gaze;
-using Bouvet.DevelopmentKit.Input.Hands;
-using Bouvet.DevelopmentKit.Internal.Utils;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Bouvet.DevelopmentKit.Input.Gaze;
+using Bouvet.DevelopmentKit.Input.Hands;
+using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
-
 #if WINDOWS_UWP || DOTNETWINRT_PRESENT
 using Windows.Foundation.Metadata;
 using Windows.Graphics.Holographic;
@@ -446,8 +445,8 @@ namespace Bouvet.DevelopmentKit.Input
             {
                 if (inputManagerInternal.TryGetHandJointTransform(inputSourceKind, jointName, out jointTransform, handMustBeActive))
                 {
-                    jointPosition = ValueConverter.MakeUnityVector3(jointTransform.position);
-                    jointRotation = ValueConverter.MakeUnityQuaternion(jointTransform.rotation);
+                    jointPosition = TypeHelpers.MakeUnityVector3(jointTransform.position);
+                    jointRotation = TypeHelpers.MakeUnityQuaternion(jointTransform.rotation);
                     return true;
                 }
             }

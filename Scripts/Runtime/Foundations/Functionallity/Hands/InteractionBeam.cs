@@ -1,6 +1,7 @@
-﻿using Bouvet.DevelopmentKit.Internal.Utils;
-using System;
+﻿using System;
+using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
+using static Bouvet.DevelopmentKit.Internal.Utils.TypeHelpers;
 
 #if WINDOWS_UWP || DOTNETWINRT_PRESENT
 using Windows.Perception.People;
@@ -32,7 +33,6 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         [Range(0.1f, 0.8f)]
         private float curveAmount = 0.5f; // Weight of the curve. Lower values results in curve being curved all the way. Higher values results in the curve being straight at first and the curve a lot towards the end
 
-        private readonly Vector3 flatten = new Vector3(1f, 0f, 1f);
         private readonly Vector3 originOffset = new Vector3(0.175f, -0.35f, -0.2f);
 
         private Interactable currentInteractable;
@@ -78,7 +78,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         {
             try
             {
-                if (inputManager.GetCursorState(isRightHand) == CursorState.InteractionBeamCursor && ((source.inputSourceKind == InputSourceKind.HandRight && isRightHand) || (source.inputSourceKind == InputSourceKind.HandLeft && !isRightHand)))
+                if (inputManager.GetCursorState(isRightHand) == CursorState.InteractionBeamCursor && (source.inputSourceKind == InputSourceKind.HandRight && isRightHand || source.inputSourceKind == InputSourceKind.HandLeft && !isRightHand))
                 {
                     if (currentInteractable)
                     {
@@ -148,6 +148,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                     {
                         inputManager.leftGripPoint.parent = null;
                     }
+
                     holdingSomething = false;
                     UpdateCursor(rayTarget.position, Quaternion.Euler(Vector3.zero), source.pinchDistance);
                 }
@@ -183,10 +184,11 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                             // If the raycast hits something
                             if (Physics.Raycast(rayStart.position, rayStart.forward, out hit, inputManager.inputSettings.InteractionBeamsDistance))
                             {
-                                if (hit.collider.gameObject.layer != 5 && Physics.Raycast(rayStart.position, rayStart.forward, out hitUI, inputManager.inputSettings.InteractionBeamsDistance, layerMask: 1 << 5))
+                                if (hit.collider.gameObject.layer != 5 && Physics.Raycast(rayStart.position, rayStart.forward, out hitUI, inputManager.inputSettings.InteractionBeamsDistance, 1 << 5))
                                 {
                                     hit = hitUI;
                                 }
+
                                 rayStart.transform.localScale = new Vector3(1f, 1f, Vector3.Distance(rayStart.position, hit.point));
                                 Interactable interactable = hit.collider.GetComponent<Interactable>();
                                 if (interactable && !interactable.Equals(currentInteractable))
@@ -241,8 +243,8 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         private void UpdateCursor(Vector3 position, Quaternion rotation, float pinchDistance)
         {
             cursor.UpdateCursor(position, rotation, pinchDistance);
-            interactionBeamInputSource.worldPosition = ValueConverter.MakeSystemVector3(position);
-            interactionBeamInputSource.worldRotation = ValueConverter.MakeSystemQuaternion(rotation);
+            interactionBeamInputSource.worldPosition = MakeSystemVector3(position);
+            interactionBeamInputSource.worldRotation = MakeSystemQuaternion(rotation);
         }
 
         /// <summary>
@@ -254,17 +256,18 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             //TODO: There is an error when the hand is moved to the edge of the FOV.
 
             // Calculate angle to place origin
-            var distance = Vector3.Distance(Vector3.Scale(hololensTransform.position, flatten), Vector3.Scale(rayStart.position, flatten));
+            float distance = Vector3.Distance(hololensTransform.position.XZ(), rayStart.position.XZ());
             if (distance <= originOffset.x) // Override if hands are too close to the body
             {
                 return false;
             }
-            var degrees = Math.Acos(originOffset.x) * (180f / Math.PI) + 15f;
+
+            double degrees = Math.Acos(originOffset.x) * (180f / Math.PI) + 15f;
 
             // Position origin correct
             origin.position = new Vector3(hololensTransform.position.x, rayStart.position.y, hololensTransform.position.z);
             origin.LookAt(rayStart);
-            origin.Rotate(Vector3.up, isRightHand ? (float)degrees : (float)-degrees);
+            origin.Rotate(Vector3.up, isRightHand ? (float) degrees : (float) -degrees);
             origin.position = hololensTransform.position + origin.forward * originOffset.x + Vector3.up * originOffset.y + rayStart.forward * originOffset.z;
             origin.LookAt(rayStart);
 
@@ -309,7 +312,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             {
                 B = (1 - t) * (1 - t) * start + 2 * (1 - t) * t * Vector3.Lerp(start, middle, curveAmount) + t * t * end;
                 lineRenderer.SetPosition(i, B);
-                t += 1 / (float)curveSmoothness;
+                t += 1 / (float) curveSmoothness;
             }
         }
 
@@ -365,7 +368,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             interactionBeamInputSource.collidedObjectIdentifier = 0;
         }
 
-        #region Setup of interaction beam
+#region Setup of interaction beam
 
         private void SetupEventListeners()
         {
@@ -419,7 +422,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             inputManager.AddInputSource(interactionBeamInputSource);
         }
 
-        #endregion
+#endregion
     }
 #pragma warning restore CS0649
 }

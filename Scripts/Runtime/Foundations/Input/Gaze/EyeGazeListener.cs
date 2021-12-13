@@ -1,10 +1,9 @@
-﻿using Bouvet.DevelopmentKit.Internal.Utils;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 using UnityEngine.XR;
-
 #if WINDOWS_UWP
 using Windows.Perception;
 using Windows.UI.Input.Spatial;
@@ -65,8 +64,8 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
                     && centerEye.TryGetFeatureValue(eyeGazePositionInput, out Vector3 eyeGazePosition)
                     && centerEye.TryGetFeatureValue(eyeGazeRotationInput, out Quaternion eyeGazeRotation))
                 {
-                    gazeInputSource.worldPosition = ValueConverter.MakeSystemVector3(eyeGazePosition);
-                    gazeInputSource.forwardVector = ValueConverter.MakeSystemVector3(eyeGazeRotation * Vector3.forward);
+                    gazeInputSource.worldPosition = TypeHelpers.MakeSystemVector3(eyeGazePosition);
+                    gazeInputSource.forwardVector = TypeHelpers.MakeSystemVector3(eyeGazeRotation * Vector3.forward);
                     if (noEyeTrackingFoundLastFrame)
                     {
                         noEyeTrackingFoundLastFrame = false;
@@ -76,7 +75,7 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
 
                     BdkLogger.Log($"Eye gaze pos: {gazeInputSource.worldPosition}, Eye gaze forward: {gazeInputSource.forwardVector}");
 
-                    Ray gaze = new Ray(ValueConverter.MakeUnityVector3(gazeInputSource.worldPosition), ValueConverter.MakeUnityVector3(gazeInputSource.forwardVector));
+                    Ray gaze = new Ray(TypeHelpers.MakeUnityVector3(gazeInputSource.worldPosition), TypeHelpers.MakeUnityVector3(gazeInputSource.forwardVector));
                     if (Physics.Raycast(gaze, out raycastHit))
                     {
                         gazeInputSource.worldPosition = new System.Numerics.Vector3(raycastHit.point.x, raycastHit.point.y, -raycastHit.point.z); // Converts to System Vector3
@@ -122,7 +121,7 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
                                 eyeGazeListenerInternal.SourceFound(gazeInputSource);
                             }
 
-                            Ray gaze = new Ray(ValueConverter.MakeUnityVector3(gazeInputSource.worldPosition), ValueConverter.MakeUnityVector3(gazeInputSource.forwardVector));
+                            Ray gaze = new Ray(TypeHelpers.MakeUnityVector3(gazeInputSource.worldPosition), TypeHelpers.MakeUnityVector3(gazeInputSource.forwardVector));
                             if (Physics.Raycast(gaze, out raycastHit))
                             {
                                 gazeInputSource.worldPosition = new System.Numerics.Vector3(raycastHit.point.x, raycastHit.point.y, -raycastHit.point.z); // Converts to System Vector3

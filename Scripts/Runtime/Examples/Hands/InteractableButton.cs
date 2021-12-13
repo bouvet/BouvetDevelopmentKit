@@ -1,9 +1,9 @@
-﻿using Bouvet.DevelopmentKit;
-using Bouvet.DevelopmentKit.Input;
-using Bouvet.DevelopmentKit.Internal.Utils;
-using System;
+﻿using System;
 using System.Collections;
 using System.Linq;
+using Bouvet.DevelopmentKit;
+using Bouvet.DevelopmentKit.Input;
+using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -174,7 +174,7 @@ public class InteractableButton : Interactable
     {
         if (InProximity && inputSource.inputSourceKind == proximitySource.inputSourceKind)
         {
-            compressable.localScale = new Vector3(1f, 1f, Mathf.Clamp(-transform.InverseTransformPoint(ValueConverter.MakeUnityVector3(inputSource.worldPosition)).z, 0f, 1f));
+            compressable.localScale = new Vector3(1f, 1f, Mathf.Clamp(-transform.InverseTransformPoint(TypeHelpers.MakeUnityVector3(inputSource.worldPosition)).z, 0f, 1f));
             if (compressable.localScale.z < maxCompression.z)
             {
                 compressable.localScale = maxCompression;
@@ -189,7 +189,7 @@ public class InteractableButton : Interactable
 
     protected virtual void InputManager_OnProximityStarted(InputSource inputSource)
     {
-        if (!InProximity && inputSource.collidedObjectIdentifier == inputManager.GetId(gameObject) && 0 > transform.InverseTransformPoint(ValueConverter.MakeUnityVector3(inputSource.worldPosition)).z)
+        if (!InProximity && inputSource.collidedObjectIdentifier == inputManager.GetId(gameObject) && 0 > transform.InverseTransformPoint(TypeHelpers.MakeUnityVector3(inputSource.worldPosition)).z)
         {
             InProximity = true;
             proximitySource = inputSource;
