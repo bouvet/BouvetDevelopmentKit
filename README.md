@@ -69,10 +69,10 @@ BDK documentation is split into 2 categories, Guide and Advanced. The guide is f
 	<img align="right" width="380" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146026256-5919dcbb-9293-471e-a88c-9cbdc497206d.png#gh-dark-mode-only">
 </a>
 
-<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki">
+<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only">
 	<img align="left" width="380" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146042305-9211538c-8caf-433f-b934-a929f635c57d.png#gh-light-mode-only">
 </a>
-<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Architecture">
+<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Architecture#gh-light-mode-only">
 	<img align="right" width="380" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146042301-6f44759c-5215-4544-8b30-8063dc63c45f.png#gh-light-mode-only">
 </a>
 
