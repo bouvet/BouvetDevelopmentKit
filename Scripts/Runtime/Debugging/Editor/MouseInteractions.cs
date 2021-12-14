@@ -69,17 +69,17 @@ public class MouseInteractions : MonoBehaviour
                 interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable)
                 {
-                    inputSource.collidedObjectIdentifier = hit.collider.gameObject;
+                    inputSource.collidedObject = hit.collider.gameObject;
                     inputManager.GetHandGestureListener().InputDown(inputSource);
                 }
             }
             else
-                inputSource.collidedObjectIdentifier = null;
+                inputSource.collidedObject = null;
         }
 
         if (Mouse.current.leftButton.isPressed)
         {
-            if (!holdingSomething && inputSource.collidedObjectIdentifier != null)
+            if (!holdingSomething && inputSource.collidedObject != null)
                 StartHolding();
 
             if (holdingSomething)
@@ -103,12 +103,12 @@ public class MouseInteractions : MonoBehaviour
                 interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable)
                 {
-                    inputSource.collidedObjectIdentifier = hit.collider.gameObject;
+                    inputSource.collidedObject = hit.collider.gameObject;
                     inputManager.GetHandGestureListener().InputUp(inputSource);
                 }
             }
             else
-                inputSource.collidedObjectIdentifier = null;
+                inputSource.collidedObject = null;
 
             StopHolding();
         }

@@ -8,11 +8,11 @@ namespace Bouvet.DevelopmentKit.Input
     public class InputSource
     {
         public InputSourceKind inputSourceKind;
-        public System.Numerics.Vector3 worldPosition;
-        public System.Numerics.Quaternion worldRotation;
-        public System.Numerics.Vector3 forwardVector;
+        public Vector3 worldPosition;
+        public Quaternion worldRotation;
+        public Vector3 forwardVector;
         public string message;
-        public GameObject collidedObjectIdentifier;
+        public GameObject collidedObject;
         public float pinchDistance;
         public bool active;
     }

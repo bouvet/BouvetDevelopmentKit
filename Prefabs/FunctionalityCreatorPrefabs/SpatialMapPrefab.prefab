@@ -44,10 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
-  spatialMeshPrefab: {fileID: 7107439554359494864, guid: e289097afb8ffeb48abe7e38c8a2247b,
-    type: 3}
+  spatialMeshPrefab: {fileID: 7107439554359494864, guid: e289097afb8ffeb48abe7e38c8a2247b, type: 3}
   spatialMeshMaterial: {fileID: 2100000, guid: 89259ab7766acb74891c85cea1c309d4, type: 2}
-  mappingExtents: {x: 5, y: 3, z: 5}
+  mappingExtents: {x: 1000, y: 1000, z: 1000}
   trianglesPerMesh: 600
   updateTimeSeconds: 1.5
   visibleMesh: 0

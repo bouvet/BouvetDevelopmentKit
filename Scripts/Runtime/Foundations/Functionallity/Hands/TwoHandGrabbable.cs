@@ -49,7 +49,7 @@ namespace Bouvet.DevelopmentKit.Input
 
         public override void BeginInteraction(InputSource inputSource)
         {
-            if (!inputSource.collidedObjectIdentifier.Equals(gameObject))
+            if (!gameObject.Equals(inputSource.collidedObject))
             {
                 return;
             }

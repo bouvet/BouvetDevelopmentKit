@@ -50,7 +50,7 @@ namespace Bouvet.DevelopmentKit.Input
 
 #if UNITY_EDITOR
                 await Task.Delay(1000);
-                ShowDebugHeadCursor();
+                //ShowDebugHeadCursor();
 #endif
             }
         }
@@ -163,9 +163,9 @@ namespace Bouvet.DevelopmentKit.Input
         {
             for (int i = 0; i < InputSources.Count; i++)
             {
-                if (InputSources[i].collidedObjectIdentifier != null)
+                if (InputSources[i].collidedObject != null)
                 {
-                    returnObject = InputSources[i].collidedObjectIdentifier;
+                    returnObject = InputSources[i].collidedObject;
                     return true;
                 }
             }
@@ -183,9 +183,9 @@ namespace Bouvet.DevelopmentKit.Input
         {
             for (int i = 0; i < InputSources.Count; i++)
             {
-                if (InputSources[i].collidedObjectIdentifier != null)
+                if (InputSources[i].collidedObject != null)
                 {
-                    returnObject = InputSources[i].collidedObjectIdentifier;
+                    returnObject = InputSources[i].collidedObject;
                     if (returnObject.activeSelf && returnObject.GetComponent<Interactable>())
                     {
                         return true;
@@ -206,9 +206,9 @@ namespace Bouvet.DevelopmentKit.Input
             target = null;
             for (int i = 0; i < InputSources.Count; i++)
             {
-                if (InputSources[i].collidedObjectIdentifier != null)
+                if (InputSources[i].collidedObject != null)
                 {
-                    target = InputSources[i].collidedObjectIdentifier;
+                    target = InputSources[i].collidedObject;
                     if (target.activeSelf && target.GetComponent<InteractableButton>())
                     {
                         return true;
@@ -246,7 +246,7 @@ namespace Bouvet.DevelopmentKit.Input
             activeCursor = null;
             for (int i = 0; i < InputSources.Count; i++)
             {
-                if (InputSources[i].collidedObjectIdentifier != null)
+                if (InputSources[i].collidedObject != null)
                 {
                     switch (InputSources[i].inputSourceKind)
                     {
@@ -289,7 +289,7 @@ namespace Bouvet.DevelopmentKit.Input
         public bool TryGetCursorTransform(InputSourceKind inputSourceKind, out Transform cursorTransform, bool mustBeActive)
         {
             cursorTransform = null;
-            if(mustBeActive)
+            if (mustBeActive)
             {
                 foreach (InputSource inputSource in InputSources)
                 {
@@ -299,7 +299,7 @@ namespace Bouvet.DevelopmentKit.Input
                     }
                 }
             }
-            
+
             switch (inputSourceKind)
             {
                 case InputSourceKind.HandRight:
@@ -405,8 +405,8 @@ namespace Bouvet.DevelopmentKit.Input
             {
                 if (handGestureListener.TryGetHandJointTransform(inputSourceKind, jointName, out jointTransform, handMustBeActive))
                 {
-                    jointPosition = TypeHelpers.MakeUnityVector3(jointTransform.position);
-                    jointRotation = TypeHelpers.MakeUnityQuaternion(jointTransform.rotation);
+                    jointPosition = jointTransform.position;
+                    jointRotation = jointTransform.rotation;
                     return true;
                 }
             }
@@ -471,7 +471,7 @@ namespace Bouvet.DevelopmentKit.Input
             BdkLogger.Log($"Added input source: {newInputSource.inputSourceKind}", LogSeverity.Info);
         }
 
-        internal CursorState GetCursorState(bool getRightHand)
+        public CursorState GetCursorState(bool getRightHand)
         {
             if (getRightHand)
             {

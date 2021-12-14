@@ -32,7 +32,7 @@ namespace Bouvet.DevelopmentKit.Input
         {
             if (inputSettings.UseHeadGaze && (inputManager.GetCursorState(true) == CursorState.HeadCursor || inputSettings.AlwaysShowHeadGazeCursor))
             {
-                if (Physics.Raycast(TypeHelpers.MakeUnityVector3(obj.worldPosition), TypeHelpers.MakeUnityVector3(obj.forwardVector), out hit, 20f))
+                if (Physics.Raycast(obj.worldPosition, obj.forwardVector, out hit, 20f))
                 {
                     if (!visualCursor.enabled)
                     {
@@ -40,7 +40,7 @@ namespace Bouvet.DevelopmentKit.Input
                     }
 
                     transform.position = hit.point;
-                    holoCursor.collidedObjectIdentifier = hit.transform.gameObject;
+                    holoCursor.collidedObject = hit.transform.gameObject;
                 }
                 else
                 {

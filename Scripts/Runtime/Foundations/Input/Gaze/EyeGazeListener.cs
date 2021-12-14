@@ -69,8 +69,8 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
                     && centerEye.TryGetFeatureValue(WindowsMRUsages.EyeGazePosition, out Vector3 eyeGazePosition)
                     && centerEye.TryGetFeatureValue(WindowsMRUsages.EyeGazeRotation, out Quaternion eyeGazeRotation))
                 {
-                    gazeInputSource.worldPosition = TypeHelpers.MakeSystemVector3(eyeGazePosition);
-                    gazeInputSource.forwardVector = TypeHelpers.MakeSystemVector3(eyeGazeRotation * Vector3.forward);
+                    gazeInputSource.worldPosition = eyeGazePosition;
+                    gazeInputSource.forwardVector = eyeGazeRotation * Vector3.forward;
                     if (noEyeTrackingFoundLastFrame)
                     {
                         noEyeTrackingFoundLastFrame = false;
@@ -80,12 +80,12 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
                     
                     if (Physics.Raycast(eyeGazePosition, eyeGazeRotation * Vector3.forward, out raycastHit))
                     {
-                        gazeInputSource.worldPosition = TypeHelpers.MakeSystemVector3(raycastHit.point);
-                        gazeInputSource.forwardVector = TypeHelpers.MakeSystemVector3(raycastHit.normal);
-                        if (!raycastHit.transform.gameObject.Equals(gazeInputSource.collidedObjectIdentifier))
+                        gazeInputSource.worldPosition = raycastHit.point;
+                        gazeInputSource.forwardVector = raycastHit.normal;
+                        if (!raycastHit.transform.gameObject.Equals(gazeInputSource.collidedObject))
                         {
                             OnGazeExit?.Invoke(gazeInputSource);
-                            gazeInputSource.collidedObjectIdentifier = raycastHit.transform.gameObject;
+                            gazeInputSource.collidedObject = raycastHit.transform.gameObject;
                             OnGazeEnter?.Invoke(gazeInputSource);
                         }
                         OnGazeUpdate?.Invoke(gazeInputSource);
@@ -93,7 +93,7 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
                     else
                     {
                         OnGazeExit?.Invoke(gazeInputSource);
-                        gazeInputSource.collidedObjectIdentifier = null;
+                        gazeInputSource.collidedObject = null;
                     }
                 }
 
@@ -172,7 +172,7 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
             noEyeTrackingFoundLastFrame = true;
             gazeInputSource.active = false;
             OnGazeExit?.Invoke(gazeInputSource);
-            gazeInputSource.collidedObjectIdentifier = null;
+            gazeInputSource.collidedObject = null;
             OnSourceLost?.Invoke(gazeInputSource);
             BdkLogger.Log("Lost eye tracking");
         }

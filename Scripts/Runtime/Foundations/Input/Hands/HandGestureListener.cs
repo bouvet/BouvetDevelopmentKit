@@ -124,7 +124,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                         // Update hand position rotation and toggle InputUp, InputDown, and InputUpdated events
                         LeftHandInputSource.worldPosition = indexTransform.position;
                         LeftHandInputSource.worldRotation = indexTransform.rotation;
-                        distance = Vector3.Distance(TypeHelpers.MakeUnityVector3(indexTransform.position), TypeHelpers.MakeUnityVector3(thumbTransform.position));
+                        distance = Vector3.Distance(indexTransform.position, thumbTransform.position);
                         LeftHandInputSource.pinchDistance = distance;
                         if (!pinchingLeft && distance < MIN_PINCH_DISTANCE)
                         {
@@ -149,10 +149,10 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                         // Update hand rotation state
                         if (TryGetHandJointTransform(InputSourceKind.HandLeft, JointName.Palm, out palmTransform))
                         {
-                            palmTransformCheck.position = TypeHelpers.MakeUnityVector3(palmTransform.position);
+                            palmTransformCheck.position = palmTransform.position;
                             palmTransformCheck.LookAt(inputManager.Hololens);
                             palmTransformCheck.localEulerAngles += rotOffset;
-                            angleOffset = Quaternion.Angle(palmTransformCheck.rotation, TypeHelpers.MakeUnityQuaternion(palmTransform.rotation));
+                            angleOffset = Quaternion.Angle(palmTransformCheck.rotation, palmTransform.rotation);
                             OnHandRotationToggle?.Invoke(LeftHandInputSource, angleOffset);
                         }
                     }
@@ -163,7 +163,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                         // Update hand position rotation and toggle InputUp, InputDown, and InputUpdated events
                         RightHandInputSource.worldPosition = indexTransform.position;
                         RightHandInputSource.worldRotation = indexTransform.rotation;
-                        distance = Vector3.Distance(TypeHelpers.MakeUnityVector3(indexTransform.position), TypeHelpers.MakeUnityVector3(thumbTransform.position));
+                        distance = Vector3.Distance(indexTransform.position, thumbTransform.position);
                         RightHandInputSource.pinchDistance = distance;
                         if (!pinchingRight && distance < MIN_PINCH_DISTANCE)
                         {
@@ -188,10 +188,10 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                         // Update hand rotation state
                         if (TryGetHandJointTransform(InputSourceKind.HandRight, JointName.Palm, out palmTransform))
                         {
-                            palmTransformCheck.position = TypeHelpers.MakeUnityVector3(palmTransform.position);
+                            palmTransformCheck.position = palmTransform.position;
                             palmTransformCheck.LookAt(inputManager.Hololens);
                             palmTransformCheck.localEulerAngles += rotOffset;
-                            angleOffset = Quaternion.Angle(palmTransformCheck.rotation, TypeHelpers.MakeUnityQuaternion(palmTransform.rotation));
+                            angleOffset = Quaternion.Angle(palmTransformCheck.rotation, palmTransform.rotation);
                             OnHandRotationToggle?.Invoke(RightHandInputSource, angleOffset);
                         }
                     }
@@ -272,23 +272,11 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                 return false;
             }
 
-            AddEventListeners();
-
             handGestureListenerInitialized = true;
 
             BdkLogger.Log("HandGestureListener setup succesfully", LogSeverity.Info);
 
             return true;
-        }
-
-        /// <summary>
-        /// Subscribes to event handlers.
-        /// </summary>
-        private void AddEventListeners()
-        {
-            handJointController.OnProximityStarted += inputSouce => OnProximityStarted?.Invoke(inputSouce);
-            handJointController.OnProximityUpdated += inputSouce => OnProximityUpdated?.Invoke(inputSouce);
-            handJointController.OnProximityEnded += inputSouce => OnProximityEnded?.Invoke(inputSouce);
         }
 
         /// <summary>

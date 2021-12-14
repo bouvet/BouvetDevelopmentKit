@@ -14,24 +14,24 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         internal InteractionBeam interactionBeam;
 
         [SerializeField]
-        internal float touchDistance = 0.01f;
+        internal float indexFingerTouchDistance = 0.01f;
+
+        [SerializeField]
+        internal float handTouchDistance = 0.2f;
 
         public bool isRightHand;
 
-        private float closestDistance;
-        private int closestIndex;
         private GameObject newObject;
-        private GameObject currentObject;
-        private bool somethingInProximity;
-        private Collider[] hits = new Collider[20];
+        private Collider[] indexHits = new Collider[10];
+        private Collider[] handHits = new Collider[10];
 
-        internal bool CurrentlyManipulating;
-        private GameObject currentManipulationObject;
+        internal bool CurrentlyManipulating = false;
+        private bool IndexInProximityPreviousUpdate;
+        private bool HandInProximityPreviousUpdate;
         private HandGestureListener handGestureListener;
         private InputSource handInputSource;
         private InputSource indexFingerInputSource;
         private Quaternion quaternionCache;
-        private bool inProximity;
         private bool setupComplete;
 
         private void Start()
@@ -51,12 +51,15 @@ namespace Bouvet.DevelopmentKit.Input.Hands
 #if UNITY_EDITOR
             if (setupComplete)
             {
-                handInputSource.worldPosition = TypeHelpers.MakeSystemVector3(transform.position);
                 InputManager_OnInputUpdated(handInputSource);
             }
-            if (Keyboard.current.gKey.wasPressedThisFrame)
+            if (!CurrentlyManipulating && Keyboard.current.gKey.wasPressedThisFrame)
             {
                 InputManager_OnInputDown(handInputSource);
+            }
+            if (CurrentlyManipulating && Keyboard.current.gKey.wasReleasedThisFrame)
+            {
+                InputManager_OnInputUp(handInputSource);
             }
 #endif
         }
@@ -65,9 +68,8 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         {
             if (setupComplete)
             {
-                handInputSource.collidedObjectIdentifier = null;
-                handGestureListener.ProximityEnded(handInputSource);
-                inProximity = false;
+                indexFingerInputSource.collidedObject = null;
+                handGestureListener.ProximityEnded(indexFingerInputSource);
             }
         }
 
@@ -78,8 +80,10 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                 return;
             }
             CurrentlyManipulating = false;
-            handInputSource.collidedObjectIdentifier = null;
+
+            BdkLogger.Log($"Manipulation ended", LogSeverity.Info);
             handGestureListener.ManipulationEnded(handInputSource);
+            handInputSource.collidedObject = null;
         }
 
         private void InputManager_OnInputUpdated(InputSource inputSource)
@@ -88,9 +92,6 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             {
                 return;
             }
-
-            somethingInProximity = false;
-
             if (CurrentlyManipulating)
             {
                 MoveGripPoint();
@@ -98,86 +99,8 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             }
             else
             {
-                hits = Physics.OverlapSphere(transform.position, touchDistance);
-                if (hits.Length > 0)
-                {
-                    closestIndex = -1;
-                    closestDistance = float.MaxValue;
-                    for (int i = 0; i < hits.Length; i++)
-                    {
-                        if (hits[i]
-                            && !hits[i].transform.gameObject.tag.Equals("IgnoreProximity")
-                            && hits[i].transform.gameObject.GetComponent<Interactable>()
-                            && closestDistance > Vector3.Distance(transform.position, hits[i].ClosestPoint(transform.position)))
-                        {
-                            closestDistance = Vector3.Distance(transform.position, hits[i].ClosestPoint(transform.position));
-                            closestIndex = i;
-                            somethingInProximity = true;
-                        }
-                    }
-
-                    if (somethingInProximity)
-                    {
-                        newObject = hits[closestIndex].transform.gameObject;
-                        if (!currentObject.Equals(newObject))
-                        {
-                            BdkLogger.Log($"Entered contact with new object: {hits[closestIndex].name}:{closestIndex}:{hits.Length}", LogSeverity.Info);
-                            if (currentObject != null)
-                            {
-                                handGestureListener.ProximityEnded(handInputSource);
-                            }
-
-                            handInputSource.collidedObjectIdentifier = hits[closestIndex].transform.gameObject;
-                            handGestureListener.ProximityStarted(handInputSource);
-                        }
-
-                        currentObject = newObject;
-                        inProximity = true;
-
-                        MoveGripPoint();
-                    }
-                    else
-                    {
-                        somethingInProximity = false;
-                    }
-                }
-                else
-                {
-                    somethingInProximity = false;
-                }
-            }
-
-            if (!somethingInProximity && !CurrentlyManipulating)
-            {
-                inProximity = false;
-                currentObject = null;
-                hits = new Collider[10];
-                handGestureListener.ProximityEnded(handInputSource);
-                handInputSource.collidedObjectIdentifier = null;
-            }
-
-            if (inProximity)
-            {
-                handGestureListener.ProximityUpdated(handInputSource);
-            }
-        }
-
-        private void MoveGripPoint()
-        {
-            if (!interactionBeam || !interactionBeam.holdingSomething)
-            {
-                if (inputManager.TryGetHandJointTransform(handInputSource.inputSourceKind, JointName.IndexTip, out Vector3 indexPos, out quaternionCache)
-                    && inputManager.TryGetHandJointTransform(handInputSource.inputSourceKind, JointName.ThumbTip, out Vector3 thumbPos, out quaternionCache))
-                {
-                    if (isRightHand)
-                    {
-                        inputManager.rightGripPoint.position = Vector3.Lerp(indexPos, thumbPos, 0.5f);
-                    }
-                    else
-                    {
-                        inputManager.leftGripPoint.position = Vector3.Lerp(indexPos, thumbPos, 0.5f);
-                    }
-                }
+                HandProximityCheck();
+                IndexFingerProximityCheck();
             }
         }
 
@@ -187,41 +110,187 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             {
                 return;
             }
-
-            UpdateClosestGrabbable();
-            if (currentManipulationObject)
+            if (UpdateHandCollision(out Vector3 handPos) && TryGetClosestGrabbableByOrigin(handPos, handHits, out newObject))
             {
                 CurrentlyManipulating = true;
-                handInputSource.collidedObjectIdentifier = currentManipulationObject;
+                handInputSource.collidedObject = newObject;
                 MoveGripPoint();
-                BdkLogger.Log($"Manipulation started", LogSeverity.Info);
                 handGestureListener.ManipulationStarted(handInputSource);
+                BdkLogger.Log($"Manipulation started", LogSeverity.Info);
             }
         }
 
-        private void UpdateClosestGrabbable()
+        private bool UpdateIndexCollision(out Vector3 worldPos)
         {
-            closestIndex = -1;
-            closestDistance = float.MaxValue;
-            currentManipulationObject = null;
-            somethingInProximity = false;
-            for (int i = 0; i < hits.Length; i++)
+            worldPos = Vector3.zero;
+#if !UNITY_EDITOR
+            if (inputManager.TryGetHandJointTransform(handInputSource.inputSourceKind, JointName.IndexTip, out worldPos, out quaternionCache))
+#else
+            worldPos = transform.position;
+#endif
             {
-                if (hits[i]
-                    && !hits[i].transform.gameObject.tag.Equals("IgnoreProximity")
-                    && (hits[i].transform.gameObject.GetComponent<Grabbable>() || hits[i].transform.gameObject.GetComponent<ReferToGrabbable>())
-                    && closestDistance > Vector3.Distance(transform.position, hits[i].ClosestPoint(transform.position)))
+                indexFingerInputSource.worldPosition = worldPos;
+                indexHits = Physics.OverlapSphere(worldPos, indexFingerTouchDistance);
+                return indexHits.Length != 0;
+            }
+            return false;
+        }
+
+        private bool UpdateHandCollision(out Vector3 worldPos)
+        {
+            worldPos = Vector3.zero;
+#if !UNITY_EDITOR
+            if (inputManager.TryGetHandJointTransform(handInputSource.inputSourceKind, JointName.Palm, out worldPos, out quaternionCache))
+#else
+            worldPos = transform.position;
+#endif
+            {
+                handInputSource.worldPosition = worldPos;
+                handHits = Physics.OverlapSphere(worldPos, handTouchDistance);
+                return handHits.Length != 0;
+            }
+            return false;
+        }
+
+        private void IndexFingerProximityCheck()
+        {
+            bool inProximity = false;
+            if (UpdateIndexCollision(out Vector3 worldPos))
+            {
+                if (TryGetClosestInteractibleByOrigin(worldPos, indexHits, out newObject))
                 {
-                    closestDistance = Vector3.Distance(transform.position, hits[i].transform.position);
-                    closestIndex = i;
+                    if (!indexFingerInputSource.collidedObject || !indexFingerInputSource.collidedObject.Equals(newObject))
+                    {
+                        BdkLogger.Log($"Index entered contact with new object: {newObject.name}:{indexHits.Length}", LogSeverity.Info);
+                        if (indexFingerInputSource.collidedObject != null)
+                        {
+                            handGestureListener.ProximityEnded(indexFingerInputSource);
+                        }
+                        indexFingerInputSource.collidedObject = newObject;
+                        handGestureListener.ProximityStarted(indexFingerInputSource);
+                        indexFingerInputSource.collidedObject = newObject;
+                    }
+                    inProximity = true;
+                    IndexInProximityPreviousUpdate = true;
+                }
+
+            }
+            else if (!CurrentlyManipulating && IndexInProximityPreviousUpdate)
+            {
+                IndexInProximityPreviousUpdate = false;
+                handGestureListener.ProximityEnded(indexFingerInputSource);
+                indexFingerInputSource.collidedObject = null;
+            }
+
+            if (inProximity)
+            {
+                handGestureListener.ProximityUpdated(indexFingerInputSource);
+            }
+        }
+
+        private void HandProximityCheck()
+        {
+            bool inProximity = false;
+            if (UpdateHandCollision(out Vector3 palmPos))
+            {
+                if (TryGetClosestGrabbableByOrigin(palmPos, handHits, out newObject))
+                {
+                    if (!handInputSource.collidedObject || !handInputSource.collidedObject.Equals(newObject))
+                    {
+                        BdkLogger.Log($"Hand entered contact with new object: {newObject.name}:{handHits.Length}", LogSeverity.Info);
+                        if (handInputSource.collidedObject != null)
+                        {
+                            handGestureListener.ProximityEnded(handInputSource);
+                        }
+
+                        handInputSource.collidedObject = newObject;
+                        handGestureListener.ProximityStarted(handInputSource);
+
+                        handInputSource.collidedObject = newObject;
+                    }
+                    inProximity = true;
+                    HandInProximityPreviousUpdate = true;
+                }
+            }
+            else if (!CurrentlyManipulating && HandInProximityPreviousUpdate)
+            {
+                HandInProximityPreviousUpdate = false;
+                handGestureListener.ProximityEnded(handInputSource);
+                handInputSource.collidedObject = null;
+            }
+
+            if (inProximity)
+            {
+                handGestureListener.ProximityUpdated(handInputSource);
+            }
+        }
+
+        private bool TryGetClosestInteractibleByOrigin(Vector3 worldPosition, Collider[] colliders, out GameObject newObject)
+        {
+            newObject = null;
+            bool somethingInProximity = false;
+            float closestDistance = float.MaxValue;
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i]
+                    && !colliders[i].transform.gameObject.tag.Equals("IgnoreProximity")
+                    && colliders[i].transform.gameObject.GetComponent<Interactable>()
+                    && closestDistance > Vector3.Distance(worldPosition, colliders[i].transform.position))
+                {
+                    closestDistance = Vector3.Distance(worldPosition, colliders[i].transform.position);
+                    newObject = colliders[i].transform.gameObject;
                     somethingInProximity = true;
                 }
             }
+            return somethingInProximity;
+        }
 
-            if (somethingInProximity)
+        private bool TryGetClosestGrabbableByOrigin(Vector3 worldPosition, Collider[] colliders, out GameObject newObject)
+        {
+            newObject = null;
+            bool somethingInProximity = false;
+            float closestDistance = float.MaxValue;
+            for (int i = 0; i < colliders.Length; i++)
             {
-                currentManipulationObject = hits[closestIndex].gameObject;
-                BdkLogger.Log($"Closest: " + hits[closestIndex].gameObject.name, LogSeverity.Info);
+                if (colliders[i]
+                    && !colliders[i].transform.gameObject.tag.Equals("IgnoreProximity")
+                    && (colliders[i].transform.gameObject.GetComponent<Grabbable>() || colliders[i].transform.gameObject.GetComponent<ReferToGrabbable>())
+                    && closestDistance > Vector3.Distance(worldPosition, colliders[i].transform.position))
+                {
+                    closestDistance = Vector3.Distance(worldPosition, colliders[i].transform.position);
+                    newObject = colliders[i].transform.gameObject;
+                    somethingInProximity = true;
+                }
+            }
+            return somethingInProximity;
+        }
+
+        private void MoveGripPoint()
+        {
+#if UNITY_EDITOR
+            if (isRightHand)
+            {
+                inputManager.rightGripPoint.position = transform.position;
+            }
+            else
+            {
+                inputManager.leftGripPoint.position = transform.position;
+            }
+            return;
+#endif
+            if (!interactionBeam || !interactionBeam.holdingSomething)
+            {
+                if (inputManager.TryGetHandJointTransform(handInputSource.inputSourceKind, JointName.MiddleMetacarpal, out Vector3 palmPos, out quaternionCache))
+                {
+                    if (isRightHand)
+                    {
+                        inputManager.rightGripPoint.position = palmPos;
+                    }
+                    else
+                    {
+                        inputManager.leftGripPoint.position = palmPos;
+                    }
+                }
             }
         }
 
@@ -237,7 +306,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
 
             if (handGestureListener.TryGetHandInputSource((isRightHand ? InputSourceKind.HandRight : InputSourceKind.HandLeft), out handInputSource) && handInputSource != null)
             {
-                SetupIndexFinger();
+                SetupIndexFingerInputSource();
                 setupComplete = true;
                 BdkLogger.Log($"Found HandInputSource", LogSeverity.Info);
             }
@@ -248,7 +317,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             }
         }
 
-        private void SetupIndexFinger()
+        private void SetupIndexFingerInputSource()
         {
             indexFingerInputSource = new InputSource();
             if (isRightHand)
