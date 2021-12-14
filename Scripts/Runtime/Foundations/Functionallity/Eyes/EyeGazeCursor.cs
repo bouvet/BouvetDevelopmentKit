@@ -28,7 +28,7 @@ public class EyeGazeCursor : MonoBehaviour
                 visualComponent.SetActive(true);
         }
 
-        transform.position = Vector3.Lerp(visualComponent.transform.position, TypeHelpers.MakeUnityVector3(obj.worldPosition), 0.5f);
-        transform.rotation = Quaternion.FromToRotation(visualComponent.transform.forward, TypeHelpers.MakeUnityVector3(-obj.forwardVector));
+        transform.position = Vector3.Lerp(visualComponent.transform.position, obj.worldPosition, 0.5f);
+        transform.rotation = Quaternion.FromToRotation(visualComponent.transform.forward, -obj.forwardVector);
     }
 }

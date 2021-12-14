@@ -37,11 +37,6 @@ namespace Bouvet.DevelopmentKit.Input.Hands
 
         internal bool spatialInteractionManagerFound;
 
-        // Events
-        public event Action<InputSource> OnProximityStarted;
-        public event Action<InputSource> OnProximityUpdated;
-        public event Action<InputSource> OnProximityEnded;
-
         /// <summary>
         /// Setup function that gets all neccesary values to setup the hands and then sets them up.
         /// </summary>
@@ -167,7 +162,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             {
                 JointTransform jointTransform = jointTransformLeft[(int) jointName];
                 JointTransform jointTransform2 = jointTransformRight[(int) jointName];
-                jointDistance = Vector3.Distance(TypeHelpers.MakeUnityVector3(jointTransform.position), TypeHelpers.MakeUnityVector3(jointTransform2.position));
+                jointDistance = Vector3.Distance(jointTransform.position, jointTransform2.position);
                 return true;
             }
 
@@ -290,13 +285,13 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                             {
                                 if (isRightHand)
                                 {
-                                    jointTransformRight[currentJoint].position = TypeHelpers.MakeSystemVector3(transform.TransformPoint(position));
-                                    jointTransformRight[currentJoint].rotation = TypeHelpers.MakeSystemQuaternion(rotation);
+                                    jointTransformRight[currentJoint].position = transform.TransformPoint(position);
+                                    jointTransformRight[currentJoint].rotation = rotation;
                                 }
                                 else
                                 {
-                                    jointTransformLeft[currentJoint].position = TypeHelpers.MakeSystemVector3(transform.TransformPoint(position));
-                                    jointTransformLeft[currentJoint].rotation = TypeHelpers.MakeSystemQuaternion(rotation);
+                                    jointTransformLeft[currentJoint].position = transform.TransformPoint(position);
+                                    jointTransformLeft[currentJoint].rotation = rotation;
                                 }
                             }
                         }
@@ -307,12 +302,12 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                 {
                     if (isRightHand)
                     {
-                        jointTransformRight[(int)JointName.Palm].position = TypeHelpers.MakeSystemVector3(transform.TransformPoint(position));
+                        jointTransformRight[(int)JointName.Palm].position = transform.TransformPoint(position);
                         jointTransformRight[(int)JointName.Palm].rotation = jointTransformRight[(int)JointName.MiddleMetacarpal].rotation;
                     }
                     else
                     {
-                        jointTransformLeft[(int)JointName.Palm].position = TypeHelpers.MakeSystemVector3(position);
+                        jointTransformLeft[(int)JointName.Palm].position = transform.TransformPoint(position);
                         jointTransformLeft[(int)JointName.Palm].rotation = jointTransformLeft[(int)JointName.MiddleMetacarpal].rotation;
                     }
                 }

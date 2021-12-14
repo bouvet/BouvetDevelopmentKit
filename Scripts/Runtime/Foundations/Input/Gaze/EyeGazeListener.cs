@@ -15,16 +15,23 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
 #pragma warning disable CS0649
 #pragma warning disable CS0414
 #pragma warning disable CS1998
+#pragma warning disable CS0067
     /// <summary>
     /// This class is set up by EyeGazeListenerInternal if eye tracking is enabled in the InputSettings. This class calls the internal event functions for dealing with eye tracking input.
     /// It also sets up the system for accessing the eye tracking information from Unity. 
     /// </summary>
     public class EyeGazeListener : MonoBehaviour
     {
+        // Events
+        public event Action<InputSource> OnSourceFound;
+        public event Action<InputSource> OnSourceLost;
+        public event Action<InputSource> OnGazeEnter;
+        public event Action<InputSource> OnGazeUpdate;
+        public event Action<InputSource> OnGazeExit;
+
         private bool askedForAccessAlready;
         private int errorCount;
         private bool eyeGazeListenerInitialized;
-        private EyeGazeListenerInternal eyeGazeListenerInternal;
         private InputSource gazeInputSource;
         private InputManager inputManager;
 
@@ -62,32 +69,31 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
                     && centerEye.TryGetFeatureValue(WindowsMRUsages.EyeGazePosition, out Vector3 eyeGazePosition)
                     && centerEye.TryGetFeatureValue(WindowsMRUsages.EyeGazeRotation, out Quaternion eyeGazeRotation))
                 {
-                    gazeInputSource.worldPosition = TypeHelpers.MakeSystemVector3(eyeGazePosition);
-                    gazeInputSource.forwardVector = TypeHelpers.MakeSystemVector3(eyeGazeRotation * Vector3.forward);
+                    gazeInputSource.worldPosition = eyeGazePosition;
+                    gazeInputSource.forwardVector = eyeGazeRotation * Vector3.forward;
                     if (noEyeTrackingFoundLastFrame)
                     {
                         noEyeTrackingFoundLastFrame = false;
                         gazeInputSource.active = true;
-                        eyeGazeListenerInternal.SourceFound(gazeInputSource);
+                        OnSourceFound?.Invoke(gazeInputSource);
                     }
                     
                     if (Physics.Raycast(eyeGazePosition, eyeGazeRotation * Vector3.forward, out raycastHit))
                     {
-                        gazeInputSource.worldPosition = TypeHelpers.MakeSystemVector3(raycastHit.point);
-                        gazeInputSource.forwardVector = TypeHelpers.MakeSystemVector3(raycastHit.normal);
-                        int newID = inputManager.GetId(raycastHit.transform.gameObject);
-                        if (newID != gazeInputSource.collidedObjectIdentifier)
+                        gazeInputSource.worldPosition = raycastHit.point;
+                        gazeInputSource.forwardVector = raycastHit.normal;
+                        if (!raycastHit.transform.gameObject.Equals(gazeInputSource.collidedObject))
                         {
-                            eyeGazeListenerInternal.GazeExit(gazeInputSource);
-                            gazeInputSource.collidedObjectIdentifier = newID;
-                            eyeGazeListenerInternal.GazeEnter(gazeInputSource);
+                            OnGazeExit?.Invoke(gazeInputSource);
+                            gazeInputSource.collidedObject = raycastHit.transform.gameObject;
+                            OnGazeEnter?.Invoke(gazeInputSource);
                         }
-                        eyeGazeListenerInternal.GazeUpdate(gazeInputSource);
+                        OnGazeUpdate?.Invoke(gazeInputSource);
                     }
                     else
                     {
-                        eyeGazeListenerInternal.GazeExit(gazeInputSource);
-                        gazeInputSource.collidedObjectIdentifier = 0;
+                        OnGazeExit?.Invoke(gazeInputSource);
+                        gazeInputSource.collidedObject = null;
                     }
                 }
 
@@ -121,7 +127,7 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
         /// <param name="newEyeGazeListenerInternal"></param>
         /// <param name="token"></param>
         /// <returns>True if successful, false if not</returns>
-        internal async Task<bool> InitializeAsync(InputSettings newInputSettings, EyeGazeListenerInternal newEyeGazeListenerInternal, CancellationToken token)
+        internal async Task<bool> InitializeAsync(InputSettings newInputSettings, CancellationToken token)
         {
             try
             {
@@ -134,7 +140,6 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
 #endif
                 inputSettings = newInputSettings;
                 inputManager = inputSettings.inputManager;
-                eyeGazeListenerInternal = newEyeGazeListenerInternal;
                 gazeInputSource = new InputSource();
                 gazeInputSource.inputSourceKind = InputSourceKind.EyeGaze;
                 inputSettings.inputManager.AddInputSource(gazeInputSource);
@@ -166,13 +171,14 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
 
             noEyeTrackingFoundLastFrame = true;
             gazeInputSource.active = false;
-            eyeGazeListenerInternal.GazeExit(gazeInputSource);
-            gazeInputSource.collidedObjectIdentifier = 0;
-            eyeGazeListenerInternal.SourceLost(gazeInputSource);
+            OnGazeExit?.Invoke(gazeInputSource);
+            gazeInputSource.collidedObject = null;
+            OnSourceLost?.Invoke(gazeInputSource);
             BdkLogger.Log("Lost eye tracking");
         }
     }
 #pragma warning restore CS0649
 #pragma warning restore CS0414
 #pragma warning restore CS1998
+#pragma warning restore CS0067
 }

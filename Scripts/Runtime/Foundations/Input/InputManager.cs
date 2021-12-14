@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Bouvet.DevelopmentKit.Input.Gaze;
 using Bouvet.DevelopmentKit.Input.Hands;
+using Bouvet.DevelopmentKit.Input.Voice;
 using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 #if WINDOWS_UWP || DOTNETWINRT_PRESENT
@@ -30,7 +31,9 @@ namespace Bouvet.DevelopmentKit.Input
         private readonly ConcurrentQueue<Action> mainThreadQueue = new ConcurrentQueue<Action>();
 
         // Private variables
-        private InputManagerInternal inputManagerInternal;
+        private EyeGazeListener eyeGazeListener;
+        private HandGestureListener handGestureListener;
+        private KeywordListener keywordListener;
         public List<InputSource> InputSources = new List<InputSource>();
 
         private Dictionary<int, GameObject> objectList = new Dictionary<int, GameObject>();
@@ -43,11 +46,11 @@ namespace Bouvet.DevelopmentKit.Input
                 DefineHologramAlignment();
                 Instance = this;
 
-                await SetupInputManagerInternalAsync();
+                await SetupInputManagerAsync();
 
 #if UNITY_EDITOR
                 await Task.Delay(1000);
-                ShowDebugHeadCursor();
+                //ShowDebugHeadCursor();
 #endif
             }
         }
@@ -151,23 +154,6 @@ namespace Bouvet.DevelopmentKit.Input
         /// </summary>
 
         #region
-
-        public bool GetObjectById(int instanceId, out GameObject returnObject)
-        {
-            objectList.TryGetValue(instanceId, out returnObject);
-            return returnObject ? true : false;
-        }
-
-        public int GetId(GameObject otherObject)
-        {
-            if (!objectList.ContainsKey(otherObject.GetInstanceID()))
-            {
-                objectList.Add(otherObject.GetInstanceID(), otherObject);
-            }
-
-            return otherObject.GetInstanceID();
-        }
-
         /// <summary>
         /// Function that returns the game object currently being focused by the main input source.
         /// </summary>
@@ -177,9 +163,10 @@ namespace Bouvet.DevelopmentKit.Input
         {
             for (int i = 0; i < InputSources.Count; i++)
             {
-                if (InputSources[i].collidedObjectIdentifier != 0)
+                if (InputSources[i].collidedObject != null)
                 {
-                    return objectList.TryGetValue(InputSources[i].collidedObjectIdentifier, out returnObject);
+                    returnObject = InputSources[i].collidedObject;
+                    return true;
                 }
             }
 
@@ -196,9 +183,9 @@ namespace Bouvet.DevelopmentKit.Input
         {
             for (int i = 0; i < InputSources.Count; i++)
             {
-                if (InputSources[i].collidedObjectIdentifier != 0)
+                if (InputSources[i].collidedObject != null)
                 {
-                    objectList.TryGetValue(InputSources[i].collidedObjectIdentifier, out returnObject);
+                    returnObject = InputSources[i].collidedObject;
                     if (returnObject.activeSelf && returnObject.GetComponent<Interactable>())
                     {
                         return true;
@@ -214,48 +201,22 @@ namespace Bouvet.DevelopmentKit.Input
         /// Checks if any of the InputSources are currently targeting a button.
         /// </summary>
         /// <returns>The id of the button, if found. -1 otherwise</returns>
-        public int GetFocusedButtonID()
+        public bool TryGetFocusedButton(out GameObject target)
         {
-            GameObject target;
+            target = null;
             for (int i = 0; i < InputSources.Count; i++)
             {
-                if (InputSources[i].collidedObjectIdentifier != 0)
+                if (InputSources[i].collidedObject != null)
                 {
-                    objectList.TryGetValue(InputSources[i].collidedObjectIdentifier, out target);
+                    target = InputSources[i].collidedObject;
                     if (target.activeSelf && target.GetComponent<InteractableButton>())
                     {
-                        return InputSources[i].collidedObjectIdentifier;
+                        return true;
                     }
                 }
             }
 
-            return -1;
-        }
-
-        /// <summary>
-        /// Checks if any of the InputSources are currently targeting a button. 
-        /// True ignores input from the right hand.
-        /// False ignores input from the left hand.
-        /// </summary>
-        /// <returns>The id of the button, if found. -1 otherwise</returns>
-        public int GetFocusedButtonIDWithIgnoreHand(bool ignoreRightHand)
-        {
-            GameObject target;
-            for (int i = 0; i < InputSources.Count; i++)
-            {
-                if (InputSources[i].collidedObjectIdentifier != 0 &&
-                    ((!ignoreRightHand && !InputSources[i].inputSourceKind.ToString().Contains("Left"))
-                    || (ignoreRightHand && !InputSources[i].inputSourceKind.ToString().Contains("Right"))))
-                {
-                    objectList.TryGetValue(InputSources[i].collidedObjectIdentifier, out target);
-                    if (target.activeSelf && target.GetComponent<InteractableButton>())
-                    {
-                        return InputSources[i].collidedObjectIdentifier;
-                    }
-                }
-            }
-
-            return -1;
+            return false;
         }
 
         public bool TryGetCursorPosition(out Vector3 vector3)
@@ -285,7 +246,7 @@ namespace Bouvet.DevelopmentKit.Input
             activeCursor = null;
             for (int i = 0; i < InputSources.Count; i++)
             {
-                if (InputSources[i].collidedObjectIdentifier != 0)
+                if (InputSources[i].collidedObject != null)
                 {
                     switch (InputSources[i].inputSourceKind)
                     {
@@ -328,7 +289,7 @@ namespace Bouvet.DevelopmentKit.Input
         public bool TryGetCursorTransform(InputSourceKind inputSourceKind, out Transform cursorTransform, bool mustBeActive)
         {
             cursorTransform = null;
-            if(mustBeActive)
+            if (mustBeActive)
             {
                 foreach (InputSource inputSource in InputSources)
                 {
@@ -338,7 +299,7 @@ namespace Bouvet.DevelopmentKit.Input
                     }
                 }
             }
-            
+
             switch (inputSourceKind)
             {
                 case InputSourceKind.HandRight:
@@ -421,12 +382,11 @@ namespace Bouvet.DevelopmentKit.Input
         {
             if (!inputManagerSetupComplete)
             {
-                await setupInputManagerInternalTask;
+                await setupInputManagerTask;
             }
 
-            await inputManagerInternal.AddPhraseForVoiceRecognizion(phrase, action);
+            await keywordListener.AddPhraseForVoiceRecognizion(phrase, action);
         }
-
 
         private JointTransform jointTransform;
 
@@ -443,10 +403,10 @@ namespace Bouvet.DevelopmentKit.Input
         {
             if (inputManagerSetupComplete)
             {
-                if (inputManagerInternal.TryGetHandJointTransform(inputSourceKind, jointName, out jointTransform, handMustBeActive))
+                if (handGestureListener.TryGetHandJointTransform(inputSourceKind, jointName, out jointTransform, handMustBeActive))
                 {
-                    jointPosition = TypeHelpers.MakeUnityVector3(jointTransform.position);
-                    jointRotation = TypeHelpers.MakeUnityQuaternion(jointTransform.rotation);
+                    jointPosition = jointTransform.position;
+                    jointRotation = jointTransform.rotation;
                     return true;
                 }
             }
@@ -466,7 +426,7 @@ namespace Bouvet.DevelopmentKit.Input
         {
             if (inputManagerSetupComplete)
             {
-                if (inputManagerInternal.TryGetDistanceBetweenJoints(jointName, out jointDistance))
+                if (handGestureListener.TryGetDistanceBetweenJoints(jointName, out jointDistance))
                 {
                     return true;
                 }
@@ -511,7 +471,7 @@ namespace Bouvet.DevelopmentKit.Input
             BdkLogger.Log($"Added input source: {newInputSource.inputSourceKind}", LogSeverity.Info);
         }
 
-        internal CursorState GetCursorState(bool getRightHand)
+        public CursorState GetCursorState(bool getRightHand)
         {
             if (getRightHand)
             {
@@ -542,17 +502,7 @@ namespace Bouvet.DevelopmentKit.Input
         {
             if (inputManagerSetupComplete)
             {
-                return inputManagerInternal.GetHandGestureListener();
-            }
-
-            return null;
-        }
-
-        internal HandGestureListenerInternal GetHandGestureListenerInternal()
-        {
-            if (inputManagerSetupComplete)
-            {
-                return inputManagerInternal.GetHandGestureListenerInternal();
+                return handGestureListener;
             }
 
             return null;
@@ -568,36 +518,55 @@ namespace Bouvet.DevelopmentKit.Input
 
         private bool inputManagerSetupComplete;
 
-        private Task<bool> setupInputManagerInternalTask;
+        private Task<bool> setupInputManagerTask;
 
-        private async Task<bool> SetupInputManagerInternalAsync(CancellationToken token = default)
+        private async Task<bool> SetupInputManagerAsync(CancellationToken token = default)
         {
             if (inputManagerSetupComplete)
             {
                 return true;
             }
 
-            if (setupInputManagerInternalTask != null)
+            if (setupInputManagerTask != null)
             {
-                return await setupInputManagerInternalTask;
+                return await setupInputManagerTask;
             }
 
             // Create setup task
-            setupInputManagerInternalTask = SetupInputManagerInternal(token);
-            bool result = await setupInputManagerInternalTask;
-            setupInputManagerInternalTask = null;
+            setupInputManagerTask = SetupInputManager(token);
+            bool result = await setupInputManagerTask;
+            setupInputManagerTask = null;
             return result;
         }
 
         /// <summary>
         /// Internal method for setting up InputManagerInternal
         /// </summary>
-        private async Task<bool> SetupInputManagerInternal(CancellationToken token)
+        private async Task<bool> SetupInputManager(CancellationToken token)
         {
             try
             {
-                inputManagerInternal = new InputManagerInternal(inputSettings);
-                await inputManagerInternal.InitializeAsync(token);
+                if (inputSettings.UseHands)
+                {
+                    handGestureListener = inputSettings.inputManager.gameObject.AddComponent<HandGestureListener>();
+                    await handGestureListener.InitializeAsync(inputSettings, token);
+                }
+
+                if (inputSettings.UseEyeGaze)
+                {
+                    eyeGazeListener = inputSettings.inputManager.gameObject.AddComponent<EyeGazeListener>();
+                    await eyeGazeListener.InitializeAsync(inputSettings, token);
+                }
+
+                if (inputSettings.UseVoice)
+                {
+                    if (keywordListener == null)
+                    {
+                        keywordListener = new KeywordListener();
+                    }
+
+                    await keywordListener.InitializeAsync(inputSettings, token);
+                }
             }
             catch (Exception e)
             {
@@ -640,29 +609,46 @@ namespace Bouvet.DevelopmentKit.Input
         /// </summary>
         private void AddEventHandlers()
         {
-            inputManagerInternal.OnGazeEnter += source => mainThreadQueue.Enqueue(() => OnGazeEnter?.Invoke(source));
-            inputManagerInternal.OnGazeUpdate += source => mainThreadQueue.Enqueue(() => OnGazeUpdate?.Invoke(source));
-            inputManagerInternal.OnGazeExit += source => mainThreadQueue.Enqueue(() => OnGazeExit?.Invoke(source));
-            inputManagerInternal.OnSourceFound += source => mainThreadQueue.Enqueue(() => OnSourceFound?.Invoke(source));
-            inputManagerInternal.OnSourceLost += source => mainThreadQueue.Enqueue(() => OnSourceLost?.Invoke(source));
-            inputManagerInternal.OnInputUp += source => mainThreadQueue.Enqueue(() => OnInputUp?.Invoke(source));
-            inputManagerInternal.OnInputUpdated += source => mainThreadQueue.Enqueue(() => OnInputUpdated?.Invoke(source));
-            inputManagerInternal.OnInputDown += source => mainThreadQueue.Enqueue(() => OnInputDown?.Invoke(source));
-            inputManagerInternal.OnManipulationStarted += source => mainThreadQueue.Enqueue(() => OnManipulationStarted?.Invoke(source));
-            inputManagerInternal.OnManipulationUpdated += source => mainThreadQueue.Enqueue(() => OnManipulationUpdated?.Invoke(source));
-            inputManagerInternal.OnManipulationEnded += source => mainThreadQueue.Enqueue(() => OnManipulationEnded?.Invoke(source));
-            inputManagerInternal.OnProximityStarted += source => mainThreadQueue.Enqueue(() => OnProximityStarted?.Invoke(source));
-            inputManagerInternal.OnProximityUpdated += source => mainThreadQueue.Enqueue(() => OnProximityUpdated?.Invoke(source));
-            inputManagerInternal.OnProximityEnded += source => mainThreadQueue.Enqueue(() => OnProximityEnded?.Invoke(source));
-            inputManagerInternal.OnPhraseRecognized += source => mainThreadQueue.Enqueue(() => OnPhraseRecognized?.Invoke(source));
-            inputManagerInternal.OnHandRotationToggle += (source, rotation) => mainThreadQueue.Enqueue(() => OnHandRotationToggle?.Invoke(source, rotation));
+            if (inputSettings.UseHands)
+            {
+                handGestureListener.OnSourceFound += inputSource => OnSourceFound?.Invoke(inputSource);
+                handGestureListener.OnSourceLost += inputSource => OnSourceLost?.Invoke(inputSource);
+                handGestureListener.OnInputDown += inputSource => OnInputDown?.Invoke(inputSource);
+                handGestureListener.OnInputUpdated += inputSource => OnInputUpdated?.Invoke(inputSource);
+                handGestureListener.OnInputUp += inputSouce => OnInputUp?.Invoke(inputSouce);
+                handGestureListener.OnProximityStarted += inputSouce => OnProximityStarted?.Invoke(inputSouce);
+                handGestureListener.OnProximityUpdated += inputSouce => OnProximityUpdated?.Invoke(inputSouce);
+                handGestureListener.OnProximityEnded += inputSouce => OnProximityEnded?.Invoke(inputSouce);
+                handGestureListener.OnHandRotationToggle += (inputSouce, rotation) => OnHandRotationToggle?.Invoke(inputSouce, rotation);
+
+                if (inputSettings.UseManipulation)
+                {
+                    handGestureListener.OnManipulationStarted += inputSouce => OnManipulationStarted?.Invoke(inputSouce);
+                    handGestureListener.OnManipulationUpdated += inputSouce => OnManipulationUpdated?.Invoke(inputSouce);
+                    handGestureListener.OnManipulationEnded += inputSouce => OnManipulationEnded?.Invoke(inputSouce);
+                }
+            }
+
+            if (inputSettings.UseEyeGaze)
+            {
+                eyeGazeListener.OnSourceFound += inputSource => OnSourceFound?.Invoke(inputSource);
+                eyeGazeListener.OnSourceLost += inputSource => OnSourceLost?.Invoke(inputSource);
+                eyeGazeListener.OnGazeEnter += inputSource => OnGazeEnter?.Invoke(inputSource);
+                eyeGazeListener.OnGazeUpdate += inputSource => OnGazeUpdate?.Invoke(inputSource);
+                eyeGazeListener.OnGazeExit += inputSource => OnGazeExit?.Invoke(inputSource);
+            }
+
+            if (inputSettings.UseVoice)
+            {
+                keywordListener.OnPhraseRecognized += inputSource => OnPhraseRecognized?.Invoke(inputSource);
+            }
         }
 
         public async Task WaitForInputManagerSetup()
         {
             if (!inputManagerSetupComplete)
             {
-                await setupInputManagerInternalTask;
+                await setupInputManagerTask;
             }
         }
 

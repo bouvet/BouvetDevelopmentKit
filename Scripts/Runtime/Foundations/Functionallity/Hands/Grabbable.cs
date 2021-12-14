@@ -28,6 +28,8 @@ namespace Bouvet.DevelopmentKit.Input
         protected Transform gripPointL;
         protected Transform gripPointR;
 
+        private Quaternion originalRotation;
+
         public override void Initialize()
         {
             base.Initialize();
@@ -63,7 +65,7 @@ namespace Bouvet.DevelopmentKit.Input
 
         public override void BeginInteraction(InputSource inputSource)
         {
-            if (beingHeld || inputSource.collidedObjectIdentifier != inputManager.GetId(gameObject))
+            if (beingHeld || !gameObject.Equals(inputSource.collidedObject))
             {
                 return;
             }
@@ -71,32 +73,30 @@ namespace Bouvet.DevelopmentKit.Input
             try
             {
                 if ((inputSource.inputSourceKind == InputSourceKind.HandRight && inputManager.GetCursorState(true) == CursorState.IndexFingerCursor)
-                    || (inputSource.inputSourceKind == InputSourceKind.InteractionBeamRight && inputManager.GetCursorState(true) == CursorState.InteractionBeamCursor))
+                 || (inputSource.inputSourceKind == InputSourceKind.InteractionBeamRight && inputManager.GetCursorState(true) == CursorState.InteractionBeamCursor))
                 {
                     gripPointR = inputManager.rightGripPoint;
                     currentState = HandInteractionMode.Right;
-                    //if (inputSource.inputSourceKind == InputSourceKind.HandRight)
-                    //{
-                    //    gripPointR.localPosition = Vector3.zero;
-                    //}
-
                     gripOffsetR = gripPointR.position - Anchor.position;
                     gripPointR.rotation = Anchor.rotation;
-                    primaryInputSource.inputSourceKind = inputSource.inputSourceKind;
-                    beingHeld = true;
-                    audioSource.PlayOneShot(onInteractionStartSound);
                 }
                 else if ((inputSource.inputSourceKind == InputSourceKind.HandLeft && inputManager.GetCursorState(false) == CursorState.IndexFingerCursor)
-                         || (inputSource.inputSourceKind == InputSourceKind.InteractionBeamLeft && inputManager.GetCursorState(false) == CursorState.InteractionBeamCursor))
+                      || (inputSource.inputSourceKind == InputSourceKind.InteractionBeamLeft && inputManager.GetCursorState(false) == CursorState.InteractionBeamCursor))
                 {
                     gripPointL = inputManager.leftGripPoint;
                     currentState = HandInteractionMode.Left;
                     gripOffsetL = gripPointL.position - Anchor.position;
                     gripPointL.rotation = Anchor.rotation;
-                    primaryInputSource.inputSourceKind = inputSource.inputSourceKind;
-                    beingHeld = true;
-                    audioSource.PlayOneShot(onInteractionStartSound);
                 }
+                else
+                {
+                    return;
+                }
+
+                originalRotation = Anchor.rotation;
+                primaryInputSource.inputSourceKind = inputSource.inputSourceKind;
+                beingHeld = true;
+                audioSource.PlayOneShot(onInteractionStartSound);
             }
             catch (Exception e)
             {
@@ -106,39 +106,20 @@ namespace Bouvet.DevelopmentKit.Input
 
         public override void UpdateInteraction(InputSource inputSource)
         {
-            try
+            if (!beingHeld || inputSource.inputSourceKind != primaryInputSource.inputSourceKind)
             {
-                if (beingHeld && inputSource.inputSourceKind == primaryInputSource.inputSourceKind)
-                {
-                    if (currentState == HandInteractionMode.Right)
-                    {
-                        Anchor.position = Vector3.Lerp(Anchor.position, gripPointR.position - gripOffsetR, 0.5f);
-                        //if (rotate && inputSource.inputSourceKind == InputSourceKind.HandRight)
-                        //{
-                        //    Anchor.rotation = Quaternion.Slerp(Anchor.rotation, gripPointR.rotation, 0.5f);
-                        //    if (rotateOnlyYAxis)
-                        //    {
-                        //        Anchor.eulerAngles = Vector3.Scale(Anchor.eulerAngles, Vector3.up);
-                        //    }
-                        //}
-                    }
-                    else if (currentState == HandInteractionMode.Left)
-                    {
-                        Anchor.position = Vector3.Lerp(Anchor.position, gripPointL.position - gripOffsetL, 0.5f);
-                        //if (rotate && inputSource.inputSourceKind == InputSourceKind.HandLeft)
-                        //{
-                        //    Anchor.rotation = Quaternion.Slerp(Anchor.rotation, gripPointL.rotation, 0.5f);
-                        //    if (rotateOnlyYAxis)
-                        //    {
-                        //        Anchor.eulerAngles = Vector3.Scale(Anchor.eulerAngles, Vector3.up);
-                        //    }
-                        //}
-                    }
-                }
+                return;
             }
-            catch (Exception e)
+
+            if (currentState == HandInteractionMode.Right)
             {
-                BdkLogger.LogException("Error in UpdateInteraction in Grabbable.", e);
+                Vector3 rotatedGripOffsetR = Anchor.rotation * Quaternion.Inverse(originalRotation) * gripOffsetR;
+                Anchor.position = Vector3.Lerp(Anchor.position, gripPointR.position - rotatedGripOffsetR, 0.5f);
+            }
+            else if (currentState == HandInteractionMode.Left)
+            {
+                Vector3 rotatedGripOffsetL = Anchor.rotation * Quaternion.Inverse(originalRotation) * gripOffsetL;
+                Anchor.position = Vector3.Lerp(Anchor.position, gripPointL.position - rotatedGripOffsetL, 0.5f);
             }
         }
 

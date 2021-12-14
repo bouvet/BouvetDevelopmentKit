@@ -1,7 +1,7 @@
 ﻿using System;
 using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
-using static Bouvet.DevelopmentKit.Internal.Utils.TypeHelpers;
+
 #if WINDOWS_UWP || DOTNETWINRT_PRESENT
 using Windows.Perception.People;
 #endif
@@ -86,9 +86,9 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                             inputManager.leftGripPoint.position = hit.point;
                         }
 
-                        interactionBeamInputSource.collidedObjectIdentifier = inputManager.GetId(currentInteractable.gameObject);
-                        inputManager.GetHandGestureListenerInternal().ManipulationStarted(interactionBeamInputSource);
-                        inputManager.GetHandGestureListenerInternal().InputDown(interactionBeamInputSource);
+                        interactionBeamInputSource.collidedObject = currentInteractable.gameObject;
+                        inputManager.GetHandGestureListener().ManipulationStarted(interactionBeamInputSource);
+                        inputManager.GetHandGestureListener().InputDown(interactionBeamInputSource);
                         if (!currentInteractable.gameObject.GetComponent<InteractableButton>())
                         {
                             interactionStartObjectDistance = Vector3.Distance(rayStart.position, hit.point);
@@ -106,7 +106,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             }
         }
 
-        internal void UpdateTargetTransfrom(Transform newTransform, bool alignWithTransform = false)
+        public void UpdateTargetTransfrom(Transform newTransform, bool alignWithTransform = false)
         {
             CheckRayTarget();
             if (alignWithTransform)
@@ -126,10 +126,10 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         {
             if (source.inputSourceKind == InputSourceKind.HandRight && isRightHand || source.inputSourceKind == InputSourceKind.HandLeft && !isRightHand)
             {
-                inputManager.GetHandGestureListenerInternal().InputUp(interactionBeamInputSource);
+                inputManager.GetHandGestureListener().InputUp(interactionBeamInputSource);
                 if (currentInteractable)
                 {
-                    inputManager.GetHandGestureListenerInternal().ManipulationEnded(interactionBeamInputSource);
+                    inputManager.GetHandGestureListener().ManipulationEnded(interactionBeamInputSource);
                     DisconnectInteractable();
                     rayTarget.parent = rayStart;
                     rayTarget.localPosition = Vector3.forward;
@@ -189,7 +189,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                                 {
                                     DisconnectInteractable();
                                     currentInteractable = interactable;
-                                    interactionBeamInputSource.collidedObjectIdentifier = inputManager.GetId(hit.collider.gameObject);
+                                    interactionBeamInputSource.collidedObject = hit.collider.gameObject;
                                     interactable.OnFocusBegin();
                                 }
                                 else if (!interactable && currentInteractable)
@@ -198,7 +198,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                                 }
                                 else
                                 {
-                                    interactionBeamInputSource.collidedObjectIdentifier = inputManager.GetId(hit.collider.gameObject);
+                                    interactionBeamInputSource.collidedObject = hit.collider.gameObject;
                                 }
                             }
                             // If the raycast does not hit anything
@@ -207,7 +207,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                                 rayStart.transform.localScale = new Vector3(1f, 1f, 10f);
                                 cursor.UpdateCursorRotation(Vector3.zero);
                                 currentInteractable = null;
-                                interactionBeamInputSource.collidedObjectIdentifier = 0;
+                                interactionBeamInputSource.collidedObject = null;
                             }
                         }
                         // If holding something (ray will then always be visible)
@@ -217,7 +217,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
                             rayStart.transform.localScale = new Vector3(1f, 1f, interactionStartObjectDistance + inputManager.inputSettings.InteractionBeamDepthMultiplier * (newDistance - interactionStartDistance));
                             if (currentInteractable)
                             {
-                                inputManager.GetHandGestureListenerInternal().ManipulationUpdated(interactionBeamInputSource);
+                                inputManager.GetHandGestureListener().ManipulationUpdated(interactionBeamInputSource);
                             }
                         }
                     }
@@ -237,8 +237,8 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         private void UpdateCursor(Vector3 position, Quaternion rotation, float pinchDistance)
         {
             cursor.UpdateCursor(position, rotation, pinchDistance);
-            interactionBeamInputSource.worldPosition = MakeSystemVector3(position);
-            interactionBeamInputSource.worldRotation = MakeSystemQuaternion(rotation);
+            interactionBeamInputSource.worldPosition = position;
+            interactionBeamInputSource.worldRotation = rotation;
         }
 
         /// <summary>
@@ -316,8 +316,8 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         /// </summary>
         internal void DisableInteractionBeam()
         {
-            inputManager.GetHandGestureListenerInternal().InputUp(interactionBeamInputSource);
-            inputManager.GetHandGestureListenerInternal().ManipulationEnded(interactionBeamInputSource);
+            inputManager.GetHandGestureListener().InputUp(interactionBeamInputSource);
+            inputManager.GetHandGestureListener().ManipulationEnded(interactionBeamInputSource);
             SetInteractionBeamVisibillity(false);
             DisconnectInteractable();
             rayTarget.parent = rayStart;
@@ -348,7 +348,7 @@ namespace Bouvet.DevelopmentKit.Input.Hands
             }
 
             currentInteractable = null;
-            interactionBeamInputSource.collidedObjectIdentifier = 0;
+            interactionBeamInputSource.collidedObject = null;
         }
 
 #region Setup of interaction beam
