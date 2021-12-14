@@ -133,17 +133,17 @@ BDK documentation is split into 2 categories, Guide and Advanced. The guide is f
 	<img align="left" width="450" src="https://user-images.githubusercontent.com/48277920/146021159-35507ce1-ab8f-4c42-8f7e-c88fbef3c81b.png" />
 </a>
 
-[![copal](https://user-images.githubusercontent.com/48277920/146020272-3a031c76-c755-4015-a54a-b23c77e28935.png#gh-dark-mode-only)](https://www.bouvet.no/vi-jobber-med/hololens/copal/#gh-dark-mode-only)
+[![copal](https://user-images.githubusercontent.com/48277920/146040816-1fea30a2-cf01-451f-88b3-7176fb5f5620.png#gh-dark-mode-only)](https://www.bouvet.no/vi-jobber-med/hololens/copal/#gh-dark-mode-only)
 [![copal](https://user-images.githubusercontent.com/48277920/146038004-20657b08-69bb-44c0-9380-d0ab4d3204fc.png#gh-light-mode-only)](https://www.bouvet.no/vi-jobber-med/hololens/copal/#gh-light-mode-only)
 
+Copal is not only an app for HoloLens 2, it is a concept. We in Bouvet can make customized app based on existing and new technologies.
 
 <br/>
 <br/>
 <br/>
 <br/>
 <br/>
-<br/>
-Copal is not only an app for HoloLens 2, it is a concept. We in Bouvet can make customized app based on existing and new technologies.
+
 <a href="https://www.joinlens.com/">
 	<img align="left" width="450" src="https://user-images.githubusercontent.com/48277920/146021174-7f0d5234-3327-4205-82ca-dda50c313d9b.png" />
 </a>
@@ -151,17 +151,12 @@ Copal is not only an app for HoloLens 2, it is a concept. We in Bouvet can make 
 [![lens](https://user-images.githubusercontent.com/48277920/146021165-1525832c-755b-433c-ba4e-349e8c479c2c.png#gh-dark-mode-only)](https://www.joinlens.com/#gh-dark-mode-only)
 [![lens](https://user-images.githubusercontent.com/48277920/146038005-09e27b2d-656c-46b6-8078-5e9212f041ba.png#gh-light-mode-only)](https://www.joinlens.com/#gh-light-mode-only)
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 Lens is an innovative communication solution made for Microsoft HoloLens 1 and 2. It brings a new dimension to industrial communication utilizing the power of HD video built into the HoloLens. 
+
+<br/>
+<br/>
+<br/>
+
 <a href="https://wayfinder-dashboard.azurewebsites.net/">
 	<img align="left" width="450" src="https://user-images.githubusercontent.com/48277920/146021172-95e4601c-70d7-4d87-a71a-e12b36260efc.png" />
 </a>
@@ -169,15 +164,5 @@ Lens is an innovative communication solution made for Microsoft HoloLens 1 and 2
 [![wayfinder](https://user-images.githubusercontent.com/48277920/146021163-2a4c12e7-1667-4d28-a0f2-bc5ded9a898f.png#gh-dark-mode-only)](https://wayfinder-dashboard.azurewebsites.net/#gh-dark-mode-only)
 [![wayfinder](https://user-images.githubusercontent.com/48277920/146038006-074559af-b674-4b4d-a3aa-0a92b83c49fb.png#gh-light-mode-only)](https://wayfinder-dashboard.azurewebsites.net/#gh-light-mode-only)
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 Wayfinder by bouvet is an app that lets you navigate with your smartphone using advanced 
 technology like Azure Apatial Anchors.
