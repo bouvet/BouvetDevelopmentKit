@@ -79,7 +79,8 @@ BDK documentation is split into 2 categories, Guide and Advanced. The guide is f
 <br/>
 
 ## Functionalities
-<img align="right" width="300" src="https://user-images.githubusercontent.com/48277920/146011970-e987037c-7cf9-4a06-9fcd-55cd8e50ec90.png" />
+<img align="right" width="300" src="https://user-images.githubusercontent.com/48277920/146011970-e987037c-7cf9-4a06-9fcd-55cd8e50ec90.png#gh-dark-mode-only" />
+<img align="right" width="300" src="https://user-images.githubusercontent.com/48277920/146035405-1fc300a3-c5d0-4644-bd27-500f93f75b86.png#gh-light-mode-only" />
 
 <br/>
 
