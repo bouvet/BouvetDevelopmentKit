@@ -61,10 +61,10 @@ Note, some settings might differ between MRTK and BDK here. chack out this READM
 BDK documentation is split into 2 categories, Guide and Advanced. The guide is for how to use BDK for you projects, Advanced wiki is a guide on how BDK works and how you can help us develope BDK further.
 
 <a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki">
-	<img align="left" width="450" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146026260-7b28d6c9-99de-4239-8425-1719da2d456f.png">
+	<img align="left" width="400" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146026260-7b28d6c9-99de-4239-8425-1719da2d456f.png">
 </a>
 <a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Architecture">
-	<img align="right" width="450" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146026256-5919dcbb-9293-471e-a88c-9cbdc497206d.png">
+	<img align="right" width="400" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146026256-5919dcbb-9293-471e-a88c-9cbdc497206d.png">
 </a>
 
 <br/>
