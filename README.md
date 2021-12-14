@@ -61,10 +61,10 @@ Note, some settings might differ between MRTK and BDK here. chack out this READM
 BDK documentation is split into 2 categories, Guide and Advanced. The guide is for how to use BDK for you projects, Advanced wiki is a guide on how BDK works and how you can help us develope BDK further.
 
 <a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki">
-	<img align="left" width="400" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146026260-7b28d6c9-99de-4239-8425-1719da2d456f.png">
+	<img align="left" width="380" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146026260-7b28d6c9-99de-4239-8425-1719da2d456f.png">
 </a>
 <a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Architecture">
-	<img align="right" width="400" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146026256-5919dcbb-9293-471e-a88c-9cbdc497206d.png">
+	<img align="right" width="380" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146026256-5919dcbb-9293-471e-a88c-9cbdc497206d.png">
 </a>
 
 <br/>
@@ -112,7 +112,7 @@ BDK documentation is split into 2 categories, Guide and Advanced. The guide is f
 
 ## Apps made with BDK
 <a href="https://www.bouvet.no/vi-jobber-med/hololens/copal">
-	<img align="left" width="500" src="https://user-images.githubusercontent.com/48277920/146021159-35507ce1-ab8f-4c42-8f7e-c88fbef3c81b.png" />
+	<img align="left" width="450" src="https://user-images.githubusercontent.com/48277920/146021159-35507ce1-ab8f-4c42-8f7e-c88fbef3c81b.png" />
 </a>
 <a href="https://www.bouvet.no/vi-jobber-med/hololens/copal">
 	<img align="left" width="250" src="https://user-images.githubusercontent.com/48277920/146020272-3a031c76-c755-4015-a54a-b23c77e28935.png" />
@@ -125,7 +125,7 @@ BDK documentation is split into 2 categories, Guide and Advanced. The guide is f
 <br/>
 Copal is not only an app for HoloLens 2, it is a concept. We in Bouvet can make customized app based on existing and new technologies.
 <a href="https://www.joinlens.com/">
-	<img align="left" width="500" src="https://user-images.githubusercontent.com/48277920/146021174-7f0d5234-3327-4205-82ca-dda50c313d9b.png" />
+	<img align="left" width="450" src="https://user-images.githubusercontent.com/48277920/146021174-7f0d5234-3327-4205-82ca-dda50c313d9b.png" />
 </a>
 <a href="https://www.joinlens.com/">
 	<img align="left" width="250" src="https://user-images.githubusercontent.com/48277920/146021165-1525832c-755b-433c-ba4e-349e8c479c2c.png" />
@@ -142,7 +142,7 @@ Copal is not only an app for HoloLens 2, it is a concept. We in Bouvet can make 
 <br/>
 Lens is an innovative communication solution made for Microsoft HoloLens 1 and 2. It brings a new dimension to industrial communication utilizing the power of HD video built into the HoloLens. 
 <a href="https://wayfinder-dashboard.azurewebsites.net/">
-	<img align="left" width="500" src="https://user-images.githubusercontent.com/48277920/146021172-95e4601c-70d7-4d87-a71a-e12b36260efc.png" />
+	<img align="left" width="450" src="https://user-images.githubusercontent.com/48277920/146021172-95e4601c-70d7-4d87-a71a-e12b36260efc.png" />
 </a>
 <a href="https://wayfinder-dashboard.azurewebsites.net/">
 	<img align="left" width="250" src="https://user-images.githubusercontent.com/48277920/146021163-2a4c12e7-1667-4d28-a0f2-bc5ded9a898f.png" />
