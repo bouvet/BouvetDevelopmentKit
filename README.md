@@ -84,21 +84,38 @@ BDK documentation is split into 2 categories, Guide and Advanced. The guide is f
 
 <br/>
 
-[![swipe_down_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013190-6acbf0be-eba3-489c-a1cc-3421fd055d6c.png)](#)[Hand interaction](https://github.com/bouvet/BouvetDevelopmentKit/wiki)
+[![swipe_down_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013190-6acbf0be-eba3-489c-a1cc-3421fd055d6c.png#gh-dark-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)[Hand interaction](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)
 
-[![gps_not_fixed_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013189-2664fa7d-9ad7-4073-82a5-78b5510bd9f6.png)](#)[Head Gaze interaction](https://github.com/bouvet/BouvetDevelopmentKit/wiki)
+[![gps_not_fixed_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013189-2664fa7d-9ad7-4073-82a5-78b5510bd9f6.png#gh-dark-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)[Head Gaze interaction](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)
 
-[![visibility_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013187-c8325371-1f12-470e-8ceb-5e80af3d7d5b.png)](#)[Eye Gaze interaction](https://github.com/bouvet/BouvetDevelopmentKit/wiki)
+[![visibility_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013187-c8325371-1f12-470e-8ceb-5e80af3d7d5b.png#gh-dark-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)[Eye Gaze interaction](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)
 
-[![area_chart_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013183-80c68707-0e4a-49ec-bf7a-9476068966a9.png)](#)[Spatial Mapping](https://github.com/bouvet/BouvetDevelopmentKit/wiki)
+[![area_chart_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013183-80c68707-0e4a-49ec-bf7a-9476068966a9.png#gh-dark-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)[Spatial Mapping](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)
 
-[![record_voice_over_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013181-a657e414-e80f-4a03-bf5f-02a31f2c4347.png)](#)[Voice commands](https://github.com/bouvet/BouvetDevelopmentKit/wiki)
+[![record_voice_over_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013181-a657e414-e80f-4a03-bf5f-02a31f2c4347.png#gh-dark-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)[Voice commands](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)
 
-[![history_edu_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013179-d95dd37a-fa3e-4f20-82f5-47017eaf92e0.png)](#)[BDK Logger](https://github.com/bouvet/BouvetDevelopmentKit/wiki)
+[![history_edu_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013179-d95dd37a-fa3e-4f20-82f5-47017eaf92e0.png#gh-dark-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)[BDK Logger](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)
 
-[![gradient_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013192-07500820-d867-497f-8f85-c5e325bac23c.png)](#)[Optimized shader](https://github.com/bouvet/BouvetDevelopmentKit/wiki)
+[![gradient_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013192-07500820-d867-497f-8f85-c5e325bac23c.png#gh-dark-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)[Optimized shader](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)
 
-[![palette_black_24dp 2](https://user-images.githubusercontent.com/48277920/146013191-5ee14c8e-5a94-4b98-b7b0-1a5b6660e06a.png)](#)[Color profile](https://github.com/bouvet/BouvetDevelopmentKit/wiki)
+[![palette_black_24dp 2](https://user-images.githubusercontent.com/48277920/146013191-5ee14c8e-5a94-4b98-b7b0-1a5b6660e06a.png#gh-dark-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)[Color profile](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)
+
+
+[![swipe_down_black_24dp 1](https://user-images.githubusercontent.com/48277920/146035890-9834ecb3-cf88-41f7-b065-6b1d8922d13e.png#gh-light-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)[Hand interaction](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)
+
+[![gps_not_fixed_black_24dp 1](https://user-images.githubusercontent.com/48277920/146035888-23de3103-0ae3-4b0e-925b-e775b9ee08af.png#gh-light-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)[Head Gaze interaction](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)
+
+[![visibility_black_24dp 1](https://user-images.githubusercontent.com/48277920/146035885-86aa47fe-44d2-4e9a-94d8-207ac6b9768f.png#gh-light-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)[Eye Gaze interaction](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)
+
+[![area_chart_black_24dp 1](https://user-images.githubusercontent.com/48277920/146035881-88a2b005-7b3f-4262-b614-45090d01ba7e.png#gh-light-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)[Spatial Mapping](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)
+
+[![record_voice_over_black_24dp 1](https://user-images.githubusercontent.com/48277920/146035900-9fea93bb-4fa0-4858-9694-2e103f0f4046.png#gh-light-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)[Voice commands](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)
+
+[![history_edu_black_24dp 1](https://user-images.githubusercontent.com/48277920/146035895-20347972-3864-4a73-93e1-7831d75728a1.png#gh-light-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)[BDK Logger](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)
+
+[![gradient_black_24dp 1](https://user-images.githubusercontent.com/48277920/146035893-6611f42d-f7aa-40c9-8889-fa812d6ce878.png#gh-light-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)[Optimized shader](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)
+
+[![palette_black_24dp 2](https://user-images.githubusercontent.com/48277920/146035891-77c566f4-64de-4cdd-b914-c8fc5dde0989.png#gh-light-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)[Color profile](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only)
 
 <br/>
 <br/>
