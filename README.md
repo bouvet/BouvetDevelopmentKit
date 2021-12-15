@@ -130,10 +130,12 @@ Bouvet Development Kit is made by [Bouvet](https://www.bouvet.no).
 
 ## Developers
 
-If you have any questions about BDK 
+Please you the [Issues](https://github.com/bouvet/BouvetDevelopmentKit/issues) tab if you have problems or feature requests. If you still have any questions beyond that you can contact us on mrstavanger@bouvet.no.
 
 ## About Bouvet
 
-Bouvet is a large digital solutions provider w/ over 1800 employees. With our vast experience of developing & integrating systems combined w/ our MR capabilities, we can help you drive transformative change in your organization through the use of MR. Bouvet has made many different applications, including [Copal](https://www.bouvet.no/vi-jobber-med/hololens/copal), [Lens](https://www.joinlens.com) and [Wayfinder](https://wayfinder-dashboard.azurewebsites.net) more information can be found under [Apps made with BDK](#apps-made-with-bdk). 
+Bouvet is a large digital solutions provider w/ over 1800 employees. With our vast experience of developing & integrating systems combined w/ our MR capabilities, we can help you drive transformative change in your organization through the use of MR. 
+
+Bouvet has made many different applications, including [Copal](https://www.bouvet.no/vi-jobber-med/hololens/copal), [Lens](https://www.joinlens.com) and [Wayfinder](https://wayfinder-dashboard.azurewebsites.net) more information can be found under [Apps made with BDK](#apps-made-with-bdk). 
 
 
