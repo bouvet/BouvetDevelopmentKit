@@ -15,7 +15,7 @@ BDK has only been tested with the following versions of Unity and Visual Studio 
 
 Please refer to the [Install the tools](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/install-the-tools) page for more detailed information.
 
-# Gettings Started
+# Getting Started
 
 The [Getting Started](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started#installation-via-git-in-upm) section in the wiki consist of these steps:
 
