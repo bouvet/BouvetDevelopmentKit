@@ -259,7 +259,7 @@ Please you the [Issues](https://github.com/bouvet/BouvetDevelopmentKit/issues) t
 
 ## About Bouvet
 
-Bouvet is a large digital solutions provider with over 1800 employees. With our vast experience of developing & integrating systems combined w/ our MR capabilities, we can help you drive transformative change in your organization through the use of MR. 
+Bouvet is a large digital solutions provider with over 1800 employees. With our vast experience of developing & integrating systems combined with our Mixed Reality capabilities, we can help you drive transformative change in your organization through the use of Mixed Reality. 
 
 Bouvet has made many different applications, including [Copal](https://www.bouvet.no/vi-jobber-med/hololens/copal), [Lens](https://www.joinlens.com) and [Wayfinder](https://wayfinder-dashboard.azurewebsites.net) more information can be found under [Apps made with BDK](#apps-made-with-bdk). 
 
