@@ -6,7 +6,7 @@
 
 The Bouvet Development Kit (BDK) package allows you to easily create applications for the Hololens 2 using Unity Software.
 
-## Supported version
+# Supported version
 
  | [![windows](https://user-images.githubusercontent.com/48277920/145994942-b90d9c8a-60b3-444f-abbd-673434ce6096.png)](https://developer.microsoft.com/windows/downloads/windows-10-sdk) [<p align="center">Windows SDK</p>](https://developer.microsoft.com/windows/downloads/windows-10-sdk)| [![unity](https://user-images.githubusercontent.com/48277920/145994938-f3637380-5050-45b1-a35a-2054229b535e.png#gh-dark-mode-only)](https://unity3d.com/get-unity/download/archive#gh-dark-mode-only) [![unity](https://user-images.githubusercontent.com/48277920/146033376-10fa0548-866a-4933-ae98-bb7908ebce42.png#gh-light-mode-only)](https://unity3d.com/get-unity/download/archive#gh-light-mode-only)  [<p align="center">Unity 2020 LTS</p>](https://unity3d.com/get-unity/download/archive)| [![visualstudio](https://user-images.githubusercontent.com/48277920/145994943-eb8bbddc-7b97-4c0e-87d7-129181387c43.png)](http://dev.windows.com/downloads) [<p align="center">Visual Studio 2019</p>](http://dev.windows.com/downloads)| 
 | :--- | :--- | :--- | 
@@ -15,79 +15,22 @@ BDK has only been tested with the following versions of Unity and Visual studio 
 
 Please refer to the [Install the tools](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/install-the-tools) page for more detailed information.
 
-## Quick guide
+# Gettings Started
 
-### Installation via Git in UPM
+The [Getting Started](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started#installation-via-git-in-upm) section in the wiki mainly consist of these steps:
 
-Open the Unity package manager and navigate to *"Add package from git URL..."*
+* [Installation via Git in UPM](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/install-the-tools)
+* [Setup project settings](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started#setup-project-settings)
+* [Create your scene](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started#create-your-scene)
+* [Building for the HoloLens 2](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started#building-for-the-hololens-2)
 
- <!-- Add image for add from git thing -->
+BDK can be downloaded as a package in Unity, to learn more on how to get BDK through Unity and how to start developing apps go to our [Getting started](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started) page.
 
-![Package Manager > + > add from Git URL](../../wiki/images/upm-git-add.PNG)
+# Documentation
 
-Supply the following URL:
+All documentation can be found in the GitHub [Wiki](https://github.com/bouvet/BouvetDevelopmentKit/wiki). For more information or question you can go to [Contact Information](#contact-information).
 
-`https://github.com/bouvet/BouvetDevelopmentKit.git`
-
-### Setup project settings
-
-1. Go to build settings `(Ctrl + Shift + B)` and switch to the Universal Windows Platform. Then set target device to HoloLens and target architecture to ARM64.
-
-2. Next go into Player Settings and under Other settings there is a setting called `Active Input Handlig` that should be set to `Input System Package (New)`.
-
-3. Finally, you need to go to the `XR Plug-in Management` tab in the Player Settings and enable `Windows Mixed Reality`.
-
-### Create your scene
-
-To start creating with BDK, you need to add the `BDK Hololens 2 Prefab` ([read more](../../wiki/BDK-Hololens-2-Prefab)) to your scene. You can find it by searching in the packages folder. Next find the `InputManager` game object in the hirarchy of the prefab and enable the input options you wnt to use. We usually use at least `Use Hand Tracking`, `Allow Manipulation`, and `Use Interaction Beams`.
-
-Now you can add some object to your scene and add the `Grabbable`, `Two-Hand-Grabbable`, or `Interactable` scripts to them to start adding in functionality to your project. You can also go to [Samples](../../wiki/samples) and add BDK Essentials to find a few nifty menus and buttons.
-
-### Building for the HoloLens 2
-
-To build your app, click the `build` button in build settings and create a new folder for build output. This will generate a visual Studio solution that you can use to deploy your project. for more info on this see Microsoft's own [guide](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/using-visual-studio?tabs=hl2).
-
-Set configuration to release, platform to ARM 64 and run on Device
-
-Connect your Hololens to the PC and go to Debug > Start without debugging
-	Visual studio will now build and run your project on the hololens
-	
-You might have to Set your hololens to developer mode and get a PIN code from it to allow building and running.
-	
-for more detailed information on building from visual studio, see: https://docs.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/using-visual-studio?tabs=hl2
-
-Note, some settings might differ between MRTK and BDK here. chack out this README, the wiki, or ask(issue?, discord?, slack?) if there is anything you are wondering about
-
-## Documentation
-
-BDK documentation is split into 2 categories, Guide and Advanced. The guide is for how to use BDK for you projects, Advanced wiki is a guide on how BDK works and how you can help us develope BDK further.
-
-<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only">
-	<img align="left" width="380" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146026260-7b28d6c9-99de-4239-8425-1719da2d456f.png#gh-dark-mode-only">
-</a>
-<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Architecture#gh-dark-mode-only">
-	<img align="right" width="380" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146026256-5919dcbb-9293-471e-a88c-9cbdc497206d.png#gh-dark-mode-only">
-</a>
-
-<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-light-mode-only">
-	<img align="left" width="380" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146042305-9211538c-8caf-433f-b934-a929f635c57d.png#gh-light-mode-only">
-</a>
-<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Architecture#gh-light-mode-only">
-	<img align="right" width="380" alt="Qries" src="https://user-images.githubusercontent.com/48277920/146042301-6f44759c-5215-4544-8b30-8063dc63c45f.png#gh-light-mode-only">
-</a>
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-## Functionalities
+# Functionalities
 <img align="right" width="300" src="https://user-images.githubusercontent.com/48277920/146011970-e987037c-7cf9-4a06-9fcd-55cd8e50ec90.png#gh-dark-mode-only" />
 <img align="right" width="300" src="https://user-images.githubusercontent.com/48277920/146035405-1fc300a3-c5d0-4644-bd27-500f93f75b86.png#gh-light-mode-only" />
 
@@ -129,7 +72,7 @@ BDK documentation is split into 2 categories, Guide and Advanced. The guide is f
 <br/>
 <br/>
 
-## Samples
+# Samples
 
 |  [![Floating Menu](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/FloatingMenu-68392d27-3a64-4991-9a86-556ea663d012.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#floating-menu) [Floating Menu](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#floating-menu) | [![Hand Menu](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/HandMenu-0e2d0190-3133-4858-a12d-5eb4af83ca19.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#hand-menu) [Hand Menu](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#hand-menu) |
 | :--- | :--- |
@@ -137,7 +80,7 @@ BDK documentation is split into 2 categories, Guide and Advanced. The guide is f
 |  [![Clock Menu](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/ClockMenu-ba557c09-22ce-4855-a07c-832121c4bfca.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#clock-menu) [**Clock Menu**](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#clock-menu) | [![Drape Menu](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/DrapeMenu-6b4538d3-7904-4b38-a240-de784817cb5e.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#drape-menu) [**Drape Menu**](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#drape-menu) |
 | The clock menu prefab is an example of a menu that appears where a watch would normally be. | The drape menu is a menu that is attached to the left hand and can be accessed by pulling on a tab. |
 
-## Apps made with BDK
+# Apps made with BDK
 <a href="https://www.bouvet.no/vi-jobber-med/hololens/copal">
 	<img align="left" width="450" src="https://user-images.githubusercontent.com/48277920/146021159-35507ce1-ab8f-4c42-8f7e-c88fbef3c81b.png" />
 </a>
@@ -175,3 +118,22 @@ Lens is an innovative communication solution made for Microsoft HoloLens 1 and 2
 
 Wayfinder by bouvet is an app that lets you navigate with your smartphone using advanced 
 technology like Azure Apatial Anchors.
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+# Contact Information
+
+Bouvet Development Kit is made by [Bouvet](https://www.bouvet.no).
+
+## Developers
+
+If you have any questions about BDK 
+
+## About Bouvet
+
+Bouvet is a large digital solutions provider w/ over 1800 employees. With our vast experience of developing & integrating systems combined w/ our MR capabilities, we can help you drive transformative change in your organization through the use of MR. Bouvet has made many different applications, including [Copal](https://www.bouvet.no/vi-jobber-med/hololens/copal), [Lens](https://www.joinlens.com) and [Wayfinder](https://wayfinder-dashboard.azurewebsites.net) more information can be found under [Apps made with BDK](#apps-made-with-bdk). 
+
+
