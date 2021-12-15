@@ -24,4 +24,4 @@ To start contributing, fork this repository, create a branch and code away. Then
 
 ## Getting Help
 
-We're still iin the early stages of the project and don't have much of a community yet. If you are contributing feel free to [contact us](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Contact-Us) and have a chat. We're happy to help with any issues or just to chat :smile:.
+We're still iin the early stages of the project and don't have much of a community yet. If you are contributing feel free to [contact us](https://github.com/bouvet/BouvetDevelopmentKit#contact-information) and have a chat. We're happy to help with any issues or just to chat :smile:.
