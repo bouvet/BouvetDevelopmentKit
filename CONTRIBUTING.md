@@ -1,6 +1,6 @@
 # Contributing to BDK
 
-First, thank you so much for wanting to help out! If you need a place to start have a look if are any open [issues](https://github.com/bouvet/BouvetDevelopmentKit/issues) or open your own with bugs or feature requests. We are happy to take any improvements, both big and small.
+Firstly, thank you so much for wanting to help out! If you need a place to start, have a look if there are any open [issues](https://github.com/bouvet/BouvetDevelopmentKit/issues) or open your own with bugs or feature requests. We are happy to take any improvements, both big and small.
 
 ## Development Environment
 
