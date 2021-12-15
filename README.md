@@ -6,7 +6,7 @@
 
 The Bouvet Development Kit (BDK) package allows you to easily create applications for HoloLens 2 using Unity Software.
 
-# Supported version
+# Supported Version
 
  | [![windows](https://user-images.githubusercontent.com/48277920/145994942-b90d9c8a-60b3-444f-abbd-673434ce6096.png)](https://developer.microsoft.com/windows/downloads/windows-10-sdk) [<p align="center">Windows SDK</p>](https://developer.microsoft.com/windows/downloads/windows-10-sdk)| [![unity](https://user-images.githubusercontent.com/48277920/145994938-f3637380-5050-45b1-a35a-2054229b535e.png#gh-dark-mode-only)](https://unity3d.com/get-unity/download/archive#gh-dark-mode-only) [![unity](https://user-images.githubusercontent.com/48277920/146033376-10fa0548-866a-4933-ae98-bb7908ebce42.png#gh-light-mode-only)](https://unity3d.com/get-unity/download/archive#gh-light-mode-only)  [<p align="center">Unity 2020 LTS</p>](https://unity3d.com/get-unity/download/archive)| [![visualstudio](https://user-images.githubusercontent.com/48277920/145994943-eb8bbddc-7b97-4c0e-87d7-129181387c43.png)](http://dev.windows.com/downloads) [<p align="center">Visual Studio 2019</p>](http://dev.windows.com/downloads)| 
 | :--- | :--- | :--- | 
