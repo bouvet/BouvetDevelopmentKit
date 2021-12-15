@@ -11,13 +11,13 @@ The Bouvet Development Kit (BDK) package allows you to easily create application
  | [![windows](https://user-images.githubusercontent.com/48277920/145994942-b90d9c8a-60b3-444f-abbd-673434ce6096.png)](https://developer.microsoft.com/windows/downloads/windows-10-sdk) [<p align="center">Windows SDK</p>](https://developer.microsoft.com/windows/downloads/windows-10-sdk)| [![unity](https://user-images.githubusercontent.com/48277920/145994938-f3637380-5050-45b1-a35a-2054229b535e.png#gh-dark-mode-only)](https://unity3d.com/get-unity/download/archive#gh-dark-mode-only) [![unity](https://user-images.githubusercontent.com/48277920/146033376-10fa0548-866a-4933-ae98-bb7908ebce42.png#gh-light-mode-only)](https://unity3d.com/get-unity/download/archive#gh-light-mode-only)  [<p align="center">Unity 2020 LTS</p>](https://unity3d.com/get-unity/download/archive)| [![visualstudio](https://user-images.githubusercontent.com/48277920/145994943-eb8bbddc-7b97-4c0e-87d7-129181387c43.png)](http://dev.windows.com/downloads) [<p align="center">Visual Studio 2019</p>](http://dev.windows.com/downloads)| 
 | :--- | :--- | :--- | 
 
-BDK has only been tested with the following versions of Unity and Visual studio so far. There are plans to move to Unity 2021 once it enters LTS, using 2021 is on your own risk.
+BDK has only been tested with the following versions of Unity and Visual studio so far. There are plans to move to Unity 2021 once it enters LTS, using 2021 is at your own risk.
 
 Please refer to the [Install the tools](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/install-the-tools) page for more detailed information.
 
 # Gettings Started
 
-The [Getting Started](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started#installation-via-git-in-upm) section in the wiki mainly consist of these steps:
+The [Getting Started](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started#installation-via-git-in-upm) section in the wiki consist of these steps:
 
 * [Installation via Git in UPM](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/install-the-tools)
 * [Setup project settings](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started#setup-project-settings)
@@ -31,8 +31,9 @@ BDK can be downloaded as a package in Unity, to learn more on how to get BDK thr
 All documentation can be found in the GitHub [Wiki](https://github.com/bouvet/BouvetDevelopmentKit/wiki). For more information or question you can go to [Contact Information](#contact-information).
 
 # Functionalities
-<img align="right" width="300" src="https://user-images.githubusercontent.com/48277920/146011970-e987037c-7cf9-4a06-9fcd-55cd8e50ec90.png#gh-dark-mode-only" />
-<img align="right" width="300" src="https://user-images.githubusercontent.com/48277920/146035405-1fc300a3-c5d0-4644-bd27-500f93f75b86.png#gh-light-mode-only" />
+
+<img align="right" width="300" href="#" src="https://user-images.githubusercontent.com/48277920/146011970-e987037c-7cf9-4a06-9fcd-55cd8e50ec90.png#gh-dark-mode-only" />
+<img align="right" width="300" href="#" src="https://user-images.githubusercontent.com/48277920/146035405-1fc300a3-c5d0-4644-bd27-500f93f75b86.png#gh-light-mode-only" 
 
 <br/>
 
@@ -233,19 +234,6 @@ Copal is not only an app for HoloLens 2, it is a concept. We in Bouvet can make 
 <br/>
 <br/>
 
-<a href="https://www.joinlens.com/">
-	<img align="left" width="450" src="https://user-images.githubusercontent.com/48277920/146021174-7f0d5234-3327-4205-82ca-dda50c313d9b.png" />
-</a>
-
-[![lens](https://user-images.githubusercontent.com/48277920/146021165-1525832c-755b-433c-ba4e-349e8c479c2c.png#gh-dark-mode-only)](https://www.joinlens.com/#gh-dark-mode-only)
-[![lens](https://user-images.githubusercontent.com/48277920/146038005-09e27b2d-656c-46b6-8078-5e9212f041ba.png#gh-light-mode-only)](https://www.joinlens.com/#gh-light-mode-only)
-
-Lens is an innovative communication solution made for Microsoft HoloLens 1 and 2. It brings a new dimension to industrial communication utilizing the power of HD video built into the HoloLens. 
-
-<br/>
-<br/>
-<br/>
-
 <a href="https://wayfinder-dashboard.azurewebsites.net/">
 	<img align="left" width="450" src="https://user-images.githubusercontent.com/48277920/146021172-95e4601c-70d7-4d87-a71a-e12b36260efc.png" />
 </a>
@@ -271,7 +259,7 @@ Please you the [Issues](https://github.com/bouvet/BouvetDevelopmentKit/issues) t
 
 ## About Bouvet
 
-Bouvet is a large digital solutions provider w/ over 1800 employees. With our vast experience of developing & integrating systems combined w/ our MR capabilities, we can help you drive transformative change in your organization through the use of MR. 
+Bouvet is a large digital solutions provider with over 1800 employees. With our vast experience of developing & integrating systems combined w/ our MR capabilities, we can help you drive transformative change in your organization through the use of MR. 
 
 Bouvet has made many different applications, including [Copal](https://www.bouvet.no/vi-jobber-med/hololens/copal), [Lens](https://www.joinlens.com) and [Wayfinder](https://wayfinder-dashboard.azurewebsites.net) more information can be found under [Apps made with BDK](#apps-made-with-bdk). 
 
