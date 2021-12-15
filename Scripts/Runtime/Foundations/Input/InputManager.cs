@@ -495,7 +495,7 @@ namespace Bouvet.DevelopmentKit.Input
 
         internal void InvokeHololensUpdateTransform(InputSource source)
         {
-            OnHololensTransformUpdated.Invoke(source);
+            OnHololensTransformUpdated?.Invoke(source);
         }
 
         internal HandGestureListener GetHandGestureListener()
