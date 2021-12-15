@@ -168,7 +168,7 @@ All documentation can be found in the GitHub [Wiki](https://github.com/bouvet/Bo
 		</td>
 		<td width="50%">
 			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#bounding-box-prefab">
-				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_06_GlowInteractableButton_02.gif" />
+				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_08_Prefabs_BoundingBox_01.gif" />
 			</a>
 		</td>
 	</tr>
