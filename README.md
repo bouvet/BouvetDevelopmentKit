@@ -1,17 +1,17 @@
-![header-bdk](https://user-images.githubusercontent.com/48277920/145983130-52739f63-b2da-4856-971b-6d05e43008af.png#gh-dark-mode-only)
-![header-bdk-light](https://user-images.githubusercontent.com/48277920/146041957-b3fd986d-b1b3-44e3-aee8-d0171df8263d.png#gh-light-mode-only)
+[![header-bdk](https://user-images.githubusercontent.com/48277920/145983130-52739f63-b2da-4856-971b-6d05e43008af.png#gh-dark-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit#gh-dark-mode-only)
+[![header-bdk-light](https://user-images.githubusercontent.com/48277920/146041957-b3fd986d-b1b3-44e3-aee8-d0171df8263d.png#gh-light-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit#gh-light-mode-only)
 
 
 # Bouvet Development Kit
 
-The Bouvet Development Kit (BDK) package allows you to easily create applications for the Hololens 2 using Unity Software.
+The Bouvet Development Kit (BDK) package allows you to easily create applications for HoloLens 2 using Unity Software.
 
 # Supported version
 
  | [![windows](https://user-images.githubusercontent.com/48277920/145994942-b90d9c8a-60b3-444f-abbd-673434ce6096.png)](https://developer.microsoft.com/windows/downloads/windows-10-sdk) [<p align="center">Windows SDK</p>](https://developer.microsoft.com/windows/downloads/windows-10-sdk)| [![unity](https://user-images.githubusercontent.com/48277920/145994938-f3637380-5050-45b1-a35a-2054229b535e.png#gh-dark-mode-only)](https://unity3d.com/get-unity/download/archive#gh-dark-mode-only) [![unity](https://user-images.githubusercontent.com/48277920/146033376-10fa0548-866a-4933-ae98-bb7908ebce42.png#gh-light-mode-only)](https://unity3d.com/get-unity/download/archive#gh-light-mode-only)  [<p align="center">Unity 2020 LTS</p>](https://unity3d.com/get-unity/download/archive)| [![visualstudio](https://user-images.githubusercontent.com/48277920/145994943-eb8bbddc-7b97-4c0e-87d7-129181387c43.png)](http://dev.windows.com/downloads) [<p align="center">Visual Studio 2019</p>](http://dev.windows.com/downloads)| 
 | :--- | :--- | :--- | 
 
-BDK has only been tested with the following versions of Unity and Visual studio so far. There are plans to move to Unity 2021 once it enters LTS, using 2021 is at your own risk.
+BDK has only been tested with the following versions of Unity and Visual Studio so far. There are plans to move to Unity 2021 once it enters LTS, using 2021 is at your own risk.
 
 Please refer to the [Install the tools](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/install-the-tools) page for more detailed information.
 
@@ -31,10 +31,13 @@ BDK can be downloaded as a package in Unity, to learn more on how to get BDK thr
 All documentation can be found in the GitHub [Wiki](https://github.com/bouvet/BouvetDevelopmentKit/wiki). For more information or question you can go to [Contact Information](#contact-information).
 
 # Functionalities
-
+<a href="https://github.com/bouvet/BouvetDevelopmentKit#gh-dark-mode-only">
 <img align="right" width="300" href="#" src="https://user-images.githubusercontent.com/48277920/146011970-e987037c-7cf9-4a06-9fcd-55cd8e50ec90.png#gh-dark-mode-only" />
-<img align="right" width="300" href="#" src="https://user-images.githubusercontent.com/48277920/146035405-1fc300a3-c5d0-4644-bd27-500f93f75b86.png#gh-light-mode-only" 
-
+</a>
+<a href="https://github.com/bouvet/BouvetDevelopmentKit#gh-light-mode-only">
+<img align="right" width="300" href="#" src="https://user-images.githubusercontent.com/48277920/146035405-1fc300a3-c5d0-4644-bd27-500f93f75b86.png#gh-light-mode-only" />
+</a>
+	
 <br/>
 
 [![swipe_down_black_24dp 1](https://user-images.githubusercontent.com/48277920/146013190-6acbf0be-eba3-489c-a1cc-3421fd055d6c.png#gh-dark-mode-only)](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)[Hand interaction](https://github.com/bouvet/BouvetDevelopmentKit/wiki#gh-dark-mode-only)
@@ -213,7 +216,7 @@ All documentation can be found in the GitHub [Wiki](https://github.com/bouvet/Bo
 				TwoHandInteractable
 			</a>
 			<br/>
-			A generic prefab that shows the setup of a Hologram that can be interacted with with both hands. This example does not have a bounding box.
+			A generic prefab that shows the setup of a Hologram that can be interacted with both hands. This example does not have a bounding box.
 		</td>
 	</tr>
 </table>
@@ -242,7 +245,7 @@ Copal is not only an app for HoloLens 2, it is a concept. We in Bouvet can make 
 [![wayfinder](https://user-images.githubusercontent.com/48277920/146038006-074559af-b674-4b4d-a3aa-0a92b83c49fb.png#gh-light-mode-only)](https://wayfinder-dashboard.azurewebsites.net/#gh-light-mode-only)
 
 Wayfinder by bouvet is an app that lets you navigate with your smartphone using advanced 
-technology like Azure Apatial Anchors.
+technology like Azure Spatial Anchors.
 
 <br/>
 <br/>
@@ -255,7 +258,7 @@ Bouvet Development Kit is made by [Bouvet](https://www.bouvet.no).
 
 ## Developers
 
-Please you the [Issues](https://github.com/bouvet/BouvetDevelopmentKit/issues) tab if you have problems or feature requests. If you still have any questions beyond that you can contact us on mrstavanger@bouvet.no.
+Please use the [Issues](https://github.com/bouvet/BouvetDevelopmentKit/issues) tab if you have problems or feature requests. If you still have any questions beyond that you can contact us on mrstavanger@bouvet.no.
 
 ## About Bouvet
 
