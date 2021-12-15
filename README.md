@@ -163,7 +163,7 @@ All documentation can be found in the GitHub [Wiki](https://github.com/bouvet/Bo
 	<tr>
 		<td width="50%">
 			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#pinch-slider">
-				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_05_OverHandMenu_01.gif" />
+				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_07_PinchSlider_03.gif" />
 			</a>
 		</td>
 		<td width="50%">
