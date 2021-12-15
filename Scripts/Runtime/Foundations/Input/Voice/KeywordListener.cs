@@ -12,6 +12,7 @@ using UnityEngine.Windows.Speech;
 namespace Bouvet.DevelopmentKit.Input.Voice
 {
 #pragma warning disable CS0649
+#pragma warning disable CS0067
     /// <summary>
     /// This class is set up by KeywordListenerInternal if voice recognizion is enabled in the InputSettings. This class calls the internal event functions for dealing with voice input.
     /// </summary>
@@ -29,12 +30,6 @@ namespace Bouvet.DevelopmentKit.Input.Voice
         private bool alreadyInitialized;
 
         private InputSource inputSource;
-
-        // Constructor
-        public KeywordListener(InputSettings newInputSettings)
-        {
-            inputSettings = newInputSettings;
-        }
 
 #if WINDOWS_UWP
         /// <summary>
@@ -55,16 +50,17 @@ namespace Bouvet.DevelopmentKit.Input.Voice
         }
 #endif
         private bool keywordListenerInitialized;
-        private Task<bool> setupInternalListenersTask;
+        private Task<bool> setupListenersTask;
 
         /// <summary>
         /// Initializes the task for the setup of the keyword listener in BouvetDevelopmentKit
         /// </summary>
         /// <param name="newKeywordActionDictionary"></param>
         /// <param name="token"></param>
-        internal async Task InitializeAsync(ConcurrentDictionary<string, Action> newKeywordActionDictionary, CancellationToken token)
+        internal async Task InitializeAsync(InputSettings newInputSettings, CancellationToken token)
         {
-            await SetupInternalListenersAsync(token, newKeywordActionDictionary);
+            inputSettings = newInputSettings;
+            await SetupInternalListenersAsync(token);
         }
 
         /// <summary>
@@ -73,22 +69,22 @@ namespace Bouvet.DevelopmentKit.Input.Voice
         /// <param name="token"></param>
         /// <param name="newKeywordActionDictionary"></param>
         /// <returns>True if successful, false if not</returns>
-        private async Task<bool> SetupInternalListenersAsync(CancellationToken token, ConcurrentDictionary<string, Action> newKeywordActionDictionary)
+        private async Task<bool> SetupInternalListenersAsync(CancellationToken token)
         {
             if (keywordListenerInitialized)
             {
                 return true;
             }
 
-            if (setupInternalListenersTask != null)
+            if (setupListenersTask != null)
             {
-                return await setupInternalListenersTask;
+                return await setupListenersTask;
             }
 
             // Create setup task
-            setupInternalListenersTask = SetupKeywordListener(token, newKeywordActionDictionary);
-            bool result = await setupInternalListenersTask;
-            setupInternalListenersTask = null;
+            setupListenersTask = SetupKeywordListener(token);
+            bool result = await setupListenersTask;
+            setupListenersTask = null;
             return result;
         }
 
@@ -96,21 +92,13 @@ namespace Bouvet.DevelopmentKit.Input.Voice
         /// Internal method for setting up KeywordListener
         /// </summary>
         /// <returns>True if successful, false if not</returns>
-        private async Task<bool> SetupKeywordListener(CancellationToken token, ConcurrentDictionary<string, Action> newKeywordActionDictionary)
+        private async Task<bool> SetupKeywordListener(CancellationToken token)
         {
             try
             {
-                await Task.Delay(10);
-
                 inputSource = new InputSource();
                 inputSource.inputSourceKind = InputSourceKind.Voice;
-
-                if (newKeywordActionDictionary.Count == 0)
-                {
-                    return true;
-                }
-
-                UpdatePhraseRecognizion(keywordActionDictionary);
+                await Task.Delay(10);
             }
             catch (Exception e)
             {
@@ -123,6 +111,25 @@ namespace Bouvet.DevelopmentKit.Input.Voice
             BdkLogger.Log("KeywordListener setup succesfully", LogSeverity.Info);
 
             return true;
+        }
+
+
+        /// <summary>
+        /// This function takes an input phrase and system action and generates a new voice recognizion command out of it. This function is called by InputManagerInternal.
+        /// </summary>
+        /// <param name="phrase"></param>
+        /// <param name="action"></param>
+        /// <returns>True if successful, false otherwise</returns>
+        internal async Task<bool> AddPhraseForVoiceRecognizion(string phrase, Action action)
+        {
+            if (!keywordListenerInitialized)
+            {
+                await setupListenersTask;
+            }
+
+            keywordActionDictionary.TryAdd(phrase, action);
+            BdkLogger.Log("Phrase added succesfully: " + phrase, LogSeverity.Info);
+            return UpdatePhraseRecognizion(keywordActionDictionary);
         }
 
         /// <summary>
@@ -150,4 +157,5 @@ namespace Bouvet.DevelopmentKit.Input.Voice
         }
     }
 #pragma warning restore CS0649
+#pragma warning restore CS0067
 }

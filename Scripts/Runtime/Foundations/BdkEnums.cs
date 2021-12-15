@@ -16,7 +16,9 @@ namespace Bouvet.DevelopmentKit
         InteractionBeamLeft = 16,
         InteractionBeamRight = 32,
         Voice = 64,
-        Hololens = 128
+        Hololens = 128,
+        IndexFingerRight = 256,
+        IndexFingerLeft = 512
     }
 
     /// <summary>

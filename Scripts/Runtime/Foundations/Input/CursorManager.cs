@@ -16,10 +16,10 @@ namespace Bouvet.DevelopmentKit.Input
         public CursorState LeftHandCursorState;
 
         [SerializeField]
-        internal InteractionBeam rightHandInteractionBeam;
+        public InteractionBeam rightHandInteractionBeam;
 
         [SerializeField]
-        internal InteractionBeam leftHandInteractionBeam;
+        public InteractionBeam leftHandInteractionBeam;
 
         [SerializeField]
         internal ProximityAndManipulationEvent rightHandManipulation;

@@ -21,15 +21,15 @@ namespace Bouvet.DevelopmentKit.Input.Gaze
 
         private void Update()
         {
-            inputSource.worldPosition = ValueConverter.MakeSystemVector3(transform.position);
-            inputSource.forwardVector = ValueConverter.MakeSystemVector3(transform.forward);
-            if (Physics.Raycast(ValueConverter.MakeUnityVector3(inputSource.worldPosition), ValueConverter.MakeUnityVector3(inputSource.forwardVector), out hit, 20f))
+            inputSource.worldPosition = transform.position;
+            inputSource.forwardVector = transform.forward;
+            if (Physics.Raycast(inputSource.worldPosition, inputSource.forwardVector, out hit, 20f))
             {
-                inputSource.collidedObjectIdentifier = hit.transform.gameObject.GetInstanceID();
+                inputSource.collidedObject = hit.transform.gameObject;
             }
             else
             {
-                inputSource.collidedObjectIdentifier = 0;
+                inputSource.collidedObject = null;
             }
 
             inputManager.InvokeHololensUpdateTransform(inputSource);

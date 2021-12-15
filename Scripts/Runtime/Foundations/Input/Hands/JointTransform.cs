@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+﻿using UnityEngine;
 
 namespace Bouvet.DevelopmentKit.Input.Hands
 {
