@@ -74,17 +74,148 @@ All documentation can be found in the GitHub [Wiki](https://github.com/bouvet/Bo
 
 # Samples
 
-|  [![Floating Menu](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_01_FloatingMenu.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#floating-menu) [Floating Menu](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#floating-menu) | [![Hand Menu](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_01_HandMenu_1.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#hand-menu) [Hand Menu](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#hand-menu) |
-| :--- | :--- |
-| The floating menu is a type of panel that can hold any content or menu. | The hand menu is another common and simple menu. 
-|  [![Clock Menu](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_04_ClockMenu_01.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#clock-menu) [**Clock Menu**](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#clock-menu) | [![Drape Menu](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_03_DrapeMenu_02.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#drape-menu) [**Drape Menu**](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#drape-menu) |
-| The clock menu prefab is an example of a menu that appears where a watch would normally be. | The drape menu is a menu that is attached to the left hand and can be accessed by pulling on a tab. |
-|  [![Overhand Menu](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_05_OverHandMenu_01.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#clock-menu) [**Overhand Menu**](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#clock-menu) | [![GlowInteractableButton](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_06_GlowInteractableButton_02.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#drape-menu) [**GlowInteractableButton**](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#drape-menu) |
-| The Overhand Menu will spawn over your palm and will stay there when closing the palm. | Interactable button is the main button component of BDK. |
-|  [![Pinch Slider](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_07_PinchSlider_03.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#clock-menu) [**Pinch Slider**](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#clock-menu) | [![Bounding box prefab](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_08_Prefabs_BoundingBox_01.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#drape-menu) [**Bounding box prefab**](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#drape-menu) |
-| The slider prefab is a grabbable object that can only be moved along one axis. | A prefab that shows an example of a hologram that gets a bounding box around it when the user looks at it or moves close to it. |
-|  [![Bounding box frame prefab](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_08_Prefabs_BoundingBoxFrame_01.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#clock-menu) [**Bounding box frame prefab**](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#clock-menu) | [![TwoHandInteractable](https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_08_Prefabs_TwoHandInteractable_02.gif)](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#drape-menu) [**TwoHandInteractable**](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#drape-menu) |
-| Another variant of the Bounding box prefab, where it only higlights the wireframe. | A generic prefab that shows the setup of a Hologram that can be interacted with with both hands. This example does not have a bounding box. |
+<table width="100%">
+	<tr>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#floating-menu">
+				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_01_FloatingMenu.gif" />
+			</a>
+		</td>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#hand-menu">
+				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_01_HandMenu_1.gif" />
+			</a>
+		</td>
+	</tr>
+	<tr>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#floating-menu">
+				Floating Menu
+			</a>			
+			<br/>
+			The floating menu is a type of panel that can hold any content or menu.
+		</td>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#hand-menu">
+				Hand Menu
+			</a>
+			<br/>
+			The hand menu is another common and simple menu.
+		</td>
+	</tr>
+	<tr>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#clock-menu">
+				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_04_ClockMenu_01.gif" />
+			</a>
+		</td>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#drape-menu">
+				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_03_DrapeMenu_02.gif" />
+			</a>
+		</td>
+	</tr>
+	<tr>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#clock-menu">
+				Clock Menu
+			</a>			
+			<br/>
+			The clock menu prefab is an example of a menu that appears where a watch would normally be.
+		</td>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#drape-menu">
+				Drape Menu
+			</a>
+			<br/>
+			The drape menu is a menu that is attached to the left hand and can be accessed by pulling on a tab.
+		</td>
+	</tr>
+	<tr>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#overhand-menu">
+				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_05_OverHandMenu_01.gif" />
+			</a>
+		</td>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#glowinteractablebutton">
+				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_06_GlowInteractableButton_02.gif" />
+			</a>
+		</td>
+	</tr>
+	<tr>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#overhand-menu">
+				Overhand Menu
+			</a>			
+			<br/>
+			The Overhand Menu will spawn over your palm and will stay there when closing the palm. 
+		</td>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#glowinteractablebutton">
+				GlowInteractableButton
+			</a>
+			<br/>
+			Interactable button is the main button component of BDK.
+		</td>
+	</tr>
+	<tr>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#pinch-slider">
+				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_05_OverHandMenu_01.gif" />
+			</a>
+		</td>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#bounding-box-prefab">
+				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_06_GlowInteractableButton_02.gif" />
+			</a>
+		</td>
+	</tr>
+	<tr>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#pinch-slider">
+				Pinch Slider
+			</a>			
+			<br/>
+			The slider prefab is a grabbable object that can only be moved along one axis.
+		</td>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#bounding-box-prefab">
+				Bounding box prefab
+			</a>
+			<br/>
+			A prefab that shows an example of a hologram that gets a bounding box around it when the user looks at it or moves close to it.
+		</td>
+	</tr>
+	<tr>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#bounding-box-frame-prefab">
+				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_08_Prefabs_BoundingBoxFrame_01.gif" />
+			</a>
+		</td>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#twohandinteractable">
+				<img align="center" width="450" src="https://raw.githubusercontent.com/wiki/bouvet/BouvetDevelopmentKit/images/BDK_08_Prefabs_TwoHandInteractable_02.gif" />
+			</a>
+		</td>
+	</tr>
+	<tr>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#bounding-box-frame-prefab">
+				Bounding box frame prefab
+			</a>			
+			<br/>
+			Another variant of the Bounding box prefab, where it only higlights the wireframe.
+		</td>
+		<td width="50%">
+			<a href="https://github.com/bouvet/BouvetDevelopmentKit/wiki/Essentials#twohandinteractable">
+				TwoHandInteractable
+			</a>
+			<br/>
+			A generic prefab that shows the setup of a Hologram that can be interacted with with both hands. This example does not have a bounding box.
+		</td>
+	</tr>
+</table>
 
 # Apps made with BDK
 <a href="https://www.bouvet.no/vi-jobber-med/hololens/copal">
