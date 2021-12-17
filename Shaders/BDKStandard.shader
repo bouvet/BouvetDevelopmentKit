@@ -945,4 +945,5 @@ Properties
         }
     }
     FallBack "Diffuse"
+    CustomEditor "BDK_StandardMaterialEditorGUI"
 }
