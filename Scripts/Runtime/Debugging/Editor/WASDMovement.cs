@@ -10,56 +10,47 @@ using UnityEngine.InputSystem;
 public class WASDMovement : MonoBehaviour
 {
 #pragma warning disable CS0414
-    private float speedFactor = 0.01f;
-    private bool isRunning = false;
 
+    [TextArea(4,5)]
+    public string controls = ("Right click+hold to look around. \nWASD to WASD-move, Q/E to down/up. \nShift to boost. Speed is meters/sec.");
+
+    public float speed = 0.5f;
+    public float shiftSpeedMultiply = 5.0f;
+    private float actualSpeed;
+    private float speedMulti = 1.0f;
+    
 #if UNITY_EDITOR
     private void Update()
     {
-#if ENABLE_INPUT_SYSTEM
-        if (Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed)
-#else
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-#endif
-        {
-            speedFactor = 0.03f;
-        }
-        else
-        {
-            speedFactor = 0.01f;
-        }
-#if ENABLE_INPUT_SYSTEM
-        if (Keyboard.current.wKey.isPressed)
-#else
-        if (Input.GetKey(KeyCode.W))
-#endif
-        {
-            transform.Translate(0, 0, speedFactor, Space.Self);
-        }
-#if ENABLE_INPUT_SYSTEM
-        if (Keyboard.current.sKey.isPressed)
-#else
-        if (Input.GetKey(KeyCode.S))
-#endif
-        {
-            transform.Translate(0, 0, -speedFactor, Space.Self);
-        }
-#if ENABLE_INPUT_SYSTEM
-        if (Keyboard.current.aKey.isPressed)
-#else
-        if (Input.GetKey(KeyCode.A))
-#endif
-        {
-            transform.Translate(-speedFactor, 0, 0, Space.Self);
-        }
-#if ENABLE_INPUT_SYSTEM
-        if (Keyboard.current.dKey.isPressed)
-#else
-        if (Input.GetKey(KeyCode.D))
-#endif
-        {
-            transform.Translate(speedFactor, 0, 0, Space.Self);
-        }
+    #if ENABLE_INPUT_SYSTEM
+
+        speedMulti = 1.0f;
+        if (Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed) { speedMulti = shiftSpeedMultiply; }
+        actualSpeed = (speed * speedMulti) * Time.deltaTime;
+
+        if      (Keyboard.current.wKey.isPressed)   { transform.Translate(0, 0, actualSpeed, Space.Self); }
+        else if (Keyboard.current.sKey.isPressed)   { transform.Translate(0, 0, -actualSpeed, Space.Self); }
+        if      (Keyboard.current.aKey.isPressed)   { transform.Translate(-actualSpeed, 0, 0, Space.Self); }
+        else if (Keyboard.current.dKey.isPressed)   { transform.Translate(actualSpeed, 0, 0, Space.Self); }
+
+        if (Keyboard.current.eKey.isPressed)        { transform.Translate(0, actualSpeed, 0, Space.Self); }
+        if (Keyboard.current.qKey.isPressed)        { transform.Translate(0, -actualSpeed, 0, Space.Self); }
+
+    #else
+
+        speedMulti = 1.0f;
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) { speedMulti = shiftSpeedMultiply; }
+        actualSpeed = (speed * speedMulti) * Time.deltaTime;
+
+        if      (Input.GetKey(KeyCode.W))   { transform.Translate(0, 0, actualSpeed, Space.Self); }
+        else if (Input.GetKey(KeyCode.S))   { transform.Translate(0, 0, -actualSpeed, Space.Self); }
+        if      (Input.GetKey(KeyCode.A))   { transform.Translate(-actualSpeed, 0, 0, Space.Self); }
+        else if (Input.GetKey(KeyCode.D))   { transform.Translate(actualSpeed, 0, 0, Space.Self); }
+
+        if      (Input.GetKey(KeyCode.E))   { transform.Translate(0, actualSpeed, 0, Space.Self); }
+        else if (Input.GetKey(KeyCode.Q))   { transform.Translate(0, -actualSpeed, 0, Space.Self); }
+
+    #endif
     }
 #endif
 #pragma warning restore CS0414
