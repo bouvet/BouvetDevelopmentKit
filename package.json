@@ -1,6 +1,6 @@
 {
   "name": "com.bouvet.developmentkit",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "displayName": "Bouvet Development Kit",
   "description": "Bouvet Development Kit is a full interaction system for Mixed Reality applications on HoloLens.",
   "unity": "2020.3",

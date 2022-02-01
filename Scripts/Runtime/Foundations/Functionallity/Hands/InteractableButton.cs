@@ -157,7 +157,7 @@ public class InteractableButton : Interactable
 
             if (AnimateButtonOnAirTap)
             {
-                if (!currentlyAnimating)
+                if (!currentlyAnimating && gameObject.activeInHierarchy)
                 {
                     StartCoroutine(PressButton());
                 }
@@ -213,7 +213,7 @@ public class InteractableButton : Interactable
     public virtual IEnumerator PressButton()
     {
         currentlyAnimating = true;
-        while (compressable.localScale.z > maxCompression.z)
+        while (gameObject.activeInHierarchy && compressable.localScale.z > maxCompression.z)
         {
             compressable.localScale = Vector3.Lerp(compressable.localScale, Vector3.up + Vector3.right, AirTapButtonAnimationSpeed * Time.deltaTime);
             yield return null;
@@ -221,6 +221,7 @@ public class InteractableButton : Interactable
         currentlyAnimating = false;
         ButtonClicked();
     }
+
 
     public virtual void ButtonClicked()
     {
