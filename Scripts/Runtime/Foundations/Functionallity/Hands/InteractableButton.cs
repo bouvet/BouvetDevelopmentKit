@@ -159,7 +159,8 @@ public class InteractableButton : Interactable
             {
                 if (!currentlyAnimating)
                 {
-                    StartCoroutine(PressButton());
+                    //StartCoroutine(PressButton());
+                    PressButton();
                 }
             }
             else
