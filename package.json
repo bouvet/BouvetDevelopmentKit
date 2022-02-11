@@ -11,17 +11,24 @@
   },
   "dependencies": {
     "com.unity.vectorgraphics": "2.0.0-preview.16",
+    "com.unity.textmeshpro": "3.0.6",
     "com.unity.inputsystem": "1.0.2",
     "com.unity.xr.windowsmr": "4.5.0",
     "com.unity.xr.management": "4.0.1"
   },
-  "keywords": ["bouvet", "mixed reality", "mixed-reality", "hololens"],
+  "keywords": [
+    "bouvet",
+    "mixed reality",
+    "mixed-reality",
+    "AR",
+    "XR",
+    "hololens"
+  ],
   "author": {
     "name": "Bouvet Norge AS",
     "email": "hololens@bouvet.no",
     "url": "https://www.bouvet.no"
   },
-  "type": "library",
   "documentationUrl": "https://github.com/bouvet/com.bouvet.developmentkit/wiki",
   "samples": [
     {
