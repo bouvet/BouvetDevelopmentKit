@@ -1,7 +1,10 @@
 ﻿using Bouvet.DevelopmentKit.Functionality.Hands;
 using TMPro;
 using UnityEngine;
-
+#if !UNITY_EDITOR
+using System;
+using Bouvet.DevelopmentKit.Internal.Utils;
+#endif
 namespace Bouvet.DevelopmentKit.Input
 {
 #pragma warning disable CS0414
