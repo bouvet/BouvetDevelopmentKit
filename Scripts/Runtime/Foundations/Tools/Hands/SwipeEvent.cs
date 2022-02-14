@@ -1,4 +1,5 @@
-﻿using Bouvet.DevelopmentKit.Internal.Utils;
+﻿using Bouvet.DevelopmentKit.Functionality.Hands;
+using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 

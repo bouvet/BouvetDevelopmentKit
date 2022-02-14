@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ChangeScene : MonoBehaviour
+namespace Bouvet.DevelopmentKit
 {
-    [SerializeField] private int sceneID = 0;
-    public void ResetApplication()
+    public class ChangeScene : MonoBehaviour
     {
-        SceneManager.LoadScene(sceneID);
+        [SerializeField] private int sceneID = 0;
+        public void ResetApplication()
+        {
+            SceneManager.LoadScene(sceneID);
+        }
     }
 }

@@ -1,7 +1,9 @@
 {
     "name": "Bouvet.DevelopmentKit.Editor",
     "rootNamespace": "Bouvet.DevelopmentKit.Editor",
-    "references": [],
+    "references": [
+        "GUID:505549f94818d9247815e0c411ba3af1"
+    ],
     "includePlatforms": [
         "Editor"
     ],

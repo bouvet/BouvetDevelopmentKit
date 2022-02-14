@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Bouvet.DevelopmentKit.Input;
+using UnityEngine;
 
-namespace Bouvet.DevelopmentKit.Input
+namespace Bouvet.DevelopmentKit.Functionality.Hands
 {
 #pragma warning disable CS0649
     public class AttachedToJoint : MonoBehaviour

@@ -1,7 +1,8 @@
-﻿using Bouvet.DevelopmentKit.Internal.Utils;
+﻿using Bouvet.DevelopmentKit.Input;
+using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 
-namespace Bouvet.DevelopmentKit.Input
+namespace Bouvet.DevelopmentKit.Functionality.Hands
 {
     /// <summary>
     /// Class the inherits from Grabbable. Allows two-handed manipulation and scaling of object, both with interaction beams and directly.
