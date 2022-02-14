@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Bouvet.DevelopmentKit.Input.Hands
+namespace Bouvet.DevelopmentKit.Functionality.Hands
 {
 #pragma warning disable CS0649
     internal class InteractionBeamCursor : MonoBehaviour

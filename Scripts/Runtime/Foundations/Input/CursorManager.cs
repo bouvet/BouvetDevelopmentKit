@@ -1,8 +1,4 @@
-﻿using Bouvet.DevelopmentKit;
-using Bouvet.DevelopmentKit.Input;
-using Bouvet.DevelopmentKit.Input.Hands;
-using Bouvet.DevelopmentKit.Internal.Utils;
-using System;
+﻿using Bouvet.DevelopmentKit.Functionality.Hands;
 using TMPro;
 using UnityEngine;
 

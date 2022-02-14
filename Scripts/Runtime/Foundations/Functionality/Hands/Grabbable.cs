@@ -1,8 +1,9 @@
 ﻿using System;
+using Bouvet.DevelopmentKit.Input;
 using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 
-namespace Bouvet.DevelopmentKit.Input
+namespace Bouvet.DevelopmentKit.Functionality.Hands
 {
     /// <summary>
     /// Class that deals with grabbable object. I.e. object that can be grabbed by hands or interaction beams.

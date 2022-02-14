@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Bouvet.DevelopmentKit.Input.Hands
+namespace Bouvet.DevelopmentKit.Functionality.Hands
 {
     /// <summary>
     /// Utility component to animate and visualize a light that can be used with 

@@ -1,7 +1,7 @@
-﻿using Bouvet.DevelopmentKit.Internal.Utils;
+﻿using Bouvet.DevelopmentKit.Input;
 using UnityEngine;
 
-namespace Bouvet.DevelopmentKit.Input
+namespace Bouvet.DevelopmentKit.Functionality.Head
 {
     /// <summary>
     /// This class is initialized by InputManagerInternal if cursor is enabled in the InputSettings. 

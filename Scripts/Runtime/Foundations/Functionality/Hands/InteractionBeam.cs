@@ -1,4 +1,5 @@
 ﻿using System;
+using Bouvet.DevelopmentKit.Input;
 using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ using UnityEngine;
 using Windows.Perception.People;
 #endif
 
-namespace Bouvet.DevelopmentKit.Input.Hands
+namespace Bouvet.DevelopmentKit.Functionality.Hands
 {
     [RequireComponent(typeof(LineRenderer))]
     public class InteractionBeam : MonoBehaviour
