@@ -1,8 +1,9 @@
 ﻿using Bouvet.DevelopmentKit.Internal.Utils;
 using System;
+using Bouvet.DevelopmentKit.Input;
 using UnityEngine;
 
-namespace Bouvet.DevelopmentKit.Input.Hands
+namespace Bouvet.DevelopmentKit.Functionality.Hands
 {
 #pragma warning disable CS0649
     /// <summary>

@@ -1,7 +1,7 @@
 ﻿using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 
-namespace Bouvet.DevelopmentKit.Input.Gaze
+namespace Bouvet.DevelopmentKit.Input.Head
 {
     public class HololensTransformUpdate : MonoBehaviour
     {

@@ -1,4 +1,6 @@
-﻿namespace Bouvet.DevelopmentKit.Input
+﻿using Bouvet.DevelopmentKit.Input;
+
+namespace Bouvet.DevelopmentKit.Functionality.Hands
 {
     public class ReferToGrabbable : Interactable
     {

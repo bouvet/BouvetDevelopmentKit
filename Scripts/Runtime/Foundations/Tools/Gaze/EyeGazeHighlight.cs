@@ -3,20 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EyeGazeHighlight : MonoBehaviour
+namespace Bouvet.DevelopmentKit.Tools.Gaze
 {
-    public GameObject objectToToggle;
-    protected InputManager inputManager;
-    // Start is called before the first frame update
-    protected void Start()
+    public class EyeGazeHighlight : MonoBehaviour
     {
-        inputManager = InputManager.Instance;
-        objectToToggle.SetActive(false);
-        inputManager.OnGazeEnter += InputManager_OnGazeEnter;
-    }
+        public GameObject objectToToggle;
+        protected InputManager inputManager;
+        // Start is called before the first frame update
+        protected void Start()
+        {
+            inputManager = InputManager.Instance;
+            objectToToggle.SetActive(false);
+            inputManager.OnGazeEnter += InputManager_OnGazeEnter;
+        }
 
-    protected void InputManager_OnGazeEnter(InputSource obj)
-    {
-        objectToToggle.SetActive(gameObject.Equals(obj.collidedObject));
+        protected void InputManager_OnGazeEnter(InputSource obj)
+        {
+            objectToToggle.SetActive(gameObject.Equals(obj.collidedObject));
+        }
     }
 }

@@ -1,8 +1,10 @@
-﻿using Bouvet.DevelopmentKit.Internal.Utils;
+﻿using Bouvet.DevelopmentKit.Input;
+using Bouvet.DevelopmentKit.Input.Hands;
+using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Bouvet.DevelopmentKit.Input.Hands
+namespace Bouvet.DevelopmentKit.Functionality.Hands
 {
     public class ProximityAndManipulationEvent : MonoBehaviour
     {
@@ -123,33 +125,27 @@ namespace Bouvet.DevelopmentKit.Input.Hands
         private bool UpdateIndexCollision(out Vector3 worldPos)
         {
             worldPos = Vector3.zero;
-#if !UNITY_EDITOR
-            if (inputManager.TryGetHandJointTransform(handInputSource.inputSourceKind, JointName.IndexTip, out worldPos, out quaternionCache))
-#else
+            if (!Application.isEditor && !inputManager.TryGetHandJointTransform(handInputSource.inputSourceKind, JointName.IndexTip, out worldPos, out quaternionCache))
+                return false;
+#if UNITY_EDITOR
             worldPos = transform.position;
 #endif
-            {
-                indexFingerInputSource.worldPosition = worldPos;
-                indexHits = Physics.OverlapSphere(worldPos, indexFingerTouchDistance);
-                return indexHits.Length != 0;
-            }
-            return false;
+            indexFingerInputSource.worldPosition = worldPos;
+            indexHits = Physics.OverlapSphere(worldPos, indexFingerTouchDistance);
+            return indexHits.Length != 0;
         }
 
         private bool UpdateHandCollision(out Vector3 worldPos)
         {
             worldPos = Vector3.zero;
-#if !UNITY_EDITOR
-            if (inputManager.TryGetHandJointTransform(handInputSource.inputSourceKind, JointName.Palm, out worldPos, out quaternionCache))
-#else
+            if (!Application.isEditor && !inputManager.TryGetHandJointTransform(handInputSource.inputSourceKind, JointName.Palm, out worldPos, out quaternionCache))
+                return false;
+#if UNITY_EDITOR
             worldPos = transform.position;
 #endif
-            {
-                handInputSource.worldPosition = worldPos;
-                handHits = Physics.OverlapSphere(worldPos, handTouchDistance);
-                return handHits.Length != 0;
-            }
-            return false;
+            handInputSource.worldPosition = worldPos;
+            handHits = Physics.OverlapSphere(worldPos, handTouchDistance);
+            return handHits.Length != 0;
         }
 
         private void IndexFingerProximityCheck()

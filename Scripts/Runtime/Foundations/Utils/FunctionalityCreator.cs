@@ -1,6 +1,8 @@
-﻿using Bouvet.DevelopmentKit.Input;
-using Bouvet.DevelopmentKit.Input.Gaze;
-using Bouvet.DevelopmentKit.Input.Hands;
+﻿using Bouvet.DevelopmentKit.Functionality.Eyes;
+using Bouvet.DevelopmentKit.Functionality.Hands;
+using Bouvet.DevelopmentKit.Functionality.Head;
+using Bouvet.DevelopmentKit.Input;
+using Bouvet.DevelopmentKit.Input.Head;
 using UnityEditor;
 using UnityEngine;
 

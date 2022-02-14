@@ -2,7 +2,6 @@
 using UnityEditor;
 using UnityEngine;
 
-#if UNITY_EDITOR
 [CustomEditor(typeof(InputSettings))]
 public class CustomInputSettingsInspector : Editor
 {
@@ -130,5 +129,3 @@ public class CustomInputSettingsInspector : Editor
         }
     }
 }
-
-#endif

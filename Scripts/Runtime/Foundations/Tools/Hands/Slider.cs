@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using Bouvet.DevelopmentKit.Functionality.Hands;
+using Bouvet.DevelopmentKit.Input.Hands;
+using Bouvet.DevelopmentKit.Tools.Hands;
+using UnityEngine;
 
-namespace Bouvet.DevelopmentKit.Input
+namespace Bouvet.DevelopmentKit.Input.Hands
 {
 #pragma warning disable CS0649
     public class Slider : Grabbable
