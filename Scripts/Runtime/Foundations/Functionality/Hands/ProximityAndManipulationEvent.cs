@@ -274,6 +274,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
             }
             return;
 #endif
+#pragma warning disable CS0162 // Unreachable code detected
             if (!interactionBeam || !interactionBeam.holdingSomething)
             {
                 if (inputManager.TryGetHandJointTransform(handInputSource.inputSourceKind, JointName.MiddleMetacarpal, out Vector3 palmPos, out quaternionCache))
@@ -288,6 +289,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
                     }
                 }
             }
+#pragma warning restore CS0162 // Unreachable code detected
         }
 
         private void Setup()
