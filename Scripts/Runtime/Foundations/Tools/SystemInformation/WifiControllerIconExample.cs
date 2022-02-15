@@ -18,8 +18,10 @@ namespace Bouvet.DevelopmentKit.Tools.SystemInformation
         [Range(1f, 60f)]
         public float UpdateFrequency = 30f;
 
+#pragma warning disable CS0067
         public static event Action OnWifiLost;
         public static event Action OnWifiFound;
+#pragma warning restore CS0067
 
         private bool currentConnectionStatus;
 
