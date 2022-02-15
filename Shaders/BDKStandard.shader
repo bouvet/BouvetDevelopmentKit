@@ -945,5 +945,5 @@ Properties
         }
     }
     FallBack "Diffuse"
-    CustomEditor "BDK_StandardMaterialEditorGUI"
+    CustomEditor "Bouvet.DevelopmentKit.BDK_StandardMaterialEditorGUI"
 }
