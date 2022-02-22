@@ -43,6 +43,10 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
         private float updateTimeSeconds = 1.5f;
 
         [SerializeField]
+        [Tooltip("View-distance for spatial mesh, to prevent it rendering everything when toggled on.")]
+        private float spatialMeshViewDistance = 15f;
+
+        [SerializeField]
         [Tooltip("Sets spatial mesh visible/invisible when generating the mesh")]
         private bool visibleMesh;
 
@@ -66,7 +70,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
         private bool useMaterial;
 
 #if ENABLE_XR_SDK
-    private readonly Dictionary<MeshId, MeshObject> spatialMeshes = new Dictionary<MeshId, MeshObject>();
+        private readonly Dictionary<MeshId, MeshObject> spatialMeshes = new Dictionary<MeshId, MeshObject>();
         private readonly List<MeshInfo> meshInfos = new List<MeshInfo>();
         private static XRMeshSubsystem meshSystem;
 #else // ENABLE_XR_SDK
@@ -123,7 +127,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
             Initialize();
 
 #if ENABLE_XR_SDK
-        meshSystem.meshDensity = trianglesPerMesh / 2000f;
+            meshSystem.meshDensity = trianglesPerMesh / 2000f;
             meshSystem.Start();
 #endif // ENABLE_XR_SDK
             updateMeshCoroutine = StartCoroutine(nameof(UpdateLoop));
@@ -141,7 +145,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
             }
 
 #if ENABLE_XR_SDK
-        meshSystem.Stop();
+            meshSystem.Stop();
 #endif // ENABLE_XR_SDK
 
             StopCoroutine(updateMeshCoroutine);
@@ -161,10 +165,11 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
 
             visibleMesh = setTo;
 
-            foreach (MeshObject entry in spatialMeshes.Values)
-            {
-                entry.meshRenderer.enabled = visibleMesh;
-            }
+            UpdateSpatialMeshVisibility();
+            //foreach (MeshObject entry in spatialMeshes.Values)
+            //{
+            //    entry.meshRenderer.enabled = visibleMesh;
+            //}
         }
 
         /// <summary>
@@ -178,6 +183,17 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
             }
 
             spatialMeshes.Clear();
+        }
+
+        /// <summary>
+        /// Attempts to load all existing spatial mesh chunks.
+        /// </summary>
+        public void ForceLoadSpatialMesh()
+        {
+            if (meshSystem.TryGetMeshInfos(meshInfos))
+            {
+                LoadAllSpatialMeshes(meshInfos);
+            }
         }
 
         #region PRIVATE
@@ -207,19 +223,48 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
                     BdkLogger.Log($"Error updating mesh. {e.Message}", LogSeverity.Error);
                 }
 
+                UpdateSpatialMeshVisibility();
+
                 yield return new WaitForSeconds(updateTimeSeconds);
             }
         }
 
+        /// <summary>
+        /// Updates spatial mesh visibility, only making meshes within a certain distance visible to cut down on perf loss.
+        /// Otherwise large enough spatial meshes can slow the hololens and even make the app unresponsive.
+        /// </summary>
+        private void UpdateSpatialMeshVisibility()
+        {
+            if (!visibleMesh)
+            {
+                foreach (MeshObject entry in spatialMeshes.Values)
+                {
+                    entry.meshRenderer.enabled = false;
+                }
+            }
+
+            else foreach (MeshObject entry in spatialMeshes.Values)
+                {
+                    if (Vector3.Distance(mainCamera.position, entry.meshRenderer.bounds.center) < spatialMeshViewDistance)
+                    {
+                        entry.meshRenderer.enabled = visibleMesh;
+                    }
+
+
+                    else if (entry.meshRenderer.enabled == true)
+                        entry.meshRenderer.enabled = false;
+                }
+        }
+
 #if ENABLE_XR_SDK
-    /// <summary>
-    /// Updates meshes based on the result of the MeshSubsystem.TryGetMeshInfos method.
-    /// </summary>
-    private void UpdateMeshes(IEnumerable<MeshInfo> meshInfoList)
+        /// <summary>
+        /// Updates meshes based on the result of the MeshSubsystem.TryGetMeshInfos method.
+        /// </summary>
+        private void UpdateMeshes(IEnumerable<MeshInfo> meshInfoList)
         {
             if (!meshSystem.running) { return; }
 
-        foreach (MeshInfo meshInfo in meshInfoList)
+            foreach (MeshInfo meshInfo in meshInfoList)
             {
                 switch (meshInfo.ChangeState)
                 {
@@ -228,14 +273,28 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
                         RequestMesh(meshInfo.MeshId);
                         break;
 
-                case MeshChangeState.Removed:
+                    case MeshChangeState.Removed:
                         RemoveMesh(meshInfo.MeshId);
                         break;
                 }
             }
         }
 
-    private void RequestMesh(MeshId meshId)
+        private void LoadAllSpatialMeshes(IEnumerable<MeshInfo> meshInfoList)
+        {
+            BdkLogger.Log($"LoadAllSpatialMeshes start: Spatial mesh chunks: {spatialMeshes.Count}. ");
+            int meshCount = spatialMeshes.Count;
+
+            foreach (MeshInfo meshInfo in meshInfoList)
+            {
+                RequestMesh(meshInfo.MeshId);
+            }
+
+            meshCount -= spatialMeshes.Count;
+            BdkLogger.Log($"LoadAllSpatialMeshes complete: Spatial mesh chunks: {spatialMeshes.Count}. {meshCount} new chunks. ");
+        }
+
+        private void RequestMesh(MeshId meshId)
         {
             MeshObject surface;
             if (!spatialMeshes.ContainsKey(meshId))
@@ -248,10 +307,10 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
                 surface = spatialMeshes[meshId];
             }
 
-        meshSystem.GenerateMeshAsync(meshId, surface.meshFilter.mesh, surface.meshCollider, MeshVertexAttributes.Normals, OnMeshGenerationComplete);
+            meshSystem.GenerateMeshAsync(meshId, surface.meshFilter.mesh, surface.meshCollider, MeshVertexAttributes.Normals, OnMeshGenerationComplete);
         }
 
-    private void RemoveMesh(MeshId meshId)
+        private void RemoveMesh(MeshId meshId)
         {
             if (spatialMeshes.ContainsKey(meshId))
             {
@@ -264,7 +323,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
             }
         }
 
-    private static void OnMeshGenerationComplete(MeshGenerationResult result)
+        private static void OnMeshGenerationComplete(MeshGenerationResult result)
         {
             //WebRtcLogger.Log($"Status:{result.Status}", LogSeverity.Custom);
         }
@@ -388,7 +447,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
             }
 
 #if ENABLE_XR_SDK
-        if (meshSystem == null)
+            if (meshSystem == null)
             {
                 List<XRMeshSubsystem> xrMeshSubsystems = new List<XRMeshSubsystem>();
                 SubsystemManager.GetInstances(xrMeshSubsystems);
@@ -402,7 +461,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
                 }
             }
 
-        if (meshSystem == null)
+            if (meshSystem == null)
             {
                 BdkLogger.Log("Failed to load mesh system", LogSeverity.Error);
                 enabled = false;
