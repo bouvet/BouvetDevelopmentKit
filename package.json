@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.dev/bouvet/com.bouvet.developmentkit.git"
+    "url": "https://github.com/bouvet/BouvetDevelopmentKit.git"
   },
   "dependencies": {
     "com.unity.vectorgraphics": "2.0.0-preview.16",
@@ -17,6 +17,7 @@
   },
   "keywords": [
     "bouvet",
+    "BDK",
     "mixed reality",
     "mixed-reality",
     "AR",
