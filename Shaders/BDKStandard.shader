@@ -1,4 +1,4 @@
-﻿Shader "BouvetToolkit/Standard"
+﻿Shader "BDK/Standard"
 {
 Properties
     {
