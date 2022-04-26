@@ -148,7 +148,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
             }
         }
 
-        private void TryPressButton()
+        protected virtual void TryPressButton()
         {
             if (!blockButton)
             {

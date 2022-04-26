@@ -14,6 +14,9 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
     {
 #pragma warning disable CS0649
         [Header("Floating menu behaviour")]
+        [SerializeField]
+        public bool menuFollow = true; // Determits if the menu follows or not
+
         public Vector2 offsets = new Vector2(0.1f, -0.2f);
 
         [SerializeField]
@@ -48,7 +51,6 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
         protected Vector3 removeZAxisRotation = new Vector3(1, 1, 0);
         protected Vector3 relativePos;
         protected Quaternion relativeRot;
-        protected bool menuFollow = true;
         protected Vector3 stopPosition;
         protected bool startedMoving;
         protected bool pauseFacePlayerWhenHeld;
@@ -82,6 +84,10 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
         /// <param name="source"></param>
         public override void BeginInteraction(InputSource source)
         {
+            if (!gameObject.Equals(source.collidedObject))
+            {
+                return;
+            }
             base.BeginInteraction(source);
             menuFollow = false;
             if (facePlayerWhileHeld) // the error is here somewhere
