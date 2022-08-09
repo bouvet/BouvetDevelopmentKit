@@ -7,7 +7,7 @@ namespace Bouvet.DevelopmentKit.Input
     /// </summary>
     public class Interactable : MonoBehaviour
     {
-        public InputManager inputManager;
+        protected InputManager inputManager;
 
         public InputSource primaryInputSource;
 
