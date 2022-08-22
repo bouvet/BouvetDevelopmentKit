@@ -1,10 +1,5 @@
 ﻿using System;
-#if !UNITY_EDITOR
-using Debug = System.Diagnostics.Debug;
-#else
 using UnityEngine;
-
-#endif
 
 namespace Bouvet.DevelopmentKit.Internal.Utils
 {
@@ -43,7 +38,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
             }
 
 #if !UNITY_EDITOR
-            Debug.WriteLine($"{message} - {exception.Message}");
+            Debug.Log($"{message} - {exception.Message}");
 #else
             Debug.LogError(ColorCodeLog($"{message} - {exception.Message}", LogSeverity.Error, false));
 #endif
@@ -69,7 +64,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
             }
 
 #if !UNITY_EDITOR
-            Debug.WriteLine(message);
+            Debug.Log(message);
 #else
             string colorMessage = ColorCodeLog(message, severity, false);
 

@@ -66,6 +66,10 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
 
         public override void BeginInteraction(InputSource inputSource)
         {
+            if (!enabled)
+            {
+                return;
+            }
             if (beingHeld || !gameObject.Equals(inputSource.collidedObject))
             {
                 return;
