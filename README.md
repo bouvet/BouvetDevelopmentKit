@@ -19,7 +19,7 @@ Please refer to the [Install the tools](https://docs.microsoft.com/en-us/windows
 
 The [Getting Started](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started#installation-via-git-in-upm) section in the wiki consist of these steps:
 
-* [Installation via Git in UPM](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/install-the-tools)
+* [Installation via Git in UPM](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started#installation-via-git-in-upm)
 * [Setup project settings](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started#setup-project-settings)
 * [Create your scene](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started#create-your-scene)
 * [Building for the HoloLens 2](https://github.com/bouvet/BouvetDevelopmentKit/wiki/Getting-started#building-for-the-hololens-2)
