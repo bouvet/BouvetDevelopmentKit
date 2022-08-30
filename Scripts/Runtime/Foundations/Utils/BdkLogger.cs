@@ -30,7 +30,6 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
 
         public static void LogException(string message, Exception exception)
         {
-            //string messageWithTabulator = GetTabulator(severity) + message;
             LogExceptionEvent?.Invoke(message, exception);
             if (!LogToConsole)
             {
@@ -38,9 +37,9 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
             }
 
 #if !UNITY_EDITOR
-            Debug.Log($"{message} - {exception.Message}");
+            Debug.Log($"{message}\n{exception.Message}\n{exception.StackTrace}");
 #else
-            Debug.LogError(ColorCodeLog($"{message} - {exception.Message}", LogSeverity.Error, false));
+            Debug.LogError(ColorCodeLog($"{message}\n{exception.Message}\n{exception.StackTrace}", LogSeverity.Error, false));
 #endif
         }
 
@@ -56,7 +55,6 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
                 return;
             }
 
-            //string messageWithTabulator = GetTabulator(severity) + message;
             LogMessageEvent?.Invoke(message, severity);
             if (!LogToConsole)
             {
