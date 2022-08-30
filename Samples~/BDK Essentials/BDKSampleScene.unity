@@ -347,7 +347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 828875162}
   OnClicked:
     m_PersistentCalls:
@@ -456,7 +455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1610947582}
   OnClicked:
     m_PersistentCalls:
@@ -531,7 +529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 2066497678}
   OnClicked:
     m_PersistentCalls:
@@ -674,7 +671,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 924816336}
   OnClicked:
     m_PersistentCalls:
@@ -749,7 +745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1485202463}
   OnClicked:
     m_PersistentCalls:
@@ -1132,7 +1127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc861f0abad11b4a958db584419ca8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 8194313320639857847}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -2141,7 +2135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1218080434}
   OnClicked:
     m_PersistentCalls:
@@ -3339,7 +3332,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1456619967}
   OnClicked:
     m_PersistentCalls:
@@ -3935,7 +3927,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1805757186}
   OnClicked:
     m_PersistentCalls:
@@ -4173,7 +4164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1404471794}
   OnClicked:
     m_PersistentCalls:
@@ -4330,7 +4320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1917939169}
   OnClicked:
     m_PersistentCalls:
@@ -5008,7 +4997,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 132158281}
   OnClicked:
     m_PersistentCalls:
@@ -5314,7 +5302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 592113073}
   OnClicked:
     m_PersistentCalls:
@@ -5389,7 +5376,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 932863889}
   OnClicked:
     m_PersistentCalls:
@@ -6474,7 +6460,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 372897404}
   OnClicked:
     m_PersistentCalls:
@@ -7479,7 +7464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 98915341}
   OnClicked:
     m_PersistentCalls:
@@ -8334,7 +8318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1900228774}
   OnClicked:
     m_PersistentCalls:
@@ -8703,7 +8686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1122423153}
   OnClicked:
     m_PersistentCalls:
@@ -9087,7 +9069,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1669103289}
   OnClicked:
     m_PersistentCalls:
@@ -9341,7 +9322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1032615498}
   OnClicked:
     m_PersistentCalls:
@@ -11031,7 +11011,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 730738096}
   OnClicked:
     m_PersistentCalls:
@@ -11106,7 +11085,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 968990411}
   OnClicked:
     m_PersistentCalls:
@@ -11743,7 +11721,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 190548559}
   OnClicked:
     m_PersistentCalls:
@@ -11900,7 +11877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 2066086646}
   OnClicked:
     m_PersistentCalls:
@@ -12430,7 +12406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1903727965}
   OnClicked:
     m_PersistentCalls:
@@ -12624,7 +12599,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 2111105556}
   OnClicked:
     m_PersistentCalls:
@@ -12699,7 +12673,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1703887}
   OnClicked:
     m_PersistentCalls:
@@ -13116,7 +13089,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 7522095}
   OnClicked:
     m_PersistentCalls:
@@ -13370,7 +13342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 542308255}
   OnClicked:
     m_PersistentCalls:
@@ -13526,7 +13497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1202424161}
   OnClicked:
     m_PersistentCalls:
@@ -13763,7 +13733,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 695987770}
   OnClicked:
     m_PersistentCalls:
@@ -14325,7 +14294,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 874949549}
   OnClicked:
     m_PersistentCalls:
@@ -14493,7 +14461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 206269448}
   OnClicked:
     m_PersistentCalls:
@@ -14568,7 +14535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 399284403}
   OnClicked:
     m_PersistentCalls:
@@ -14633,6 +14599,7 @@ MonoBehaviour:
   mappingExtents: {x: 5, y: 3, z: 5}
   trianglesPerMesh: 600
   updateTimeSeconds: 1.5
+  spatialMeshViewDistance: 15
   visibleMesh: 0
   startImmediately: 1
   startStopOnGameObjectSetActive: 1
@@ -14696,7 +14663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 710684888}
   OnClicked:
     m_PersistentCalls:
@@ -15774,7 +15740,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 8849921}
   OnClicked:
     m_PersistentCalls:
@@ -16386,7 +16351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 948253317}
   OnClicked:
     m_PersistentCalls:
@@ -16892,7 +16856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1853705631}
   OnClicked:
     m_PersistentCalls:
@@ -17278,7 +17241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 628923637}
   OnClicked:
     m_PersistentCalls:
@@ -17876,7 +17838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 491928765}
   OnClicked:
     m_PersistentCalls:
@@ -18505,7 +18466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 429186621}
   OnClicked:
     m_PersistentCalls:
@@ -19268,7 +19228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1666192872}
   OnClicked:
     m_PersistentCalls:
@@ -19343,7 +19302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 226402612}
   OnClicked:
     m_PersistentCalls:
@@ -20182,7 +20140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1544818665}
   OnClicked:
     m_PersistentCalls:
@@ -20794,7 +20751,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1837775760}
   OnClicked:
     m_PersistentCalls:
@@ -20984,7 +20940,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 392289771}
   OnClicked:
     m_PersistentCalls:
@@ -22545,8 +22500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc861f0abad11b4a958db584419ca8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
-  Anchor: {fileID: 0}
+  Anchor: {fileID: 559521529}
   onInteractionStartSound: {fileID: 8300000, guid: d332f53b40e44364f91e1aa4a6d41ee2, type: 3}
   onInteractionCompleteSound: {fileID: 8300000, guid: db8915106de923949b1eac218c5f8a60, type: 3}
   beingHeld: 0
@@ -22625,7 +22579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559521521}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.49339998, y: -0.004, z: 0.91120005}
+  m_LocalPosition: {x: -0.4908, y: -0.0245, z: 0.906}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 1738552400}
@@ -22921,7 +22875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1203817859}
   OnClicked:
     m_PersistentCalls:
@@ -22996,7 +22949,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 270848988}
   OnClicked:
     m_PersistentCalls:
@@ -23430,7 +23382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 152217253}
   OnClicked:
     m_PersistentCalls:
@@ -23667,7 +23618,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1792225453}
   OnClicked:
     m_PersistentCalls:
@@ -23742,7 +23692,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 756591470}
   OnClicked:
     m_PersistentCalls:
@@ -24061,7 +24010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1231349724}
   OnClicked:
     m_PersistentCalls:
@@ -24494,7 +24442,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 600288459}
   OnClicked:
     m_PersistentCalls:
@@ -24603,7 +24550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 616259387}
   OnClicked:
     m_PersistentCalls:
@@ -24712,7 +24658,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 830698676}
   OnClicked:
     m_PersistentCalls:
@@ -24787,7 +24732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1283583111}
   OnClicked:
     m_PersistentCalls:
@@ -26110,7 +26054,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1397913873}
   OnClicked:
     m_PersistentCalls:
@@ -26622,7 +26565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 517870890}
   OnClicked:
     m_PersistentCalls:
@@ -28283,7 +28225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 425703326}
   OnClicked:
     m_PersistentCalls:
@@ -29363,7 +29304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 708974556}
   OnClicked:
     m_PersistentCalls:
@@ -29910,7 +29850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efe6d7d1a56273408dfb8430592496c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 725140422}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -30258,7 +30197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 358921712}
   OnClicked:
     m_PersistentCalls:
@@ -30564,7 +30502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 150622491}
   OnClicked:
     m_PersistentCalls:
@@ -30639,7 +30576,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 105302037}
   OnClicked:
     m_PersistentCalls:
@@ -34999,7 +34935,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efe6d7d1a56273408dfb8430592496c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 881798921}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -35624,7 +35559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1155228370}
   OnClicked:
     m_PersistentCalls:
@@ -36106,7 +36040,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 739354717}
   OnClicked:
     m_PersistentCalls:
@@ -37893,7 +37826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 699432778}
   OnClicked:
     m_PersistentCalls:
@@ -38768,7 +38700,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 574272523}
   OnClicked:
     m_PersistentCalls:
@@ -39658,7 +39589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 2105601992}
   OnClicked:
     m_PersistentCalls:
@@ -40584,7 +40514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 4377064790907552737}
   OnClicked:
     m_PersistentCalls:
@@ -40617,7 +40546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 4377064792572477928}
   OnClicked:
     m_PersistentCalls:
@@ -40650,7 +40578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 4377064792321811660}
   OnClicked:
     m_PersistentCalls:
@@ -41319,7 +41246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1525156574}
   OnClicked:
     m_PersistentCalls:
@@ -41509,7 +41435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1008165242}
   OnClicked:
     m_PersistentCalls:
@@ -41844,7 +41769,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 34490519}
   OnClicked:
     m_PersistentCalls:
@@ -42243,7 +42167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 436701066}
   OnClicked:
     m_PersistentCalls:
@@ -42938,7 +42861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1642279472}
   OnClicked:
     m_PersistentCalls:
@@ -45210,7 +45132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1801870740}
   OnClicked:
     m_PersistentCalls:
@@ -46041,7 +45962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1951135708}
   OnClicked:
     m_PersistentCalls:
@@ -46393,7 +46313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 322297728}
   OnClicked:
     m_PersistentCalls:
@@ -47107,7 +47026,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1417564080}
   OnClicked:
     m_PersistentCalls:
@@ -48089,7 +48007,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1487620846}
   OnClicked:
     m_PersistentCalls:
@@ -49340,7 +49257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1775346707}
   OnClicked:
     m_PersistentCalls:
@@ -49497,7 +49413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1087708163}
   OnClicked:
     m_PersistentCalls:
@@ -49587,7 +49502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1478965403}
   OnClicked:
     m_PersistentCalls:
@@ -49759,7 +49673,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1465440922}
   OnClicked:
     m_PersistentCalls:
@@ -50244,7 +50157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 667031434}
   OnClicked:
     m_PersistentCalls:
@@ -50319,7 +50231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1024456414}
   OnClicked:
     m_PersistentCalls:
@@ -50394,7 +50305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1784755434}
   OnClicked:
     m_PersistentCalls:
@@ -50970,7 +50880,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1675972511}
   OnClicked:
     m_PersistentCalls:
@@ -51646,7 +51555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1051106462}
   OnClicked:
     m_PersistentCalls:
@@ -52208,7 +52116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1171292334}
   OnClicked:
     m_PersistentCalls:
@@ -52298,7 +52205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 278453956}
   OnClicked:
     m_PersistentCalls:
@@ -53301,7 +53207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1955120800}
   OnClicked:
     m_PersistentCalls:
@@ -53938,7 +53843,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1350921249}
   OnClicked:
     m_PersistentCalls:
@@ -54277,7 +54181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7541bbc0108d224a9ca15a52633e42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   referableGrabbable: {fileID: 1751905726}
   alignWithGrabbableTransform: 1
 --- !u!1 &1412323708
@@ -55401,7 +55304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 244239773}
   OnClicked:
     m_PersistentCalls:
@@ -55476,7 +55378,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 682441972}
   OnClicked:
     m_PersistentCalls:
@@ -56219,7 +56120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 555656921}
   OnClicked:
     m_PersistentCalls:
@@ -56600,7 +56500,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 139369555}
   OnClicked:
     m_PersistentCalls:
@@ -56972,7 +56871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1287902502}
   OnClicked:
     m_PersistentCalls:
@@ -57047,7 +56945,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 826961478}
   OnClicked:
     m_PersistentCalls:
@@ -57335,7 +57232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 894385598}
   OnClicked:
     m_PersistentCalls:
@@ -58052,7 +57948,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 803905248}
   OnClicked:
     m_PersistentCalls:
@@ -58127,7 +58022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 107847743}
   OnClicked:
     m_PersistentCalls:
@@ -59215,7 +59109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1498948316}
   OnClicked:
     m_PersistentCalls:
@@ -59845,7 +59738,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1430646661}
   OnClicked:
     m_PersistentCalls:
@@ -60653,7 +60545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 232503809}
   OnClicked:
     m_PersistentCalls:
@@ -60728,7 +60619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 42231219}
   OnClicked:
     m_PersistentCalls:
@@ -62146,7 +62036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 453463781}
   OnClicked:
     m_PersistentCalls:
@@ -62742,7 +62631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1907640323}
   OnClicked:
     m_PersistentCalls:
@@ -63274,7 +63162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 884645579}
   OnClicked:
     m_PersistentCalls:
@@ -63431,7 +63318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1686097108}
   OnClicked:
     m_PersistentCalls:
@@ -63750,7 +63636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 18075304}
   OnClicked:
     m_PersistentCalls:
@@ -64465,7 +64350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1011758798}
   OnClicked:
     m_PersistentCalls:
@@ -65309,7 +65193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 347308131}
   OnClicked:
     m_PersistentCalls:
@@ -66462,7 +66345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1656638496}
   OnClicked:
     m_PersistentCalls:
@@ -66584,7 +66466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1881385661}
   OnClicked:
     m_PersistentCalls:
@@ -67975,7 +67856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efe6d7d1a56273408dfb8430592496c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 1751905723}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -68147,7 +68027,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7541bbc0108d224a9ca15a52633e42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   referableGrabbable: {fileID: 881798922}
   alignWithGrabbableTransform: 1
 --- !u!1 &1758321773
@@ -68536,7 +68415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 257587492}
   OnClicked:
     m_PersistentCalls:
@@ -68745,7 +68623,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 40925606}
   OnClicked:
     m_PersistentCalls:
@@ -68901,7 +68778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 117365354}
   OnClicked:
     m_PersistentCalls:
@@ -69091,7 +68967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 494362933}
   OnClicked:
     m_PersistentCalls:
@@ -69653,7 +69528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc861f0abad11b4a958db584419ca8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 1297808091}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -70801,7 +70675,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 2088765884}
   OnClicked:
     m_PersistentCalls:
@@ -70876,7 +70749,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1322667814}
   OnClicked:
     m_PersistentCalls:
@@ -71684,7 +71556,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1853902459}
   OnClicked:
     m_PersistentCalls:
@@ -72249,7 +72120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1493940057}
   OnClicked:
     m_PersistentCalls:
@@ -72324,7 +72194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 177583181}
   OnClicked:
     m_PersistentCalls:
@@ -72642,7 +72511,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 435179464}
   OnClicked:
     m_PersistentCalls:
@@ -73185,7 +73053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1963812911}
   OnClicked:
     m_PersistentCalls:
@@ -74583,7 +74450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 587937984}
   OnClicked:
     m_PersistentCalls:
@@ -74658,7 +74524,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 205219438}
   OnClicked:
     m_PersistentCalls:
@@ -75958,7 +75823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1612022873}
   OnClicked:
     m_PersistentCalls:
@@ -76344,7 +76208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7541bbc0108d224a9ca15a52633e42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   referableGrabbable: {fileID: 725140425}
   alignWithGrabbableTransform: 1
 --- !u!1 &1939075185
@@ -76903,7 +76766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1550827628}
   OnClicked:
     m_PersistentCalls:
@@ -77745,7 +77607,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 2130342157}
   OnClicked:
     m_PersistentCalls:
@@ -78765,7 +78626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc861f0abad11b4a958db584419ca8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 0}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -79048,7 +78908,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 990270269}
   OnClicked:
     m_PersistentCalls:
@@ -79545,7 +79404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1658792759}
   OnClicked:
     m_PersistentCalls:
@@ -79620,7 +79478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 717599193}
   OnClicked:
     m_PersistentCalls:
@@ -80786,7 +80643,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 870655772}
   OnClicked:
     m_PersistentCalls:
@@ -81220,7 +81076,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 883431534}
   OnClicked:
     m_PersistentCalls:
@@ -81736,7 +81591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1446662084}
   OnClicked:
     m_PersistentCalls:
@@ -82871,7 +82725,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1804496603}
   OnClicked:
     m_PersistentCalls:
@@ -83934,7 +83787,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1224065435122681502}
   OnClicked:
     m_PersistentCalls:
@@ -84349,7 +84201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b9a1ba1b8dbda4ebd950835a9b0abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 1224065434831790123}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -84507,7 +84358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1224065435007362781}
   OnClicked:
     m_PersistentCalls:
@@ -84582,7 +84432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1224065434702355662}
   OnClicked:
     m_PersistentCalls:
@@ -87015,7 +86864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1224065436503187003}
   OnClicked:
     m_PersistentCalls:
@@ -87057,7 +86905,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 1224065435926724437}
   OnClicked:
     m_PersistentCalls:
@@ -88346,7 +88193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 2362617880912925702}
   OnClicked:
     m_PersistentCalls:
@@ -88938,7 +88784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc861f0abad11b4a958db584419ca8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 2713507078479873131}
   onInteractionStartSound: {fileID: 8300000, guid: d332f53b40e44364f91e1aa4a6d41ee2, type: 3}
   onInteractionCompleteSound: {fileID: 8300000, guid: db8915106de923949b1eac218c5f8a60, type: 3}
@@ -88973,7 +88818,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc861f0abad11b4a958db584419ca8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 2713507079151234553}
   onInteractionStartSound: {fileID: 8300000, guid: d332f53b40e44364f91e1aa4a6d41ee2, type: 3}
   onInteractionCompleteSound: {fileID: 8300000, guid: db8915106de923949b1eac218c5f8a60, type: 3}
@@ -89499,7 +89343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 4377064791409819457}
   OnClicked:
     m_PersistentCalls:
@@ -89708,7 +89551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 4377064790861947721}
   OnClicked:
     m_PersistentCalls:
@@ -90276,7 +90118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 4377064791953278118}
   OnClicked:
     m_PersistentCalls:
@@ -90675,7 +90516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 4377064792118753271}
   OnClicked:
     m_PersistentCalls:
@@ -92261,7 +92101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 4377064791833623901}
   OnClicked:
     m_PersistentCalls:
@@ -92935,7 +92774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 4377064791692925545}
   OnClicked:
     m_PersistentCalls:
@@ -94095,7 +93933,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a464138b0289f14aa21a18140e26657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 4377064792313125623}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -94210,7 +94047,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7541bbc0108d224a9ca15a52633e42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   referableGrabbable: {fileID: 4377064792313125618}
   alignWithGrabbableTransform: 0
 --- !u!65 &4377064792319383089
@@ -95064,7 +94900,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 4377064791762345864}
   OnClicked:
     m_PersistentCalls:
@@ -95178,7 +95013,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a283cef4bb2818e4aba11c8f38bc6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 4377064791777870549}
   OnClicked:
     m_PersistentCalls:
@@ -95345,7 +95179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7541bbc0108d224a9ca15a52633e42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   referableGrabbable: {fileID: 4377064792313125618}
   alignWithGrabbableTransform: 0
 --- !u!65 &4377064792510901534
@@ -96213,6 +96046,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d014f88625167cf47a4bbd682b1b1b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controls: "Right click+hold to look around. \nWASD to WASD-move, Q/E to down/up.
+    \nShift to boost. Speed is meters/sec."
+  speed: 0.5
+  shiftSpeedMultiply: 5
 --- !u!1 &4866477518449856285
 GameObject:
   m_ObjectHideFlags: 0
@@ -96903,7 +96740,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 5884064251018939437}
   OnClicked:
     m_PersistentCalls:
@@ -96978,7 +96814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 5884064250806977985}
   OnClicked:
     m_PersistentCalls:
@@ -97053,7 +96888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 5884064249760340670}
   OnClicked:
     m_PersistentCalls:
@@ -98883,7 +98717,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7541bbc0108d224a9ca15a52633e42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   referableGrabbable: {fileID: 6247635474403338044}
   alignWithGrabbableTransform: 1
 --- !u!1 &6247635474235371791
@@ -99348,7 +99181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efe6d7d1a56273408dfb8430592496c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 6247635474403338041}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -100476,7 +100308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d66198eea04bfb148a279704c262c5bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 8194313320639857847}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -100486,6 +100317,7 @@ MonoBehaviour:
   allowScaling: 1
   minimumScaleInXAxis: 0.1
   maximumScaleInXAxis: 4
+  menuFollow: 1
   offsets: {x: 0.1, y: -0.2}
   menuTransform: {fileID: 8194313320639857847}
   maxDistanceFromCenterOfFOV: 0.4
@@ -100900,7 +100732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756c219ee2859804d9c9967c05ea2bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 8194313320674939761}
   OnClicked:
     m_PersistentCalls:
