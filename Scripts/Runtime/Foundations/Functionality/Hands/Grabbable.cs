@@ -66,10 +66,6 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
 
         public override void BeginInteraction(InputSource inputSource)
         {
-            if (!enabled)
-            {
-                return;
-            }
             if (beingHeld || !gameObject.Equals(inputSource.collidedObject))
             {
                 return;
@@ -140,8 +136,14 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
             currentState = HandInteractionMode.None;
             audioSource.PlayOneShot(onInteractionCompleteSound);
         }
-
-        private void OnDestroy()
+        private void OnEnable()
+        {
+            if (!inputManager) return;
+            inputManager.OnManipulationStarted += BeginInteraction;
+            inputManager.OnManipulationUpdated += UpdateInteraction;
+            inputManager.OnManipulationEnded += EndInteraction;
+        }
+        private void OnDisable()
         {
             if (!inputManager) return;
             inputManager.OnManipulationStarted -= BeginInteraction;

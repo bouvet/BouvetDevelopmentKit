@@ -170,10 +170,15 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
 
         private Transform FindClosest()
         {
+
             listMinDistance = 1000;
             listMinIndex = -1;
             for (int i = 0; i < itemsInProximity.Length; i++)
             {
+                if (itemsInProximity[i] == null)
+                {
+                    continue;
+                }
                 listTempDistance = -itemsInProximity[i].transform.InverseTransformPoint(transform.position).z;
                 if (listTempDistance < listMinDistance)
                 {
