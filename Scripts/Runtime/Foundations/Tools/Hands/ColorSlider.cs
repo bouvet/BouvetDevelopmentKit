@@ -12,27 +12,29 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
         public Color currentColor;
         public Material sampleMaterial;
         public Material strengthMaterial;
-        public Slider colorHueSlider;
-        public Slider colorStrengthSlider;
-        public Slider colorBrightnessSlider;
-        public TextMeshPro hueText;
-        public TextMeshPro strengthText;
-        public TextMeshPro brightnessText;
+        public Slider xSlider;
+        public Slider ySlider;
+        public Slider zSlider;
+        public TextMeshPro xOffset;
+        public TextMeshPro yOffest;
+        public TextMeshPro zOffset;
+
+        public HandMenuExample handMenu;
 
         protected void Start()
         {
             InputManager.Instance.OnManipulationUpdated += Instance_OnManipulationUpdated;
-            colorHueSlider.UpdateValue();
-            colorStrengthSlider.UpdateValue();
-            colorBrightnessSlider.UpdateValue();
+            xSlider.UpdateValue();
+            ySlider.UpdateValue();
+            zSlider.UpdateValue();
             SetColor();
         }
 
         protected void Instance_OnManipulationUpdated(InputSource inputSource)
         {
-            if (colorHueSlider.primaryInputSource.inputSourceKind == inputSource.inputSourceKind
-                || colorBrightnessSlider.primaryInputSource.inputSourceKind == inputSource.inputSourceKind
-                || colorStrengthSlider.primaryInputSource.inputSourceKind == inputSource.inputSourceKind)
+            if (xSlider.primaryInputSource.inputSourceKind == inputSource.inputSourceKind
+                || zSlider.primaryInputSource.inputSourceKind == inputSource.inputSourceKind
+                || ySlider.primaryInputSource.inputSourceKind == inputSource.inputSourceKind)
             {
                 SetColor();
             }
@@ -41,22 +43,10 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
 
         protected void SetColor()
         {
-            currentColor = Color.HSVToRGB(colorHueSlider.currentValue, colorStrengthSlider.currentValue, colorBrightnessSlider.currentValue); 
-            if(sampleMaterial)
-            {
-                sampleMaterial.color = currentColor;
-            }
-            if(strengthMaterial)
-            {
-                strengthMaterial.color = Color.HSVToRGB(colorHueSlider.currentValue, 1, 1);
-            }
-            if(PutYourMaterialHere)
-            {
-                PutYourMaterialHere.color = currentColor;
-            }
-            hueText.text = $"Color: {String.Format("{0:0.000}", colorHueSlider.currentValue)}";
-            strengthText.text = $"Strength: {String.Format("{0:0.000}", colorStrengthSlider.currentValue)}";
-            brightnessText.text = $"Brightness: {String.Format("{0:0.000}", colorBrightnessSlider.currentValue)}";
+            handMenu.offset = new Vector3(xSlider.currentValue, ySlider.currentValue, zSlider.currentValue);
+            xOffset.text = $"x: {xSlider.currentValue}";
+            yOffest.text = $"y: {ySlider.currentValue}";
+            zOffset.text = $"z: {zSlider.currentValue}";
         }
     }
 }
