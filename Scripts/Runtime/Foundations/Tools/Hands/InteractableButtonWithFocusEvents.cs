@@ -8,11 +8,15 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
 {
     public class InteractableButtonWithFocusEvents : InteractableButton
     {
-        [Header("Focus events")]
-        public bool ToggleEventsOnProximity;
-        public bool ToggleEventsOnInteractionBeams;
-        public bool ToggleEventsOnEyeGaze;
-        public bool ToggleEventsOnHeadGaze;
+        [Header("Toggle Events on:")]
+        [SerializeField]
+        private bool proximity;
+        [SerializeField]
+        private bool interactionBeams;
+        [SerializeField]
+        private bool eyeGaze;
+        [SerializeField]
+        private bool headGaze;
 
         public event Action OnFocusStart;
         public event Action OnFocusStop;
@@ -29,7 +33,7 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
 
         private void InputManager_OnGazeExit(InputSource obj)
         {
-            if (ToggleEventsOnEyeGaze && gameObject.Equals(obj.collidedObject))
+            if (eyeGaze && gameObject.Equals(obj.collidedObject))
             {
                 OnFocusStop?.Invoke();
             }
@@ -37,7 +41,7 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
 
         private void InputManager_OnGazeEnter(InputSource obj)
         {
-            if (ToggleEventsOnEyeGaze && gameObject.Equals(obj.collidedObject))
+            if (eyeGaze && gameObject.Equals(obj.collidedObject))
             {
                 OnFocusStart?.Invoke();
             }
@@ -45,12 +49,12 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
 
         private void InputManager_OnHololensTransformUpdated(InputSource obj)
         {
-            if (ToggleEventsOnHeadGaze && !beingTargetedByHeadGaze && gameObject.Equals(obj.collidedObject))
+            if (headGaze && !beingTargetedByHeadGaze && gameObject.Equals(obj.collidedObject))
             {
                 beingTargetedByHeadGaze = true;
                 OnFocusStart?.Invoke();
             }
-            else if (ToggleEventsOnHeadGaze && beingTargetedByHeadGaze && !gameObject.Equals(obj.collidedObject))
+            else if (headGaze && beingTargetedByHeadGaze && !gameObject.Equals(obj.collidedObject))
             {
                 beingTargetedByHeadGaze = false;
                 OnFocusStop?.Invoke();
@@ -60,7 +64,7 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
         public override void OnFocusBegin()
         {
             base.OnFocusBegin();
-            if (ToggleEventsOnInteractionBeams)
+            if (interactionBeams)
             {
                 OnFocusStart?.Invoke();
             }
@@ -69,7 +73,7 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
         public override void OnFocusEnd()
         {
             base.OnFocusEnd();
-            if (ToggleEventsOnInteractionBeams)
+            if (interactionBeams)
             {
                 OnFocusStop?.Invoke();
             }
@@ -78,7 +82,7 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
         protected override void InputManager_OnProximityStarted(InputSource inputSource)
         {
             base.InputManager_OnProximityStarted(inputSource);
-            if (ToggleEventsOnProximity && gameObject.Equals(inputSource.collidedObject))
+            if (proximity && gameObject.Equals(inputSource.collidedObject))
             {
                 OnFocusStart?.Invoke();
             }
@@ -86,7 +90,7 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
 
         protected override void InputManager_OnProximityEnded(InputSource inputSource)
         {
-            if (ToggleEventsOnProximity && proximitySource != null && inputSource.inputSourceKind == proximitySource.inputSourceKind)
+            if (proximity && proximitySource != null && inputSource.inputSourceKind == proximitySource.inputSourceKind)
             {
                 OnFocusStop?.Invoke();
             }

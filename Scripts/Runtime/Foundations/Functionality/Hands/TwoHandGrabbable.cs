@@ -23,19 +23,8 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
         protected Vector3 tempScale;
 
         private bool autoLerping = false;
-        private float lerpDuration;
-        private Vector3 autoLerpPosition;
-        private enum LerpCurve
-        {
-            Linear,
-            EaseInOut,
-            Bezier
-        }
-        [Header("Auto Lerp On Release")]
-        [SerializeField]
-        private float autoLerpTime = 1f;
-        [SerializeField]
-        private LerpCurve currentLerpCurve;
+        private float tweenDuration;
+        private Vector3 autoTweenPosition;
 
         public override void Initialize()
         {
@@ -73,15 +62,15 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
 
             if (beingHeld)
             {
-                if ((inputSource.inputSourceKind == InputSourceKind.HandRight ||
-                    inputSource.inputSourceKind == InputSourceKind.InteractionBeamRight) && currentState != HandInteractionMode.Right)
+                if ((inputSource.inputSourceKind == InputSourceKind.HandRight
+                    || inputSource.inputSourceKind == InputSourceKind.InteractionBeamRight) && currentState != HandInteractionMode.Right)
                 {
                     gripPointR = inputManager.rightGripPoint;
                     gripOffsetR = gripPointR.position - Anchor.position;
                     currentState = HandInteractionMode.Everything;
                 }
-                else if ((inputSource.inputSourceKind == InputSourceKind.HandLeft ||
-                    inputSource.inputSourceKind == InputSourceKind.InteractionBeamLeft) && currentState != HandInteractionMode.Left)
+                else if ((inputSource.inputSourceKind == InputSourceKind.HandLeft
+                    || inputSource.inputSourceKind == InputSourceKind.InteractionBeamLeft) && currentState != HandInteractionMode.Left)
                 {
                     gripPointL = inputManager.leftGripPoint;
                     gripOffsetL = gripPointL.position - Anchor.position;
@@ -107,70 +96,74 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
         {
             if (autoLerping)
             {
-                if (!beingHeld || inputSource.inputSourceKind != primaryInputSource.inputSourceKind || lerpDuration > autoLerpTime)
+                if (!beingHeld || inputSource.inputSourceKind != primaryInputSource.inputSourceKind || tweenDuration > inputManager.inputSettings.autoTweenTime)
                 {
                     autoLerping = false;
-                    lerpDuration = 0;
+                    tweenDuration = 0;
                     return;
                 }
-                switch (currentLerpCurve)
+                switch (inputManager.inputSettings.currentTweenCurve)
                 {
-                    case LerpCurve.Linear:
+                    case TweenCurve.Linear:
                         switch (currentState)
                         {
                             case HandInteractionMode.Right:
                                 Vector3 rotatedGripOffsetR = Anchor.rotation * Quaternion.Inverse(originalRotation) * gripOffsetR;
-                                lerpDuration += Time.deltaTime;
-                                Anchor.position = Vector3.Lerp(autoLerpPosition, gripPointR.position - rotatedGripOffsetR, lerpDuration / autoLerpTime);
+                                tweenDuration += Time.deltaTime;
+                                Anchor.position = Vector3.Lerp(autoTweenPosition,
+                                    gripPointR.position - rotatedGripOffsetR, tweenDuration / inputManager.inputSettings.autoTweenTime);
                                 break;
                             case HandInteractionMode.Left:
                                 Vector3 rotatedGripOffsetL = Anchor.rotation * Quaternion.Inverse(originalRotation) * gripOffsetL;
-                                lerpDuration += Time.deltaTime;
-                                Anchor.position = Vector3.Lerp(autoLerpPosition, gripPointL.position - rotatedGripOffsetL, lerpDuration / autoLerpTime);
+                                tweenDuration += Time.deltaTime;
+                                Anchor.position = Vector3.Lerp(autoTweenPosition,
+                                    gripPointL.position - rotatedGripOffsetL, tweenDuration / inputManager.inputSettings.autoTweenTime);
                                 break;
                             default:
                                 autoLerping = false;
-                                lerpDuration = 0;
+                                tweenDuration = 0;
                                 break;
                         }
                         break;
-                    case LerpCurve.EaseInOut:
+                    case TweenCurve.EaseInOut:
                         switch (currentState)
                         {
                             case HandInteractionMode.Right:
                                 Vector3 rotatedGripOffsetR = Anchor.rotation * Quaternion.Inverse(originalRotation) * gripOffsetR;
-                                lerpDuration += Time.deltaTime;
-                                Anchor.position = TweenHelpers.EaseInOut(autoLerpPosition, gripPointR.position - rotatedGripOffsetR, lerpDuration / autoLerpTime);
+                                tweenDuration += Time.deltaTime;
+                                Anchor.position = TweenHelpers.EaseInOut(autoTweenPosition,
+                                    gripPointR.position - rotatedGripOffsetR, tweenDuration / inputManager.inputSettings.autoTweenTime);
                                 break;
                             case HandInteractionMode.Left:
                                 Vector3 rotatedGripOffsetL = Anchor.rotation * Quaternion.Inverse(originalRotation) * gripOffsetL;
-                                lerpDuration += Time.deltaTime;
-                                Anchor.position = TweenHelpers.EaseInOut(autoLerpPosition, gripPointL.position - rotatedGripOffsetL, lerpDuration / autoLerpTime);
+                                tweenDuration += Time.deltaTime;
+                                Anchor.position = TweenHelpers.EaseInOut(autoTweenPosition,
+                                    gripPointL.position - rotatedGripOffsetL, tweenDuration / inputManager.inputSettings.autoTweenTime);
                                 break;
                             default:
                                 autoLerping = false;
-                                lerpDuration = 0;
+                                tweenDuration = 0;
                                 break;
                         }
                         break;
-                    case LerpCurve.Bezier:
+                    case TweenCurve.Bezier:
                         switch (currentState)
                         {
                             case HandInteractionMode.Right:
                                 Vector3 rotatedGripOffsetR = Anchor.rotation * Quaternion.Inverse(originalRotation) * gripOffsetR;
-                                lerpDuration += Time.deltaTime;
-                                Anchor.position = TweenHelpers.QuadraticBezier(
-                                    autoLerpPosition, gripPointR.position - rotatedGripOffsetR, autoLerpPosition, lerpDuration / autoLerpTime);
+                                tweenDuration += Time.deltaTime;
+                                Anchor.position = TweenHelpers.QuadraticBezier(autoTweenPosition,
+                                    gripPointR.position - rotatedGripOffsetR, autoTweenPosition, tweenDuration / inputManager.inputSettings.autoTweenTime);
                                 break;
                             case HandInteractionMode.Left:
                                 Vector3 rotatedGripOffsetL = Anchor.rotation * Quaternion.Inverse(originalRotation) * gripOffsetL;
-                                lerpDuration += Time.deltaTime;
-                                Anchor.position = TweenHelpers.QuadraticBezier(
-                                    autoLerpPosition, gripPointL.position - rotatedGripOffsetL, autoLerpPosition, lerpDuration / autoLerpTime);
+                                tweenDuration += Time.deltaTime;
+                                Anchor.position = TweenHelpers.QuadraticBezier(autoTweenPosition,
+                                    gripPointL.position - rotatedGripOffsetL, autoTweenPosition, tweenDuration / inputManager.inputSettings.autoTweenTime);
                                 break;
                             default:
                                 autoLerping = false;
-                                lerpDuration = 0;
+                                tweenDuration = 0;
                                 break;
                         }
                         break;
@@ -178,7 +171,8 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
             }
             else
             {
-                if (beingHeld && (inputSource.inputSourceKind == primaryInputSource.inputSourceKind || inputSource.inputSourceKind == secondaryInputSource.inputSourceKind))
+                if (beingHeld && (inputSource.inputSourceKind == primaryInputSource.inputSourceKind
+                    || inputSource.inputSourceKind == secondaryInputSource.inputSourceKind))
                 {
                     if (currentState == HandInteractionMode.Everything)
                     {
@@ -210,7 +204,8 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
         public override void EndInteraction(InputSource inputSource)
         {
             // TODO: ERROR SOMEWHERE HERE WHEN MOVING HAND OUTSIDE OF FOV WHILE HOLDING AN OBJECT
-            if (!beingHeld || !(inputSource.inputSourceKind == primaryInputSource.inputSourceKind || inputSource.inputSourceKind == secondaryInputSource.inputSourceKind))
+            if (!beingHeld || !(inputSource.inputSourceKind == primaryInputSource.inputSourceKind
+                || inputSource.inputSourceKind == secondaryInputSource.inputSourceKind))
             {
                 return;
             }
@@ -218,7 +213,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
             if (currentState == HandInteractionMode.Everything)
             {
                 autoLerping = true;
-                autoLerpPosition = Anchor.position;
+                autoTweenPosition = Anchor.position;
                 if (inputSource.inputSourceKind == InputSourceKind.HandRight || inputSource.inputSourceKind == InputSourceKind.InteractionBeamRight)
                 {
                     currentState = HandInteractionMode.Left;

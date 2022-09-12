@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 7469764535078411928}
   OnClicked:
     m_PersistentCalls:
@@ -182,13 +181,13 @@ MonoBehaviour:
   ButtonUnpressAnimationSpeed: 20
   buttonCompressionBeforeClick: 0.3
   ProximityStart: {fileID: 0}
-  PlayAudioOnProximityStart: 0
+  AudioProximityStart: 0
   ProximityEnd: {fileID: 0}
-  PlayAudioOnProximityEnd: 0
+  AudioProximityEnd: 0
   ButtonClick: {fileID: 0}
-  PlayAudioOnButtonClicked: 1
-  AnimateButtonOnAirTap: 1
-  AirTapButtonAnimationSpeed: 25
+  AudioButtonClicked: 1
+  AnimateOnAirTap: 1
+  AirTapAnimSpeed: 25
   WhenToCallButtonClickEvent: 3
 --- !u!1 &7469764535303815574
 GameObject:
@@ -478,8 +477,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 210
-  m_fontSizeBase: 210
+  m_fontSize: 180
+  m_fontSizeBase: 180
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
