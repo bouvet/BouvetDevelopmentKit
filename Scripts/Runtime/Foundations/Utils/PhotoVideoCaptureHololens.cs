@@ -25,15 +25,28 @@ public class PhotoVideoCaptureHololens : MonoBehaviour
     private PhotoCapture photoCaptureObject = null;
     private Texture2D targetTexture = null;
 
+    static readonly float MaxRecordingTime = 5.0f;
+
+    VideoCapture m_VideoCapture = null;
+    float m_stopRecordingTimer = float.MaxValue;
+
+    private void Update()
+    {
+        if (m_VideoCapture == null || !m_VideoCapture.IsRecording)
+        {
+            return;
+        }
+
+        if (Time.time > m_stopRecordingTimer)
+        {
+            m_VideoCapture.StopRecordingAsync(OnStoppedRecordingVideo);
+        }
+    }
+
     public void RequestCameraAccess()
     {
         _ = RequestAccessAndInitAsync(CancellationToken.None, true, false);
     }
-
-    /// <summary>
-    /// Internal helper to ensure device media access and continue initialization.
-    /// On UWP this must be called from the main UI thread.
-    /// </summary>
     public static Task<bool> RequestAccessAndInitAsync(CancellationToken token, bool useCamera, bool useMicrophone)
     {
 #if WINDOWS_UWP && !UNITY_EDITOR
@@ -96,6 +109,67 @@ public class PhotoVideoCaptureHololens : MonoBehaviour
 #endif
     }
 
+    public void RecordVideo()
+    {
+
+        Resolution cameraResolution = VideoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
+        Debug.Log(cameraResolution);
+
+        float cameraFramerate = VideoCapture.GetSupportedFrameRatesForResolution(cameraResolution).OrderByDescending((fps) => fps).First();
+        Debug.Log(cameraFramerate);
+
+        VideoCapture.CreateAsync(false, delegate (VideoCapture videoCapture)
+        {
+            if (videoCapture != null)
+            {
+                m_VideoCapture = videoCapture;
+                Debug.Log("Created VideoCapture Instance!");
+
+                CameraParameters cameraParameters = new CameraParameters();
+                cameraParameters.hologramOpacity = 0.0f;
+                cameraParameters.frameRate = cameraFramerate;
+                cameraParameters.cameraResolutionWidth = cameraResolution.width;
+                cameraParameters.cameraResolutionHeight = cameraResolution.height;
+                cameraParameters.pixelFormat = CapturePixelFormat.BGRA32;
+
+                m_VideoCapture.StartVideoModeAsync(cameraParameters,
+                                                   VideoCapture.AudioState.ApplicationAndMicAudio,
+                                                   OnStartedVideoCaptureMode);
+            }
+            else
+            {
+                Debug.LogError("Failed to create VideoCapture Instance!");
+            }
+        });
+    }
+
+    private void OnStartedVideoCaptureMode(VideoCapture.VideoCaptureResult result)
+    {
+        Debug.Log("Started Video Capture Mode!");
+        string timeStamp = Time.time.ToString().Replace(".", "").Replace(":", "");
+        string filename = string.Format("TestVideo_{0}.mp4", timeStamp);
+        string filepath = System.IO.Path.Combine(Application.persistentDataPath, filename);
+        filepath = filepath.Replace("/", @"\");
+        m_VideoCapture.StartRecordingAsync(filepath, OnStartedRecordingVideo);
+    }
+
+    private void OnStoppedVideoCaptureMode(VideoCapture.VideoCaptureResult result)
+    {
+        BdkLogger.Log("Stopped Video Capture Mode!");
+    }
+
+    private void OnStartedRecordingVideo(VideoCapture.VideoCaptureResult result)
+    {
+        BdkLogger.Log("Started Recording Video!");
+        m_stopRecordingTimer = Time.time + MaxRecordingTime;
+    }
+
+    private void OnStoppedRecordingVideo(VideoCapture.VideoCaptureResult result)
+    {
+        BdkLogger.Log("Stopped Recording Video!");
+        m_VideoCapture.StopVideoModeAsync(OnStoppedVideoCaptureMode);
+    }
+
     public void CapturePhoto()
     {
         Resolution cameraResolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
@@ -122,15 +196,6 @@ public class PhotoVideoCaptureHololens : MonoBehaviour
     {
         // Copy the raw image data into the target texture
         photoCaptureFrame.UploadImageDataToTexture(targetTexture);
-
-        // Create a GameObject to which the texture can be applied
-        /*        GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-                Renderer quadRenderer = quad.GetComponent<Renderer>();
-                quadRenderer.material = new Material(Shader.Find("Custom/Unlit/UnlitTexture"));
-
-                quad.transform.parent = this.transform;
-                quad.transform.localPosition = new Vector3(0.0f, 0.0f, 3.0f);*/
-
         previewImage.GetComponent<Renderer>().material.SetTexture("_MainTex", targetTexture);
 
         // Deactivate the camera
