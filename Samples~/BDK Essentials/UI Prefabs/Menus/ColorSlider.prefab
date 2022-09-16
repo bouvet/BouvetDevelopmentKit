@@ -335,7 +335,6 @@ GameObject:
   - component: {fileID: 2888964216520348471}
   - component: {fileID: 2888964216520348469}
   - component: {fileID: 2888964216520348468}
-  - component: {fileID: 2888964216520348474}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -351,7 +350,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2888964216520348470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009, y: 0.05, z: 0.01}
+  m_LocalPosition: {x: -0.009, y: 0, z: 0.01}
   m_LocalScale: {x: 0.1712, y: 0.70830685, z: 0.15822092}
   m_Children: []
   m_Father: {fileID: 2888964218217145247}
@@ -406,19 +405,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2888964216520348474
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2888964216520348470}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 1.0000001, z: 6.1232336e-17}
-  m_Center: {x: 0, y: 0.000000007450581, z: 0}
 --- !u!1 &2888964216548955239
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +419,7 @@ GameObject:
   - component: {fileID: 2888964216548955243}
   - component: {fileID: 2888964216548955242}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SliderBrightness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -447,7 +433,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2888964216548955239}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.387, z: 0}
+  m_LocalPosition: {x: 0, y: 0.337, z: 0}
   m_LocalScale: {x: 0.040000007, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 2888964217763628238}
@@ -514,7 +500,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efe6d7d1a56273408dfb8430592496c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 2888964216548955236}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -1695,7 +1680,7 @@ GameObject:
   - component: {fileID: 2888964216805456040}
   - component: {fileID: 2888964216805456047}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SliderStrength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1709,7 +1694,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2888964216805456042}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.354, z: 0}
+  m_LocalPosition: {x: 0, y: 0.322, z: 0}
   m_LocalScale: {x: 0.040000007, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 2888964217677487774}
@@ -1776,7 +1761,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efe6d7d1a56273408dfb8430592496c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 2888964216805456043}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -1988,7 +1972,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2888964216895292374}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009, y: -0.216, z: 0}
+  m_LocalPosition: {x: -0.009, y: -0.266, z: 0}
   m_LocalScale: {x: 0.14787002, y: 0.14787002, z: 0.14787}
   m_Children: []
   m_Father: {fileID: 2888964218217145247}
@@ -2149,7 +2133,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2888964216990472895}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2888964216449435125}
@@ -3911,7 +3895,7 @@ GameObject:
   - component: {fileID: 2888964217675981340}
   - component: {fileID: 2888964217675981343}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SliderColor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3925,7 +3909,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2888964217675981336}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.199, z: 0}
+  m_LocalPosition: {x: -0, y: 0.45, z: 0}
   m_LocalScale: {x: 0.040000007, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 2888964218409284011}
@@ -3992,7 +3976,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efe6d7d1a56273408dfb8430592496c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 2888964217675981337}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -4128,7 +4111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7541bbc0108d224a9ca15a52633e42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   referableGrabbable: {fileID: 2888964216805456040}
   alignWithGrabbableTransform: 1
 --- !u!1 &2888964217682136015
@@ -4405,7 +4387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7541bbc0108d224a9ca15a52633e42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   referableGrabbable: {fileID: 2888964216548955243}
   alignWithGrabbableTransform: 1
 --- !u!1 &2888964217779927069
@@ -4420,7 +4401,7 @@ GameObject:
   - component: {fileID: 2888964217779927142}
   - component: {fileID: 2888964217779927139}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: TextStrength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4817,7 +4798,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2888964217806794962}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0, z: 0}
+  m_LocalPosition: {x: -0.05, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2888964217824821512}
@@ -6354,6 +6335,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2888964218217145247}
   - component: {fileID: 2888964218217145244}
+  - component: {fileID: 2016212753762130879}
+  - component: {fileID: 5079620279085365587}
   m_Layer: 5
   m_Name: ColorSlider
   m_TagString: Untagged
@@ -6393,7 +6376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PutYourMaterialHere: {fileID: 2100000, guid: 94c9ffbee3bd33c43afe51dd8f9a762a, type: 2}
-  currentColor: {r: 0, g: 0, b: 0, a: 0}
+  currentColor: {r: 1, g: 0, b: 0, a: 1}
   sampleMaterial: {fileID: 2100000, guid: 67cd897d21ab9114a958bdc6c158c4de, type: 2}
   strengthMaterial: {fileID: 2100000, guid: be1acc680d139e749ba5ce4a03fe2a52, type: 2}
   colorHueSlider: {fileID: 2888964217675981340}
@@ -6402,6 +6385,40 @@ MonoBehaviour:
   hueText: {fileID: 2888964218511763778}
   strengthText: {fileID: 2888964217779927139}
   brightnessText: {fileID: 2888964218368453758}
+--- !u!65 &2016212753762130879
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2888964218217145246}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.18334539, y: 0.719904, z: 0.011790574}
+  m_Center: {x: -0.007972449, y: 0.000000059604645, z: 0.012093812}
+--- !u!114 &5079620279085365587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2888964218217145246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc861f0abad11b4a958db584419ca8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Anchor: {fileID: 0}
+  onInteractionStartSound: {fileID: 0}
+  onInteractionCompleteSound: {fileID: 0}
+  beingHeld: 0
+  currentState: 0
+  rotate: 1
+  allowScaling: 0
+  minimumScaleInXAxis: 0.1
+  maximumScaleInXAxis: 1
 --- !u!1 &2888964218225135120
 GameObject:
   m_ObjectHideFlags: 0
@@ -6589,7 +6606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2888964218357483622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -0, z: 0}
+  m_LocalPosition: {x: 0.05, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2888964217996696724}
@@ -6669,7 +6686,7 @@ GameObject:
   - component: {fileID: 2888964218368453757}
   - component: {fileID: 2888964218368453758}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: TextBrightness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7101,7 +7118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7541bbc0108d224a9ca15a52633e42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   referableGrabbable: {fileID: 2888964217675981340}
   alignWithGrabbableTransform: 1
 --- !u!1 &2888964218409773608
@@ -7330,7 +7346,7 @@ GameObject:
   - component: {fileID: 2888964218511763777}
   - component: {fileID: 2888964218511763778}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TextColor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

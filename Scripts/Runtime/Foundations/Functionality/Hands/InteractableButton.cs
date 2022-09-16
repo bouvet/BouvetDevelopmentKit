@@ -39,27 +39,27 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
         protected AudioClip ProximityStart;
 
         [SerializeField]
-        protected bool PlayAudioOnProximityStart = false;
+        protected bool AudioProximityStart = false;
 
         [SerializeField]
         protected AudioClip ProximityEnd;
 
         [SerializeField]
-        protected bool PlayAudioOnProximityEnd = false;
+        protected bool AudioProximityEnd = false;
 
         [SerializeField]
         protected AudioClip ButtonClick;
 
         [SerializeField]
-        protected bool PlayAudioOnButtonClicked = true;
+        protected bool AudioButtonClicked = true;
 
         [Header("Air tap functionality:")]
         [SerializeField]
-        protected bool AnimateButtonOnAirTap = true;
+        protected bool AnimateOnAirTap = true;
 
         [SerializeField]
         [Range(10f, 60f)]
-        protected float AirTapButtonAnimationSpeed = 25f;
+        protected float AirTapAnimSpeed = 25f;
 
         [SerializeField]
         protected ButtonInteractionBeamMode WhenToCallButtonClickEvent = ButtonInteractionBeamMode.OnInputUpLocked;
@@ -100,17 +100,17 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
                 audioSource = inputManager.Hololens.GetComponent<AudioSource>();
             }
 
-            if (PlayAudioOnProximityStart && !ProximityStart && UIManager.Instance)
+            if (AudioProximityStart && !ProximityStart && UIManager.Instance)
             {
                 ProximityStart = UIManager.Instance.StartProximity;
             }
 
-            if (PlayAudioOnProximityEnd && !ProximityEnd && UIManager.Instance)
+            if (AudioProximityEnd && !ProximityEnd && UIManager.Instance)
             {
                 ProximityEnd = UIManager.Instance.EndProximity;
             }
 
-            if (PlayAudioOnButtonClicked && !ButtonClick && UIManager.Instance)
+            if (AudioButtonClicked && !ButtonClick && UIManager.Instance)
             {
                 ButtonClick = UIManager.Instance.ButtonPressed;
             }
@@ -157,7 +157,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
 
                 OnClicked?.Invoke();
 
-                if (AnimateButtonOnAirTap)
+                if (AnimateOnAirTap)
                 {
                     if (!currentlyAnimating && gameObject.activeInHierarchy)
                     {
@@ -166,7 +166,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
                 }
                 else
                 {
-                    if (PlayAudioOnButtonClicked)
+                    if (AudioButtonClicked)
                         audioSource?.PlayOneShot(ButtonClick);
                 }
             }
@@ -195,7 +195,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
             {
                 InProximity = true;
                 proximitySource = inputSource;
-                if (PlayAudioOnProximityStart)
+                if (AudioProximityStart)
                     audioSource?.PlayOneShot(ProximityStart);
             }
         }
@@ -207,7 +207,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
                 InProximity = false;
                 buttonWasPressedPhysically = true;
                 StartCoroutine(nameof(UnPressButton));
-                if (PlayAudioOnProximityEnd)
+                if (AudioProximityEnd)
                     audioSource?.PlayOneShot(ProximityEnd);
             }
         }
@@ -217,7 +217,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
             currentlyAnimating = true;
             while (gameObject.activeInHierarchy && compressable.localScale.z > maxCompression.z)
             {
-                compressable.localScale = Vector3.Lerp(compressable.localScale, Vector3.up + Vector3.right, AirTapButtonAnimationSpeed * Time.deltaTime);
+                compressable.localScale = Vector3.Lerp(compressable.localScale, Vector3.up + Vector3.right, AirTapAnimSpeed * Time.deltaTime);
                 yield return null;
             }
             currentlyAnimating = false;
@@ -227,7 +227,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
 
         public virtual void ButtonClicked()
         {
-            if (PlayAudioOnButtonClicked)
+            if (AudioButtonClicked)
                 audioSource?.PlayOneShot(ButtonClick);
             if (compressable.localScale != Vector3.one)
             {
@@ -240,7 +240,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
             currentlyAnimating = true;
             while (compressable.localScale.z < 0.99f)
             {
-                compressable.localScale = Vector3.Lerp(compressable.localScale, Vector3.one, (buttonWasPressedPhysically ? ButtonUnpressAnimationSpeed : AirTapButtonAnimationSpeed) * Time.deltaTime);
+                compressable.localScale = Vector3.Lerp(compressable.localScale, Vector3.one, (buttonWasPressedPhysically ? ButtonUnpressAnimationSpeed : AirTapAnimSpeed) * Time.deltaTime);
                 yield return null;
             }
             buttonWasPressedPhysically = false;

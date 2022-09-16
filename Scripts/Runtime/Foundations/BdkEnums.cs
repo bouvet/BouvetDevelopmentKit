@@ -79,7 +79,7 @@ namespace Bouvet.DevelopmentKit
     }
 
     /// <summary>
-    /// Enum for the different air tap interactions for buttons
+    /// Enum for the different air tap interactions for buttons.
     /// </summary>
     public enum ButtonInteractionBeamMode
     {
@@ -87,5 +87,15 @@ namespace Bouvet.DevelopmentKit
         OnInputDown = 1,
         OnInputUp = 2,
         OnInputUpLocked = 3
+    }
+
+    /// <summary>
+    /// Enum for the different tween curves for interaction beems resetting position.
+    /// </summary>
+    public enum TweenCurve
+    {
+        Linear,
+        EaseInOut,
+        Bezier
     }
 }

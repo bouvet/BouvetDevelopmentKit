@@ -1,6 +1,7 @@
 ﻿using Bouvet.DevelopmentKit;
 using Bouvet.DevelopmentKit.Functionality.Hands;
 using Bouvet.DevelopmentKit.Input.Hands;
+using Bouvet.DevelopmentKit.Internal.Utils;
 using UnityEngine;
 
 namespace Bouvet.DevelopmentKit.Tools.Hands
@@ -17,7 +18,7 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
 
         [SerializeField]
         [Tooltip("Offset variables:\nX: left/right\nY: up/down\nZ: forward/backwards")]
-        protected Vector3 offset = new Vector3(0.1f, 0f, 0f);
+        public Vector3 offset = new Vector3(0.1f, 0f, 0f);
 
         [SerializeField]
         [Tooltip("How far away from the handmenu target position the menu is allowed to be. 0 means it has to be at the position. Recommended 0.01.")]
@@ -103,18 +104,19 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
 
         protected virtual void MoveMenu()
         {
-            menuAnchor.position = Vector3.Lerp(menuAnchor.position, palmPosition + OffsetManager(handRotationCheck, offset), Mathf.Clamp(10f * (Vector3.Distance(menuAnchor.position, palmPosition + OffsetManager(handRotationCheck, offset)) - slack), 0f, 1f));
+            menuAnchor.position = Vector3.Lerp(menuAnchor.position, palmPosition + OffsetManager(handRotationCheck, offset), 
+                Mathf.Clamp(10f * (Vector3.Distance(menuAnchor.position, palmPosition + OffsetManager(handRotationCheck, offset)) - slack), 0f, 1f));
         }
 
         private Vector3 OffsetManager(Transform offsetFrom, Vector3 offsetTo)
         {
             if (attachedToRightHand)
             {
-                return offsetFrom.right * offsetTo.x + offsetFrom.up * offsetTo.z + offsetFrom.forward * offsetTo.y;
+                return offsetFrom.right * offsetTo.x + transform.up * offsetTo.z + transform.forward * offsetTo.y;
             }
             else
             {
-                return -offsetFrom.right * offsetTo.x + offsetFrom.up * offsetTo.z + offsetFrom.forward * offsetTo.y;
+                return -offsetFrom.right * offsetTo.x + transform.up * offsetTo.z + transform.forward * offsetTo.y;
             }
         }
 #pragma warning restore CS0649

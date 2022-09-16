@@ -29,7 +29,9 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
         protected Transform gripPointL;
         protected Transform gripPointR;
 
-        private Quaternion originalRotation;
+        protected Quaternion originalRotation;
+        private Vector3 originalStartScale;
+
 
         public override void Initialize()
         {
@@ -44,6 +46,8 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
             inputManager.OnManipulationStarted += BeginInteraction;
             inputManager.OnManipulationUpdated += UpdateInteraction;
             inputManager.OnManipulationEnded += EndInteraction;
+
+            originalStartScale = gameObject.transform.localScale;
         }
 
         protected virtual void SetupAudio()
@@ -136,6 +140,12 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
             currentState = HandInteractionMode.None;
             audioSource.PlayOneShot(onInteractionCompleteSound);
         }
+
+        public void SetScaleOriginalSize()
+        {
+            gameObject.transform.localScale = originalStartScale;
+        }
+
         private void OnEnable()
         {
             if (!inputManager) return;

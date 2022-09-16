@@ -35,6 +35,10 @@ namespace Bouvet.DevelopmentKit.Input
 
         [HideInInspector] public bool UseVoice;
 
+        [HideInInspector] public bool UseCustomTween;
+        [HideInInspector] public float autoTweenTime = 0.25f;
+        [HideInInspector] public TweenCurve currentTweenCurve;
+
         [HideInInspector] public CursorManager CursorManager;
     }
 }
