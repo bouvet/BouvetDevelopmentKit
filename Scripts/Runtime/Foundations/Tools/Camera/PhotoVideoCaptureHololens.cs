@@ -13,8 +13,8 @@ public class PhotoVideoCaptureHololens : MonoBehaviour
     private TextMeshPro informationText;
     [Header("Camera Settings")]
     [SerializeField]
-    [Range(0, 100)]
-    private float hologramOpacity = 80f;
+    [Range(0f, 1f)]
+    private float hologramOpacity = 0.8f;
     [SerializeField]
     private PhotoCaptureFileOutputFormat outputFileFormat = PhotoCaptureFileOutputFormat.PNG;
 
