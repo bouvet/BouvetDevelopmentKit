@@ -11,7 +11,17 @@ public class PhotoVideoCaptureHololens : MonoBehaviour
     private GameObject previewImage;
     [SerializeField]
     private TextMeshPro informationText;
+
     [Header("Camera Settings")]
+    [SerializeField]
+    private bool captureHologram = false;
+    public bool CaptureHologram
+    {
+        get { return captureHologram; }
+        set { captureHologram = value; }
+    }
+
+
     [SerializeField]
     [Range(0f, 1f)]
     private float hologramOpacity = 0.8f;
@@ -23,7 +33,7 @@ public class PhotoVideoCaptureHololens : MonoBehaviour
 
     public void TakePhotoHololens()
     {
-        PhotoCapture.CreateAsync(false, OnPhotoCaptureCreated);
+        PhotoCapture.CreateAsync(captureHologram, OnPhotoCaptureCreated);
     }
     private void OnPhotoCaptureCreated(PhotoCapture captureObject)
     {
@@ -88,7 +98,7 @@ public class PhotoVideoCaptureHololens : MonoBehaviour
 
     public void RecordVideoHololens()
     {
-        VideoCapture.CreateAsync(false, OnVideoCaptureCreated);
+        VideoCapture.CreateAsync(captureHologram, OnVideoCaptureCreated);
     }
     private void OnVideoCaptureCreated(VideoCapture videoCapture)
     {
