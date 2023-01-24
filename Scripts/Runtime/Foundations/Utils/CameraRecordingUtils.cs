@@ -60,7 +60,6 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
         {
             if(Instance != null && Instance != this)
             {
-                Debug.Log("delete");
                 Destroy(this);
             } else
             {
@@ -98,12 +97,12 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
         {
             if(result.success)
             {
-                BdkLogger.Log("Photo captured");
+                BdkLogger.Log("CameraRecordingUtils: Photo captured");
                 m_PictureCaptured.Invoke();
                 if (saveImage) SaveImage();
             } else
             {
-                BdkLogger.Log("Unable to start photo mode!");
+                BdkLogger.Log("CameraRecordingUtils: Unable to start photo mode!");
             }
 
             if(!saveImage) photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
@@ -119,18 +118,19 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
             string filename = string.Format(@"CapturedImage{0}_n.jpg", Time.time);
             string filePath = System.IO.Path.Combine(Application.persistentDataPath, filename);
 
+            BdkLogger.Log("CameraRecordingUtils.SaveImage: saving to " + filePath + filename);
             photoCaptureObject.TakePhotoAsync(filePath, outputFileFormat, OnCapturedPhotoToDisk);
         }
         private void OnCapturedPhotoToDisk(PhotoCapture.PhotoCaptureResult result)
         {
             if(result.success)
             {
-                BdkLogger.Log("Saved Photo to disk!");
+                BdkLogger.Log("CameraRecordingUtils: Saved Photo to disk!");
                 photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
                 m_PictureSaved.Invoke();
             } else
             {
-                BdkLogger.Log("Failed to save Photo to disk");
+                BdkLogger.Log("CameraRecordingUtils: Failed to save Photo to disk");
                 m_PictureSaveFailed.Invoke();
             }
         }
