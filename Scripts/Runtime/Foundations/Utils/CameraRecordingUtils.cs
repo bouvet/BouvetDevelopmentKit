@@ -115,10 +115,15 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
 
         private void SaveImage()
         {
-            string filename = string.Format(@"CapturedImage{0}_n.jpg", Time.time);
+            string extension = "png";
+            if(outputFileFormat != PhotoCaptureFileOutputFormat.PNG)
+            {
+                extension = "jpg";
+            }
+            string filename = string.Format(@"CapturedImage{0}_n." + extension, Time.time);
             string filePath = System.IO.Path.Combine(Application.persistentDataPath, filename);
 
-            BdkLogger.Log("CameraRecordingUtils.SaveImage: saving to " + filePath + filename);
+            BdkLogger.Log("CameraRecordingUtils.SaveImage: saving to " + filePath);
             photoCaptureObject.TakePhotoAsync(filePath, outputFileFormat, OnCapturedPhotoToDisk);
         }
         private void OnCapturedPhotoToDisk(PhotoCapture.PhotoCaptureResult result)
