@@ -40,7 +40,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
         private PhotoCaptureFileOutputFormat outputFileFormat = PhotoCaptureFileOutputFormat.PNG;
 
         public PhotoCapture photoCaptureObject { get; private set; } = null;
-        //private VideoCapture videoCaptureObject = null;
+        private VideoCapture videoCaptureObject = null;
 
         [Header("Events")]
         [SerializeField]
@@ -138,6 +138,72 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
                 BdkLogger.Log("CameraRecordingUtils: Failed to save Photo to disk");
                 m_PictureSaveFailed.Invoke();
             }
+        }
+
+        public void RecordVideo()
+        {
+            if (videoCaptureObject == null)
+            {
+                VideoCapture.CreateAsync(captureHologram, OnVideoCaptureCreated);
+            }
+            else
+            {
+                BdkLogger.Log("CameraRecordingUtils is busy!! No new recording started. videoCaptureObject = " + (videoCaptureObject == null));
+            }
+        }
+
+        private void OnVideoCaptureCreated(VideoCapture videoCapture)
+        {
+            if (videoCapture != null)
+            {
+                videoCaptureObject = videoCapture;
+
+                Resolution cameraResolution = VideoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
+                float cameraFramerate = VideoCapture.GetSupportedFrameRatesForResolution(cameraResolution).OrderByDescending((fps) => fps).First();
+
+                CameraParameters cameraParameters = new CameraParameters();
+                cameraParameters.hologramOpacity = hologramOpacity;
+                cameraParameters.frameRate = cameraFramerate;
+                cameraParameters.cameraResolutionWidth = cameraResolution.width;
+                cameraParameters.cameraResolutionHeight = cameraResolution.height;
+                cameraParameters.pixelFormat = CapturePixelFormat.BGRA32;
+
+                videoCaptureObject.StartVideoModeAsync(cameraParameters, VideoCapture.AudioState.None, OnStartedVideoCaptureMode);
+            }
+            else
+            {
+                BdkLogger.Log("Failed to create VideoCapture Instance!");
+            }
+        }
+        private void OnStartedVideoCaptureMode(VideoCapture.VideoCaptureResult result)
+        {
+            if (result.success)
+            {
+                string filename = string.Format("MyVideo_{0}.mp4", Time.time);
+                string filepath = System.IO.Path.Combine(Application.persistentDataPath, filename);
+
+                videoCaptureObject.StartRecordingAsync(filepath, OnStartedRecordingVideo);
+            }
+        }
+        private void OnStartedRecordingVideo(VideoCapture.VideoCaptureResult result)
+        {
+            BdkLogger.Log("Started Recording Video!");
+        }
+        public void StopRecordingVideo()
+        {
+            videoCaptureObject.StopRecordingAsync(OnStoppedRecordingVideo);
+        }
+        private void OnStoppedRecordingVideo(VideoCapture.VideoCaptureResult result)
+        {
+            BdkLogger.Log("Stopped Recording Video!");
+            videoCaptureObject.StopVideoModeAsync(OnStoppedVideoCaptureMode);
+        }
+
+        void OnStoppedVideoCaptureMode(VideoCapture.VideoCaptureResult result)
+        {
+            //informationText.text = "Take a photo or start recording.";
+            videoCaptureObject.Dispose();
+            videoCaptureObject = null;
         }
 
     }
