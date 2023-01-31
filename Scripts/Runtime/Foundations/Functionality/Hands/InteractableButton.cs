@@ -9,6 +9,8 @@ using UnityEngine.Events;
 
 namespace Bouvet.DevelopmentKit.Functionality.Hands
 {
+    [System.Serializable]
+    public class UnityGameObjectEvent : UnityEvent<GameObject> { }
     /// <summary>
     /// Button that can be pressed either by the index finger directly or by air tapping while pointing at it with the interaction beam.
     /// </summary>
@@ -21,6 +23,10 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
 
         [SerializeField]
         public UnityEvent OnClicked;
+
+        [Tooltip("Same as OnClicked, but sends game object as parameter")]
+        [SerializeField]
+        public UnityGameObjectEvent OnClickedGo = new UnityGameObjectEvent();
 
         [SerializeField]
         protected float minTimeBetweenPresses = 0.2f;
@@ -78,7 +84,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
         /// </summary>
         private void OnValidate()
         {
-            if(!compressable)
+            if (!compressable)
             {
                 compressable = GetComponentsInChildren<Transform>().FirstOrDefault(x => x.name.Equals("Compressable"));
             }
@@ -156,6 +162,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
                 Invoke(nameof(UnblockButton), minTimeBetweenPresses);
 
                 OnClicked?.Invoke();
+                OnClickedGo?.Invoke(gameObject);
 
                 if (AnimateOnAirTap)
                 {
