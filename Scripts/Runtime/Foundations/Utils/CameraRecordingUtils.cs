@@ -184,11 +184,20 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
                 videoFilePath = System.IO.Path.Combine(Application.persistentDataPath, filename);
                 BdkLogger.Log("CameraRecordingUtils.OnStartedVideoCaptureMode: Saving to " + videoFilePath);
                 videoCaptureObject.StartRecordingAsync(videoFilePath, OnStartedRecordingVideo);
+            } else
+            {
+                BdkLogger.Log("CameraRecordingUtils.OnStartedVideoCaptureMode: video capture failed");
+                m_VideoCaptureFailed?.Invoke();
             }
         }
         private void OnStartedRecordingVideo(VideoCapture.VideoCaptureResult result)
         {
             BdkLogger.Log("CameraRecordingUtils.OnStartedRecordingVideo");
+            if(!result.success)
+            {
+                BdkLogger.Log("CameraRecordingUtils.OnStartedRecordingVideo: Starting video recording failed");
+                m_VideoCaptureFailed?.Invoke();
+            }
         }
         public void StopRecordingVideo()
         {
@@ -196,15 +205,29 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
         }
         private void OnStoppedRecordingVideo(VideoCapture.VideoCaptureResult result)
         {
-            BdkLogger.Log("CameraRecordingUtils.OnStoppedRecordingVideo");
-            videoCaptureObject.StopVideoModeAsync(OnStoppedVideoCaptureMode);
+            if(result.success)
+            {
+                BdkLogger.Log("CameraRecordingUtils.OnStoppedRecordingVideo");
+                videoCaptureObject.StopVideoModeAsync(OnStoppedVideoCaptureMode);
+            } else
+            {
+                BdkLogger.Log("CameraRecordingUtils.OnStoppedRecordingVideo: video recording failed");
+                m_VideoCaptureFailed?.Invoke();
+            }
         }
 
         void OnStoppedVideoCaptureMode(VideoCapture.VideoCaptureResult result)
         {
-            //informationText.text = "Take a photo or start recording.";
-            videoCaptureObject.Dispose();
-            videoCaptureObject = null;
+            if(result.success)
+            {
+                m_VideoCaptured?.Invoke();
+                videoCaptureObject.Dispose();
+                videoCaptureObject = null;
+            } else
+            {
+                BdkLogger.Log("CameraRecordingUtils.OnStoppedVideoCaptureMode: video recording failed");
+                m_VideoCaptureFailed?.Invoke();
+            }
         }
 
     }
