@@ -41,6 +41,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
 
         public PhotoCapture photoCaptureObject { get; private set; } = null;
         private VideoCapture videoCaptureObject = null;
+        public string videoFilePath { get; private set; } = "";
 
         [Header("Events")]
         [SerializeField]
@@ -180,9 +181,9 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
             if (result.success)
             {
                 string filename = string.Format("MyVideo_{0}.mp4", Time.time);
-                string filepath = System.IO.Path.Combine(Application.persistentDataPath, filename);
-                BdkLogger.Log("CameraRecordingUtils.OnStartedVideoCaptureMode: Saving to " + filepath);
-                videoCaptureObject.StartRecordingAsync(filepath, OnStartedRecordingVideo);
+                videoFilePath = System.IO.Path.Combine(Application.persistentDataPath, filename);
+                BdkLogger.Log("CameraRecordingUtils.OnStartedVideoCaptureMode: Saving to " + videoFilePath);
+                videoCaptureObject.StartRecordingAsync(videoFilePath, OnStartedRecordingVideo);
             }
         }
         private void OnStartedRecordingVideo(VideoCapture.VideoCaptureResult result)
