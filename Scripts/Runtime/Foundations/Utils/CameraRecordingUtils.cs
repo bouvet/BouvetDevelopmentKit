@@ -74,7 +74,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
                 PhotoCapture.CreateAsync(captureHologram, OnPhotoCaptureCreated);
             } else
             {
-                BdkLogger.Log("CameraRecordingUtils is busy!! No new recording started. photoCaptureObject = " + (photoCaptureObject == null));
+                BdkLogger.Log("CameraRecordingUtils.TakePhoto: CameraRecordingUtils is busy!! No new recording started. photoCaptureObject = " + (photoCaptureObject == null));
             }
         }
 
@@ -97,12 +97,12 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
         {
             if(result.success)
             {
-                BdkLogger.Log("CameraRecordingUtils: Photo captured");
+                BdkLogger.Log("CameraRecordingUtils.OnPhotoModeStarted: Photo captured");
                 m_PictureCaptured.Invoke();
                 if (saveImage) SaveImage();
             } else
             {
-                BdkLogger.Log("CameraRecordingUtils: Unable to start photo mode!");
+                BdkLogger.Log("CameraRecordingUtils.OnPhotoModeStarted: Unable to start photo mode!");
             }
 
             if(!saveImage) photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
@@ -130,12 +130,12 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
         {
             if(result.success)
             {
-                BdkLogger.Log("CameraRecordingUtils: Saved Photo to disk!");
+                BdkLogger.Log("CameraRecordingUtils.OnCapturedPhotoToDisk: Saved Photo to disk!");
                 photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
                 m_PictureSaved.Invoke();
             } else
             {
-                BdkLogger.Log("CameraRecordingUtils: Failed to save Photo to disk");
+                BdkLogger.Log("CameraRecordingUtils.OnCapturedPhotoToDisk: Failed to save Photo to disk");
                 m_PictureSaveFailed.Invoke();
             }
         }
@@ -148,7 +148,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
             }
             else
             {
-                BdkLogger.Log("CameraRecordingUtils is busy!! No new recording started. videoCaptureObject = " + (videoCaptureObject == null));
+                BdkLogger.Log("CameraRecordingUtils.RecordVideo: CameraRecordingUtils is busy!! No new recording started. videoCaptureObject = " + (videoCaptureObject == null));
             }
         }
 
@@ -172,7 +172,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
             }
             else
             {
-                BdkLogger.Log("Failed to create VideoCapture Instance!");
+                BdkLogger.Log("CameraRecordingUtils.OnVideoCaptureCreated: Failed to create VideoCapture Instance!");
             }
         }
         private void OnStartedVideoCaptureMode(VideoCapture.VideoCaptureResult result)
@@ -187,7 +187,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
         }
         private void OnStartedRecordingVideo(VideoCapture.VideoCaptureResult result)
         {
-            BdkLogger.Log("Started Recording Video!");
+            BdkLogger.Log("CameraRecordingUtils.OnStartedRecordingVideo");
         }
         public void StopRecordingVideo()
         {
@@ -195,7 +195,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
         }
         private void OnStoppedRecordingVideo(VideoCapture.VideoCaptureResult result)
         {
-            BdkLogger.Log("Stopped Recording Video!");
+            BdkLogger.Log("CameraRecordingUtils.OnStoppedRecordingVideo");
             videoCaptureObject.StopVideoModeAsync(OnStoppedVideoCaptureMode);
         }
 
