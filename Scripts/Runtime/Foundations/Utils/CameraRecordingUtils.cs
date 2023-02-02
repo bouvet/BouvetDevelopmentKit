@@ -181,7 +181,7 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
             {
                 string filename = string.Format("MyVideo_{0}.mp4", Time.time);
                 string filepath = System.IO.Path.Combine(Application.persistentDataPath, filename);
-
+                BdkLogger.Log("CameraRecordingUtils.OnStartedVideoCaptureMode: Saving to " + filepath);
                 videoCaptureObject.StartRecordingAsync(filepath, OnStartedRecordingVideo);
             }
         }
