@@ -9,24 +9,38 @@ using UnityEngine.Events;
 
 namespace Bouvet.DevelopmentKit.Functionality.Hands
 {
-    [System.Serializable]
-    public class UnityGameObjectEvent : UnityEvent<GameObject> { }
     /// <summary>
     /// Button that can be pressed either by the index finger directly or by air tapping while pointing at it with the interaction beam.
     /// </summary>
-    public class InteractableButton : Interactable
+    public class InteractableToggleButton : Interactable
     {
 #pragma warning disable CS0649
+        [Header("Toggle properties:")]
+        [SerializeField]
+        protected bool currentState = false;
+
+        [SerializeField]
+        [Tooltip("Depends on a stop call to stop the loading.")]
+        protected bool withLoading = false;
+
+        [SerializeField]
+        protected SpriteRenderer currentIcon;
+
+        [SerializeField]
+        protected Sprite stateFalseIcon;
+
+        [SerializeField]
+        protected Sprite stateTrueIcon;
+
+        [SerializeField]
+        public UnityEvent stateToTrueEvent;
+
+        [SerializeField]
+        public UnityEvent stateToFalseEvent;
+
         [Header("Base properties:")]
         [SerializeField]
         protected Transform compressable;
-
-        [SerializeField]
-        public UnityEvent OnClicked;
-
-        [Tooltip("Same as OnClicked, but sends game object as parameter")]
-        [SerializeField]
-        public UnityGameObjectEvent OnClickedGo = new UnityGameObjectEvent();
 
         [SerializeField]
         protected float minTimeBetweenPresses = 0.2f;
@@ -84,7 +98,7 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
         /// </summary>
         private void OnValidate()
         {
-            if (!compressable)
+            if(!compressable)
             {
                 compressable = GetComponentsInChildren<Transform>().FirstOrDefault(x => x.name.Equals("Compressable"));
             }
@@ -97,6 +111,14 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
             SetupAudio();
             OnEnable();
             maxCompression = new Vector3(1f, 1f, buttonCompressionBeforeClick);
+            if(currentState)
+            {
+                currentIcon.sprite = stateTrueIcon;
+            }
+            else
+            {
+                currentIcon.sprite = stateFalseIcon;
+            }
         }
 
         protected virtual void SetupAudio()
@@ -161,8 +183,18 @@ namespace Bouvet.DevelopmentKit.Functionality.Hands
                 blockButton = true;
                 Invoke(nameof(UnblockButton), minTimeBetweenPresses);
 
-                OnClicked?.Invoke();
-                OnClickedGo?.Invoke(gameObject);
+                if(!currentState)
+                {
+                    currentState = true;
+                    currentIcon.sprite = stateTrueIcon;
+                    stateToTrueEvent?.Invoke();
+                }
+                else
+                {
+                    currentState = false;
+                    currentIcon.sprite = stateFalseIcon;
+                    stateToFalseEvent?.Invoke();
+                }
 
                 if (AnimateOnAirTap)
                 {
