@@ -41,16 +41,16 @@ namespace Bouvet.DevelopmentKit.Tools.Hands
 
         protected void SetColor()
         {
-            currentColor = Color.HSVToRGB(colorHueSlider.currentValue, colorStrengthSlider.currentValue, colorBrightnessSlider.currentValue); 
-            if(sampleMaterial)
+            currentColor = Color.HSVToRGB(colorHueSlider.currentValue, colorStrengthSlider.currentValue, colorBrightnessSlider.currentValue);
+            if (sampleMaterial)
             {
                 sampleMaterial.color = currentColor;
             }
-            if(strengthMaterial)
+            if (strengthMaterial)
             {
                 strengthMaterial.color = Color.HSVToRGB(colorHueSlider.currentValue, 1, 1);
             }
-            if(PutYourMaterialHere)
+            if (PutYourMaterialHere)
             {
                 PutYourMaterialHere.color = currentColor;
             }

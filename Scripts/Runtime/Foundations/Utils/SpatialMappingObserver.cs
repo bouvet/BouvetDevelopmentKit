@@ -173,6 +173,15 @@ namespace Bouvet.DevelopmentKit.Internal.Utils
         }
 
         /// <summary>
+        /// Toggles spatial mesh visibility to the opposite of the current setting
+        /// </summary>
+        public void ToggleSpatialMesh()
+        {
+            visibleMesh = !visibleMesh;
+            UpdateSpatialMeshVisibility();
+        }
+
+        /// <summary>
         /// Clears generated spatial mesh
         /// </summary>
         public void ClearSpatialMesh()

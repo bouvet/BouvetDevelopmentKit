@@ -85,7 +85,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &3289144676374375430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d66198eea04bfb148a279704c262c5bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   Anchor: {fileID: 3289144676374375435}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
@@ -125,6 +124,7 @@ MonoBehaviour:
   allowScaling: 1
   minimumScaleInXAxis: 0.1
   maximumScaleInXAxis: 4
+  menuFollow: 1
   offsets: {x: 0.1, y: -0.2}
   menuTransform: {fileID: 3289144676374375435}
   maxDistanceFromCenterOfFOV: 0.4
@@ -803,7 +803,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f1361fa00c79148b5afc0215751abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   compressable: {fileID: 6637583628789498641}
   OnClicked:
     m_PersistentCalls:
