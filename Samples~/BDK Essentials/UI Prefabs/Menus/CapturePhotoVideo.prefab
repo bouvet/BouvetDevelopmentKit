@@ -318,6 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previewImage: {fileID: 7676014196038981164}
   informationText: {fileID: 7676014194930992293}
+  captureHologram: 0
   hologramOpacity: 80
   outputFileFormat: 0
 --- !u!65 &7676014195981716829
@@ -345,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc861f0abad11b4a958db584419ca8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Anchor: {fileID: 0}
+  Anchor: {fileID: 7676014195981716831}
   onInteractionStartSound: {fileID: 0}
   onInteractionCompleteSound: {fileID: 0}
   beingHeld: 0
